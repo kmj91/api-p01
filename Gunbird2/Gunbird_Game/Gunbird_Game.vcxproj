@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A762AC09-D733-4826-AF3C-4360E7C59F32}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Gunbird_Game</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Blade.h" />
+    <ClInclude Include="Blue.h" />
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="BrokenStatic.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletDestroy.h" />
+    <ClInclude Include="BulletHit.h" />
+    <ClInclude Include="Bullet_1.h" />
+    <ClInclude Include="Bullet_2.h" />
+    <ClInclude Include="Bullet_3.h" />
+    <ClInclude Include="Bullet_4.h" />
+    <ClInclude Include="CactusCannon.h" />
+    <ClInclude Include="Candy.h" />
+    <ClInclude Include="Cannon.h" />
+    <ClInclude Include="CG_Kusuri.h" />
+    <ClInclude Include="CG_Stage_1.h" />
+    <ClInclude Include="CG_TextWindow.h" />
+    <ClInclude Include="Coin.h" />
+    <ClInclude Include="Effect_Charge.h" />
+    <ClInclude Include="Effect_MarionMeleeHit.h" />
+    <ClInclude Include="Explosion_05.h" />
+    <ClInclude Include="Logo.h" />
+    <ClInclude Include="MarionBombEffect.h" />
+    <ClInclude Include="MarionEffect.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="PipeSmoke.h" />
+    <ClInclude Include="UI_ChargeBar.h" />
+    <ClInclude Include="CollisionMgr.h" />
+    <ClInclude Include="UI_Credit.h" />
+    <ClInclude Include="UI_MainContinue.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="Explosion_01.h" />
+    <ClInclude Include="Explosion_02_1.h" />
+    <ClInclude Include="Explosion_03.h" />
+    <ClInclude Include="Explosion_04.h" />
+    <ClInclude Include="Factory.h" />
+    <ClInclude Include="GameUIMgr.h" />
+    <ClInclude Include="Gimmick.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="MarionBullet_2.h" />
+    <ClInclude Include="MarionBullet_3.h" />
+    <ClInclude Include="MarionBullet_4.h" />
+    <ClInclude Include="MarionChargeBullet.h" />
+    <ClInclude Include="MarionChargeHitEffect.h" />
+    <ClInclude Include="MarionGuidedBullet.h" />
+    <ClInclude Include="MoverCannon.h" />
+    <ClInclude Include="MoveStatic.h" />
+    <ClInclude Include="NPC.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerDead.h" />
+    <ClInclude Include="UI_PlayerLife.h" />
+    <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="UI_PowerUpDownText.h" />
+    <ClInclude Include="Red.h" />
+    <ClInclude Include="RedBeanie.h" />
+    <ClInclude Include="RemoveSector.h" />
+    <ClInclude Include="RobotBlue.h" />
+    <ClInclude Include="Rocket.h" />
+    <ClInclude Include="RobotShark.h" />
+    <ClInclude Include="Sector.h" />
+    <ClInclude Include="Shark.h" />
+    <ClInclude Include="SideContinue.h" />
+    <ClInclude Include="SoundMgr.h" />
+    <ClInclude Include="Stage1_BossTextBox.h" />
+    <ClInclude Include="BG_Stage_1.h" />
+    <ClInclude Include="BmpMgr.h" />
+    <ClInclude Include="KeyMgr.h" />
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MarionBullet_1.h" />
+    <ClInclude Include="MyBitmap.h" />
+    <ClInclude Include="Obj.h" />
+    <ClInclude Include="ObjMgr.h" />
+    <ClInclude Include="Marion.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneMgr.h" />
+    <ClInclude Include="SelectMenu.h" />
+    <ClInclude Include="PlayerSelect.h" />
+    <ClInclude Include="Stage.h" />
+    <ClInclude Include="StaticObj.h" />
+    <ClInclude Include="TequilaGallop.h" />
+    <ClInclude Include="TequilaGround.h" />
+    <ClInclude Include="UI_Bomb.h" />
+    <ClInclude Include="UI_Score.h" />
+    <ClInclude Include="UI_ScoreText.h" />
+    <ClInclude Include="UI_Static.h" />
+    <ClInclude Include="UI_TitleLogo.h" />
+    <ClInclude Include="WheelSmoke.h" />
+    <ClInclude Include="WinMain.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Blade.cpp" />
+    <ClCompile Include="Blue.cpp" />
+    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BrokenStatic.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletDestroy.cpp" />
+    <ClCompile Include="BulletHit.cpp" />
+    <ClCompile Include="Bullet_1.cpp" />
+    <ClCompile Include="Bullet_2.cpp" />
+    <ClCompile Include="Bullet_3.cpp" />
+    <ClCompile Include="Bullet_4.cpp" />
+    <ClCompile Include="CactusCannon.cpp" />
+    <ClCompile Include="Candy.cpp" />
+    <ClCompile Include="Cannon.cpp" />
+    <ClCompile Include="CG_Kusuri.cpp" />
+    <ClCompile Include="CG_Stage_1.cpp" />
+    <ClCompile Include="CG_TextWindow.cpp" />
+    <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="Effect_Charge.cpp" />
+    <ClCompile Include="Effect_MarionMeleeHit.cpp" />
+    <ClCompile Include="Explosion_05.cpp" />
+    <ClCompile Include="Logo.cpp" />
+    <ClCompile Include="MarionBombEffect.cpp" />
+    <ClCompile Include="MarionEffect.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="PipeSmoke.cpp" />
+    <ClCompile Include="UI_ChargeBar.cpp" />
+    <ClCompile Include="CollisionMgr.cpp" />
+    <ClCompile Include="UI_Credit.cpp" />
+    <ClCompile Include="UI_MainContinue.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="Explosion_01.cpp" />
+    <ClCompile Include="Explosion_02_1.cpp" />
+    <ClCompile Include="Explosion_03.cpp" />
+    <ClCompile Include="Explosion_04.cpp" />
+    <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="GameUIMgr.cpp" />
+    <ClCompile Include="Gimmick.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="MarionBullet_2.cpp" />
+    <ClCompile Include="MarionBullet_3.cpp" />
+    <ClCompile Include="MarionBullet_4.cpp" />
+    <ClCompile Include="MarionChargeBullet.cpp" />
+    <ClCompile Include="MarionChargeHitEffect.cpp" />
+    <ClCompile Include="MarionGuidedBullet.cpp" />
+    <ClCompile Include="MoverCannon.cpp" />
+    <ClCompile Include="MoveStatic.cpp" />
+    <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerDead.cpp" />
+    <ClCompile Include="UI_PlayerLife.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="UI_PowerUpDownText.cpp" />
+    <ClCompile Include="Red.cpp" />
+    <ClCompile Include="RedBeanie.cpp" />
+    <ClCompile Include="RemoveSector.cpp" />
+    <ClCompile Include="RobotBlue.cpp" />
+    <ClCompile Include="Rocket.cpp" />
+    <ClCompile Include="RobotShark.cpp" />
+    <ClCompile Include="Sector.cpp" />
+    <ClCompile Include="Shark.cpp" />
+    <ClCompile Include="SideContinue.cpp" />
+    <ClCompile Include="SoundMgr.cpp" />
+    <ClCompile Include="Stage1_BossTextBox.cpp" />
+    <ClCompile Include="StageScroll.cpp" />
+    <ClCompile Include="BG_Stage_1.cpp" />
+    <ClCompile Include="BmpMgr.cpp" />
+    <ClCompile Include="KeyMgr.cpp" />
+    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MarionBullet_1.cpp" />
+    <ClCompile Include="MyBitmap.cpp" />
+    <ClCompile Include="Obj.cpp" />
+    <ClCompile Include="ObjMgr.cpp" />
+    <ClCompile Include="Marion.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneMgr.cpp" />
+    <ClCompile Include="SelectMenu.cpp" />
+    <ClCompile Include="PlayerSelect.cpp" />
+    <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="StaticObj.cpp" />
+    <ClCompile Include="TequilaGallop.cpp" />
+    <ClCompile Include="TequilaGround.cpp" />
+    <ClCompile Include="UI_Bomb.cpp" />
+    <ClCompile Include="UI_Score.cpp" />
+    <ClCompile Include="UI_ScoreText.cpp" />
+    <ClCompile Include="UI_Static.cpp" />
+    <ClCompile Include="UI_TitleLogo.cpp" />
+    <ClCompile Include="WheelSmoke.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gunbird_Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Gunbird_Game.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

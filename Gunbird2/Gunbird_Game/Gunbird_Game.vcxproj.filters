@@ -1,0 +1,864 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\99.Default">
+      <UniqueIdentifier>{bb11467c-61ee-49cd-85c5-8fe9bb815c48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98.Manager">
+      <UniqueIdentifier>{ec20285b-28f1-4bf5-a4d9-bee31eb7f473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00.MainGame">
+      <UniqueIdentifier>{45feda5e-8e47-47a9-85e2-7a366edccdf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98.Manager\00.SceneMgr">
+      <UniqueIdentifier>{9e6164bf-5308-425e-a1f2-1b35421fcd50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene">
+      <UniqueIdentifier>{908b7df0-9fd7-47f3-92f9-5843dd847688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98.Manager\01.ObjMgr">
+      <UniqueIdentifier>{b7101c23-5470-483e-80d4-9e846b41e57e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj">
+      <UniqueIdentifier>{c49a05c4-d9a1-4d24-bfc7-4f772189a108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\00.Player">
+      <UniqueIdentifier>{a8cd8966-d5e9-4e9d-b3b6-d2a0bae87975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98.Manager\02.KeyMgr">
+      <UniqueIdentifier>{908657cc-4cf9-4b2a-a05e-341e8acca9b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98.Manager\03.BmpMgr">
+      <UniqueIdentifier>{9286a874-25e5-4213-8ba8-381c442e5eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Bitmap">
+      <UniqueIdentifier>{85b5aca6-1986-4d8b-abd8-5fa632c3efb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\02.Stage">
+      <UniqueIdentifier>{3a5f04b2-480d-4037-ab82-466d6983725c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\01.SelectMenu">
+      <UniqueIdentifier>{c07259f8-28cb-44af-8dd2-5fe7f059d884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\00.Logo">
+      <UniqueIdentifier>{5ac9ac88-3208-4112-857e-dea4f58edc59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\01.SelectPlayer">
+      <UniqueIdentifier>{c541bf2a-3640-4596-b949-4d978de965e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\02.Bullet">
+      <UniqueIdentifier>{05b55ec3-ea0b-4490-8993-aa6acc688e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\02.Bullet\01.Marion">
+      <UniqueIdentifier>{3bf459f7-12f8-43bf-bcf3-85d9e7819747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\02.Bullet\00.Arucard">
+      <UniqueIdentifier>{c0c7e406-aa96-4221-8d8d-845ff3f25f72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster">
+      <UniqueIdentifier>{97c4645c-1f88-47db-bd49-36a7802aa022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\04.Background">
+      <UniqueIdentifier>{993e8d50-6d69-48f0-8d48-cd1d462cd712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\00.Player\00.Arucard">
+      <UniqueIdentifier>{d70f7056-2cef-4f53-a6b4-f245a71f1498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\00.Player\01.Marion">
+      <UniqueIdentifier>{16dbd18f-cc15-4bb8-b55f-4f8a33c00590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\01.Blue">
+      <UniqueIdentifier>{86a16cbe-6305-428e-a5de-2a194f9dee54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\00.Rocket">
+      <UniqueIdentifier>{2ed641c6-2b40-4697-83e2-5435e3842ba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\02.Red">
+      <UniqueIdentifier>{3c2a231c-b271-4bf1-89cd-6ce0629c5cc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\03.MoverCannon">
+      <UniqueIdentifier>{41239cd9-5be8-4710-9584-cb463429e7a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98.Manager\04.CollisionMgr">
+      <UniqueIdentifier>{79b7bf37-8efd-4d22-b3b2-204018160c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect">
+      <UniqueIdentifier>{73082a17-fdcc-4e90-9639-2efd4f8bfda7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\00.BulletHit">
+      <UniqueIdentifier>{e6f49270-0b22-402f-bc35-91414cdc1380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\06.Item">
+      <UniqueIdentifier>{1af5009a-c9e3-403d-889c-a16577d14075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\06.Item\00.PowerUp">
+      <UniqueIdentifier>{0b92fa1a-a77f-49e4-929a-cf402767a991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\07.Static">
+      <UniqueIdentifier>{1418e1c8-b213-481a-8c28-3ed5af193d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\04.Cannon">
+      <UniqueIdentifier>{4f557c20-7ef3-4d3d-b044-0c2f96260939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\10.RobotBlue">
+      <UniqueIdentifier>{dc1dbf84-4e29-4e78-b365-566192c078fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\08.BrokenStatic">
+      <UniqueIdentifier>{6829a322-6784-490b-97a5-c2147b379ff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\20.RedBeanie">
+      <UniqueIdentifier>{0164cdee-e7ec-44a1-a39e-c3fd966d887c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\02.Bullet\10.Bullet_1">
+      <UniqueIdentifier>{57e57cfc-08dd-4c9a-8e8f-19b2db9dc68b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\10.PlayerDead">
+      <UniqueIdentifier>{25e71455-138c-4182-a1a4-c957002da685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\30.Factory">
+      <UniqueIdentifier>{9939e42c-cd8c-4f28-afb1-9787bf719136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\05.CactusCannon">
+      <UniqueIdentifier>{3ccd7cb4-d6e4-4a23-b2d3-f25f1f0f6877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\09.MoveStatic">
+      <UniqueIdentifier>{8742abac-851f-4aa5-94b5-c8cfdab12d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\10.NPC">
+      <UniqueIdentifier>{a4a5598b-dd92-4948-9af4-4defda2ae7f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\10.NPC\00.MoveNPC">
+      <UniqueIdentifier>{136c1ff1-d0f5-4c4b-9395-61de79627c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\03.Monster\40.RobotShark">
+      <UniqueIdentifier>{a9ca5b16-e522-4048-8dbc-b67bb4e1db4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\10.NPC\00.MoveNPC\00.Shark">
+      <UniqueIdentifier>{5bb60aa3-6600-4297-9527-42c5dbc05056}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\10.NPC\00.MoveNPC\01.Gimmick">
+      <UniqueIdentifier>{e7cd6d02-a22c-4f06-af1f-dbd840f79a6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\10.NPC\00.MoveNPC\02.Blade">
+      <UniqueIdentifier>{aa71e1c8-f864-4834-9748-ffb51ee5731a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\11.Sector">
+      <UniqueIdentifier>{5142630b-be97-4f9d-bee6-cb9e3da3a278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\12.Boss">
+      <UniqueIdentifier>{bb79610a-2cf4-4f01-be63-ded991d3de2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\12.Boss\00.TequilaGround">
+      <UniqueIdentifier>{96006a6e-872e-484a-b585-21604e7b29d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI">
+      <UniqueIdentifier>{91b9bf00-f633-4e35-bb36-04ee21c03f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\00.TextBox">
+      <UniqueIdentifier>{188c99d7-6ea5-4e5d-92fc-341ffc61426d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\00.TextBox\00.Stage1_BossTextBox">
+      <UniqueIdentifier>{948dcc3b-4f54-4434-a5bb-f8c3fe6d784b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\11.Sector\00.MoveSector">
+      <UniqueIdentifier>{c59b6812-e94e-4ba8-859d-da6d46eeaff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\11.Sector\01.RemoveSector">
+      <UniqueIdentifier>{2033e8cf-c2cf-460c-9b9a-bd7224d89cf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\02.Bullet\11.Bullet_2">
+      <UniqueIdentifier>{e0688c5d-b622-4915-af36-5eb1cd932829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\02.Bullet\12.Bullet_3">
+      <UniqueIdentifier>{fb5a7005-625b-40b6-a76f-ee57ac71457f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\02.Bullet\13.Bullet_4">
+      <UniqueIdentifier>{93a19630-795e-4722-a096-895e7724957f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98.Manager\05.SoundMgr">
+      <UniqueIdentifier>{f3100943-8046-4aee-a48e-b9e02e77bc56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\20.MarionChargeHItEffect">
+      <UniqueIdentifier>{93cbb2a0-35c5-424a-bd6f-577cae75b3ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\06.Item\02.Candy">
+      <UniqueIdentifier>{8cf89041-630c-4568-b3bc-6953dc3bde45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\06.Item\01.Bomb">
+      <UniqueIdentifier>{c5fcbe3b-ada3-40aa-98f6-3976c237e9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\98.Manager\06.GameUIMgr">
+      <UniqueIdentifier>{d74250bc-c740-4d7d-8f90-765cddd29e1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\01.BulletDestroy">
+      <UniqueIdentifier>{3fc1a6a3-f4ea-4c1d-bebf-db5812d05bc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\02.Explosion_01">
+      <UniqueIdentifier>{6b49e153-f6cd-4a76-abc2-71d9f4173cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\03.Explosion_02">
+      <UniqueIdentifier>{6b9130ac-d996-44e5-9afb-bbcdb24e9806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\04.Explosion_03">
+      <UniqueIdentifier>{9b4915da-b69d-4b11-a990-cf2e40205b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\05.Explosion_04">
+      <UniqueIdentifier>{c3f7c76a-560e-4b89-b7c1-cdc9c0ce5287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\12.Boss\01.TequilaGallop">
+      <UniqueIdentifier>{9a9a4421-4022-42f8-beb5-ac8d93b33028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\01.UI_Static">
+      <UniqueIdentifier>{eaf8d8da-a41e-4eb9-aea7-1b0957a71399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\05.SideContinue">
+      <UniqueIdentifier>{8ac4dd0e-0ff4-4907-9f10-65c197e6bb5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\07.UI_Bomb">
+      <UniqueIdentifier>{dbf0bd48-ad6a-4e8c-afdb-5d50b392bee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\03.UI_PlayerLife">
+      <UniqueIdentifier>{652b4c6e-dbea-405b-b7fe-438e2f3c89c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\06.UI_ChargeBar">
+      <UniqueIdentifier>{e6785fe0-f227-4173-b905-fc07d6d39235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\04.UI_MainContinue">
+      <UniqueIdentifier>{4b3b7517-5494-4acf-a791-67e0a9c0d171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\08.UI_Score">
+      <UniqueIdentifier>{508877f3-5194-40ae-9c64-09f42f2260cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\02.UI_PowerUpDownText">
+      <UniqueIdentifier>{e4310ca2-7d16-4d29-a787-00bd63353cac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\09.UI_ScoreText">
+      <UniqueIdentifier>{56affdb1-9654-4dc1-b2d4-ca54486336c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\06.Item\03.Coin">
+      <UniqueIdentifier>{98037c44-3b6f-4670-bce2-3004a73cb858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\30.WheelSmoke">
+      <UniqueIdentifier>{c8094faa-09bb-4db2-adf7-94c2b37f1c4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\31.PipeSmoke">
+      <UniqueIdentifier>{f0487125-f75f-4f80-9a48-1e836ed001f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\21.MarionEffect">
+      <UniqueIdentifier>{f3a7159f-74d2-49e9-b7bb-d8caac8d83c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\22.MarionBombEffect">
+      <UniqueIdentifier>{ea8db326-7529-4072-ac47-8fceae79c14e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\32.Effect_Charge">
+      <UniqueIdentifier>{f11e6a33-e7e1-4bf3-b422-2dbae894824d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\23.Effect_MarionMeleeHit">
+      <UniqueIdentifier>{e38aa4db-c587-4ec1-836e-432ea894181d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\03.CG_Stage_1">
+      <UniqueIdentifier>{c8611136-f911-486b-a604-5b07c47645e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\14.CG">
+      <UniqueIdentifier>{a0a6c6b8-9690-49c2-a184-5fea4f580317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\14.CG\00.CG_Kusuri">
+      <UniqueIdentifier>{d025e014-26dc-4492-b5ee-5f06967ab15a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\14.CG\01.CG_TextWindow">
+      <UniqueIdentifier>{fb76e28a-16f3-4db8-a859-89f7819fd075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\10.UI_Credit">
+      <UniqueIdentifier>{d4b89da7-dc46-4abf-83ec-1e67aa8615f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\13.UI\11.UI_TitleLogo">
+      <UniqueIdentifier>{7937654e-86f1-4f19-83db-ece0bab76c00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Obj\05.Effect\06.Explosion_05">
+      <UniqueIdentifier>{ddd8cc07-1c23-4886-bd03-f4411367d1e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WinMain.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>소스 파일\00.MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>소스 파일\98.Manager\00.SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\01.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>소스 파일\01.Scene\02.Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMgr.h">
+      <Filter>소스 파일\98.Manager\01.ObjMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>소스 파일\02.Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMgr.h">
+      <Filter>소스 파일\98.Manager\02.KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="BmpMgr.h">
+      <Filter>소스 파일\98.Manager\03.BmpMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBitmap.h">
+      <Filter>소스 파일\03.Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectMenu.h">
+      <Filter>소스 파일\01.Scene\01.SelectMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSelect.h">
+      <Filter>소스 파일\02.Obj\01.SelectPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionBullet_1.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClInclude>
+    <ClInclude Include="Marion.h">
+      <Filter>소스 파일\02.Obj\00.Player\01.Marion</Filter>
+    </ClInclude>
+    <ClInclude Include="Blue.h">
+      <Filter>소스 파일\02.Obj\03.Monster\01.Blue</Filter>
+    </ClInclude>
+    <ClInclude Include="Rocket.h">
+      <Filter>소스 파일\02.Obj\03.Monster\00.Rocket</Filter>
+    </ClInclude>
+    <ClInclude Include="Red.h">
+      <Filter>소스 파일\02.Obj\03.Monster\02.Red</Filter>
+    </ClInclude>
+    <ClInclude Include="MoverCannon.h">
+      <Filter>소스 파일\02.Obj\03.Monster\03.MoverCannon</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>소스 파일\98.Manager\04.CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion_01.h">
+      <Filter>소스 파일\02.Obj\05.Effect\02.Explosion_01</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion_02_1.h">
+      <Filter>소스 파일\02.Obj\05.Effect\03.Explosion_02</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletHit.h">
+      <Filter>소스 파일\02.Obj\05.Effect\00.BulletHit</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>소스 파일\02.Obj\06.Item\00.PowerUp</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\02.Obj\00.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionBullet_2.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObj.h">
+      <Filter>소스 파일\02.Obj\07.Static</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.h">
+      <Filter>소스 파일\02.Obj\03.Monster\04.Cannon</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>소스 파일\02.Obj\02.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotBlue.h">
+      <Filter>소스 파일\02.Obj\03.Monster\10.RobotBlue</Filter>
+    </ClInclude>
+    <ClInclude Include="BrokenStatic.h">
+      <Filter>소스 파일\02.Obj\08.BrokenStatic</Filter>
+    </ClInclude>
+    <ClInclude Include="RedBeanie.h">
+      <Filter>소스 파일\02.Obj\03.Monster\20.RedBeanie</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion_03.h">
+      <Filter>소스 파일\02.Obj\05.Effect\04.Explosion_03</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>소스 파일\02.Obj\05.Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet_1.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\10.Bullet_1</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDead.h">
+      <Filter>소스 파일\02.Obj\05.Effect\10.PlayerDead</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionBullet_3.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionGuidedBullet.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>소스 파일\02.Obj\03.Monster\30.Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="CactusCannon.h">
+      <Filter>소스 파일\02.Obj\03.Monster\05.CactusCannon</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion_04.h">
+      <Filter>소스 파일\02.Obj\05.Effect\05.Explosion_04</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveStatic.h">
+      <Filter>소스 파일\02.Obj\09.MoveStatic</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotShark.h">
+      <Filter>소스 파일\02.Obj\03.Monster\40.RobotShark</Filter>
+    </ClInclude>
+    <ClInclude Include="Shark.h">
+      <Filter>소스 파일\02.Obj\10.NPC\00.MoveNPC\00.Shark</Filter>
+    </ClInclude>
+    <ClInclude Include="Gimmick.h">
+      <Filter>소스 파일\02.Obj\10.NPC\00.MoveNPC\01.Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Blade.h">
+      <Filter>소스 파일\02.Obj\10.NPC\00.MoveNPC\02.Blade</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>소스 파일\02.Obj\10.NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="TequilaGround.h">
+      <Filter>소스 파일\02.Obj\12.Boss\00.TequilaGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1_BossTextBox.h">
+      <Filter>소스 파일\02.Obj\13.UI\00.TextBox\00.Stage1_BossTextBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Sector.h">
+      <Filter>소스 파일\02.Obj\11.Sector\00.MoveSector</Filter>
+    </ClInclude>
+    <ClInclude Include="RemoveSector.h">
+      <Filter>소스 파일\02.Obj\11.Sector\01.RemoveSector</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet_2.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\11.Bullet_2</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionBullet_4.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet_3.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\12.Bullet_3</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet_4.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\13.Bullet_4</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>소스 파일\98.Manager\05.SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionChargeBullet.h">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionChargeHitEffect.h">
+      <Filter>소스 파일\02.Obj\05.Effect\20.MarionChargeHItEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Candy.h">
+      <Filter>소스 파일\02.Obj\06.Item\02.Candy</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>소스 파일\02.Obj\06.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUIMgr.h">
+      <Filter>소스 파일\98.Manager\06.GameUIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>소스 파일\02.Obj\12.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="SideContinue.h">
+      <Filter>소스 파일\02.Obj\13.UI\05.SideContinue</Filter>
+    </ClInclude>
+    <ClInclude Include="BG_Stage_1.h">
+      <Filter>소스 파일\02.Obj\04.Background</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletDestroy.h">
+      <Filter>소스 파일\02.Obj\05.Effect\01.BulletDestroy</Filter>
+    </ClInclude>
+    <ClInclude Include="TequilaGallop.h">
+      <Filter>소스 파일\02.Obj\12.Boss\01.TequilaGallop</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Static.h">
+      <Filter>소스 파일\02.Obj\13.UI\01.UI_Static</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Bomb.h">
+      <Filter>소스 파일\02.Obj\13.UI\07.UI_Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_ChargeBar.h">
+      <Filter>소스 파일\02.Obj\13.UI\06.UI_ChargeBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_PlayerLife.h">
+      <Filter>소스 파일\02.Obj\13.UI\03.UI_PlayerLife</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_MainContinue.h">
+      <Filter>소스 파일\02.Obj\13.UI\04.UI_MainContinue</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>소스 파일\02.Obj\06.Item\01.Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Score.h">
+      <Filter>소스 파일\02.Obj\13.UI\08.UI_Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>소스 파일\02.Obj\03.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_PowerUpDownText.h">
+      <Filter>소스 파일\02.Obj\13.UI\02.UI_PowerUpDownText</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_ScoreText.h">
+      <Filter>소스 파일\02.Obj\13.UI\09.UI_ScoreText</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>소스 파일\02.Obj\06.Item\03.Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="WheelSmoke.h">
+      <Filter>소스 파일\02.Obj\05.Effect\30.WheelSmoke</Filter>
+    </ClInclude>
+    <ClInclude Include="PipeSmoke.h">
+      <Filter>소스 파일\02.Obj\05.Effect\31.PipeSmoke</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionEffect.h">
+      <Filter>소스 파일\02.Obj\05.Effect\21.MarionEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="MarionBombEffect.h">
+      <Filter>소스 파일\02.Obj\05.Effect\22.MarionBombEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect_Charge.h">
+      <Filter>소스 파일\02.Obj\05.Effect\32.Effect_Charge</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect_MarionMeleeHit.h">
+      <Filter>소스 파일\02.Obj\05.Effect\23.Effect_MarionMeleeHit</Filter>
+    </ClInclude>
+    <ClInclude Include="CG_Stage_1.h">
+      <Filter>소스 파일\01.Scene\03.CG_Stage_1</Filter>
+    </ClInclude>
+    <ClInclude Include="CG_Kusuri.h">
+      <Filter>소스 파일\02.Obj\14.CG\00.CG_Kusuri</Filter>
+    </ClInclude>
+    <ClInclude Include="CG_TextWindow.h">
+      <Filter>소스 파일\02.Obj\14.CG\01.CG_TextWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="Logo.h">
+      <Filter>소스 파일\01.Scene\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_TitleLogo.h">
+      <Filter>소스 파일\02.Obj\13.UI\11.UI_TitleLogo</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Credit.h">
+      <Filter>소스 파일\02.Obj\13.UI\10.UI_Credit</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion_05.h">
+      <Filter>소스 파일\02.Obj\05.Effect\06.Explosion_05</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>소스 파일\00.MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>소스 파일\98.Manager\00.SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\01.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>소스 파일\01.Scene\02.Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMgr.cpp">
+      <Filter>소스 파일\98.Manager\01.ObjMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>소스 파일\02.Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMgr.cpp">
+      <Filter>소스 파일\98.Manager\02.KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="BmpMgr.cpp">
+      <Filter>소스 파일\98.Manager\03.BmpMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBitmap.cpp">
+      <Filter>소스 파일\03.Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectMenu.cpp">
+      <Filter>소스 파일\01.Scene\01.SelectMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSelect.cpp">
+      <Filter>소스 파일\02.Obj\01.SelectPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionBullet_1.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClCompile>
+    <ClCompile Include="Marion.cpp">
+      <Filter>소스 파일\02.Obj\00.Player\01.Marion</Filter>
+    </ClCompile>
+    <ClCompile Include="StageScroll.cpp">
+      <Filter>소스 파일\01.Scene\02.Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Blue.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\01.Blue</Filter>
+    </ClCompile>
+    <ClCompile Include="Rocket.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\00.Rocket</Filter>
+    </ClCompile>
+    <ClCompile Include="Red.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\02.Red</Filter>
+    </ClCompile>
+    <ClCompile Include="MoverCannon.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\03.MoverCannon</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>소스 파일\98.Manager\04.CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion_01.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\02.Explosion_01</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion_02_1.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\03.Explosion_02</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletHit.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\00.BulletHit</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUp.cpp">
+      <Filter>소스 파일\02.Obj\06.Item\00.PowerUp</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\02.Obj\00.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionBullet_2.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObj.cpp">
+      <Filter>소스 파일\02.Obj\07.Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Cannon.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\04.Cannon</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotBlue.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\10.RobotBlue</Filter>
+    </ClCompile>
+    <ClCompile Include="BrokenStatic.cpp">
+      <Filter>소스 파일\02.Obj\08.BrokenStatic</Filter>
+    </ClCompile>
+    <ClCompile Include="RedBeanie.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\20.RedBeanie</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion_03.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\04.Explosion_03</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_1.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\10.Bullet_1</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDead.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\10.PlayerDead</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionBullet_3.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionGuidedBullet.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\30.Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="CactusCannon.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\05.CactusCannon</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion_04.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\05.Explosion_04</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveStatic.cpp">
+      <Filter>소스 파일\02.Obj\09.MoveStatic</Filter>
+    </ClCompile>
+    <ClCompile Include="RobotShark.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster\40.RobotShark</Filter>
+    </ClCompile>
+    <ClCompile Include="Shark.cpp">
+      <Filter>소스 파일\02.Obj\10.NPC\00.MoveNPC\00.Shark</Filter>
+    </ClCompile>
+    <ClCompile Include="Gimmick.cpp">
+      <Filter>소스 파일\02.Obj\10.NPC\00.MoveNPC\01.Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Blade.cpp">
+      <Filter>소스 파일\02.Obj\10.NPC\00.MoveNPC\02.Blade</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>소스 파일\02.Obj\10.NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="TequilaGround.cpp">
+      <Filter>소스 파일\02.Obj\12.Boss\00.TequilaGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1_BossTextBox.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\00.TextBox\00.Stage1_BossTextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Sector.cpp">
+      <Filter>소스 파일\02.Obj\11.Sector\00.MoveSector</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoveSector.cpp">
+      <Filter>소스 파일\02.Obj\11.Sector\01.RemoveSector</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_2.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\11.Bullet_2</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionBullet_4.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_3.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\12.Bullet_3</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_4.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\13.Bullet_4</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>소스 파일\98.Manager\05.SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionChargeBullet.cpp">
+      <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionChargeHitEffect.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\20.MarionChargeHItEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Candy.cpp">
+      <Filter>소스 파일\02.Obj\06.Item\02.Candy</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일\02.Obj\06.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUIMgr.cpp">
+      <Filter>소스 파일\98.Manager\06.GameUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일\02.Obj\12.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="SideContinue.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\05.SideContinue</Filter>
+    </ClCompile>
+    <ClCompile Include="BG_Stage_1.cpp">
+      <Filter>소스 파일\02.Obj\04.Background</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletDestroy.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\01.BulletDestroy</Filter>
+    </ClCompile>
+    <ClCompile Include="TequilaGallop.cpp">
+      <Filter>소스 파일\02.Obj\12.Boss\01.TequilaGallop</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Static.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\01.UI_Static</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Bomb.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\07.UI_Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_ChargeBar.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\06.UI_ChargeBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_PlayerLife.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\03.UI_PlayerLife</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_MainContinue.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\04.UI_MainContinue</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>소스 파일\02.Obj\06.Item\01.Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Score.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\08.UI_Score</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\02.Obj\03.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_PowerUpDownText.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\02.UI_PowerUpDownText</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_ScoreText.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\09.UI_ScoreText</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>소스 파일\02.Obj\06.Item\03.Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="WheelSmoke.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\30.WheelSmoke</Filter>
+    </ClCompile>
+    <ClCompile Include="PipeSmoke.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\31.PipeSmoke</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionEffect.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\21.MarionEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="MarionBombEffect.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\22.MarionBombEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect_Charge.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\32.Effect_Charge</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect_MarionMeleeHit.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\23.Effect_MarionMeleeHit</Filter>
+    </ClCompile>
+    <ClCompile Include="CG_Stage_1.cpp">
+      <Filter>소스 파일\01.Scene\03.CG_Stage_1</Filter>
+    </ClCompile>
+    <ClCompile Include="CG_Kusuri.cpp">
+      <Filter>소스 파일\02.Obj\14.CG\00.CG_Kusuri</Filter>
+    </ClCompile>
+    <ClCompile Include="CG_TextWindow.cpp">
+      <Filter>소스 파일\02.Obj\14.CG\01.CG_TextWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Logo.cpp">
+      <Filter>소스 파일\01.Scene\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_TitleLogo.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\11.UI_TitleLogo</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Credit.cpp">
+      <Filter>소스 파일\02.Obj\13.UI\10.UI_Credit</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion_05.cpp">
+      <Filter>소스 파일\02.Obj\05.Effect\06.Explosion_05</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gunbird_Game.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Gunbird_Game.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>소스 파일\99.Default</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
