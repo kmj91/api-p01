@@ -1,3 +1,6 @@
+// 기명준
+// 게임 로직 처리 및 매니저 관리
+
 #include "stdafx.h"
 #include "MainGame.h"
 
@@ -57,11 +60,11 @@ void CMainGame::Initialize()
 	g_bHitRectRender = false;
 	g_bStageClear = false;
 
+	// 사운드 매니저 초기화
 	CSoundMgr::Get_Instance()->Initialize();
-
-	//CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::SCENE_SELECT_MENU);
-	//CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::SCENE_CG_STAGE_1);
+	// 로고 씬으로 교체 요청
 	CSceneMgr::Get_Instance()->Request_SceneChange(CSceneMgr::SCENE_LOGO);
+	// 씬 교체 처리
 	CSceneMgr::Get_Instance()->SceneChange_Update();
 }
 

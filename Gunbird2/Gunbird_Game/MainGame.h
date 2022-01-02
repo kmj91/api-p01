@@ -1,3 +1,6 @@
+// 기명준
+// 게임 로직 처리 및 매니저 관리
+
 #pragma once
 
 #ifndef __MAINGAME_H__
