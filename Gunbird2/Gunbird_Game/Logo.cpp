@@ -1,3 +1,7 @@
+// 기명준
+// 로고 씬
+// 게임의 제일 처음, 코인을 추가해서 게임 시작 가능
+
 #include "stdafx.h"
 #include "Logo.h"
 
@@ -44,33 +48,34 @@ void CLogo::Initialize()
 	g_bStageClear = false;
 }
 
+// 업데이트
 void CLogo::Update()
 {
 	// 키 입력 처리
 	Key_Check();
 
-	// 씬 전환
-	if (g_bStageClear) {
-		// 씬 체인지
-		CSceneMgr::Get_Instance()->Request_SceneChange(CSceneMgr::SCENE_SELECT_MENU);
-	}
-
+	// 일시 정지
 	if (m_isPause)
 		return;
 
+	// 오브젝트 업데이트
 	CObjMgr::Get_Instance()->Update();
 }
 
+// 레이트 업데이트
 void CLogo::Late_update()
 {
+	// 일시 정지
 	if (m_isPause)
 		return;
 
+	// 오브젝트 레이트 업데이트
 	CObjMgr::Get_Instance()->Late_Update();
 }
 
 void CLogo::Render(HDC _DC)
 {
+	// 오브젝트 렌더
 	CObjMgr::Get_Instance()->Render(_DC);
 }
 
@@ -95,6 +100,7 @@ void CLogo::Key_Check()
 		m_isPause = !m_isPause;
 	}
 
+	// 일시 정지
 	if (m_isPause)
 		return;
 
