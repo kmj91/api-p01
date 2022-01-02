@@ -1,3 +1,7 @@
+// 기명준
+// 씬 매니저
+// 씬 관리
+
 #pragma once
 
 #ifndef __SCENEMGR_H__
@@ -15,11 +19,11 @@ public:
 	enum SCENEID { SCENE_LOGO, SCENE_SELECT_MENU, SCENE_STAGE, SCENE_CG_STAGE_1, SCENE_END };
 
 public:
-	void Update();
-	void Late_Update();
-	void Render(HDC _DC);
-	void Request_SceneChange(SCENEID _eScene);
-	void SceneChange_Update();
+	void Update();									// 씬 업데이트
+	void Late_Update();								// 씬 레이트 업데이트
+	void Render(HDC _DC);							// 씬 렌더
+	void Request_SceneChange(SCENEID _eScene);		// 씬 교체 요청
+	void SceneChange_Update();						// 씬 교체
 	void Release();
 
 public:

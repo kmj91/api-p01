@@ -68,17 +68,20 @@ void CMainGame::Initialize()
 	CSceneMgr::Get_Instance()->SceneChange_Update();
 }
 
+// 게임 업데이트
 void CMainGame::Update()
 {
 	CSceneMgr::Get_Instance()->Update();
 }
 
+// 게임 레이트 업데이트
 void CMainGame::Late_Update()
 {
 	CSceneMgr::Get_Instance()->Late_Update();
 	CKeyMgr::Get_Instance()->Key_Update();
 }
 
+// 게임 렌더
 void CMainGame::Render()
 {
 	HDC HBackBuffer = CBmpMgr::Get_Instance()->Find_Image(L"BackBuffer");
@@ -98,6 +101,7 @@ void CMainGame::Render()
 	}
 }
 
+// 게임 씬 교체
 void CMainGame::SceneChange_Update()
 {
 	CSceneMgr::Get_Instance()->SceneChange_Update();
