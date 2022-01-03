@@ -1,3 +1,7 @@
+// 기명준
+// 게임 스테이지 씬
+// 게임 플레이에 필요한 몬스터 생성 및 키 처리
+
 #include "stdafx.h"
 #include "Stage.h"
 
