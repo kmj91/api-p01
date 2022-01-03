@@ -55,9 +55,6 @@
     <Filter Include="소스 파일\01.Scene\00.Logo">
       <UniqueIdentifier>{5ac9ac88-3208-4112-857e-dea4f58edc59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Obj\01.SelectPlayer">
-      <UniqueIdentifier>{c541bf2a-3640-4596-b949-4d978de965e1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Obj\02.Bullet">
       <UniqueIdentifier>{05b55ec3-ea0b-4490-8993-aa6acc688e09}</UniqueIdentifier>
     </Filter>
@@ -289,6 +286,9 @@
     <Filter Include="소스 파일\02.Obj\05.Effect\06.Explosion_05">
       <UniqueIdentifier>{ddd8cc07-1c23-4886-bd03-f4411367d1e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Obj\01.SelectFocus">
+      <UniqueIdentifier>{c541bf2a-3640-4596-b949-4d978de965e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -332,9 +332,6 @@
     </ClInclude>
     <ClInclude Include="SelectMenu.h">
       <Filter>소스 파일\01.Scene\01.SelectMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSelect.h">
-      <Filter>소스 파일\02.Obj\01.SelectPlayer</Filter>
     </ClInclude>
     <ClInclude Include="MarionBullet_1.h">
       <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
@@ -567,6 +564,9 @@
     <ClInclude Include="Explosion_05.h">
       <Filter>소스 파일\02.Obj\05.Effect\06.Explosion_05</Filter>
     </ClInclude>
+    <ClInclude Include="SelectFocus.h">
+      <Filter>소스 파일\02.Obj\01.SelectFocus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -604,9 +604,6 @@
     </ClCompile>
     <ClCompile Include="SelectMenu.cpp">
       <Filter>소스 파일\01.Scene\01.SelectMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSelect.cpp">
-      <Filter>소스 파일\02.Obj\01.SelectPlayer</Filter>
     </ClCompile>
     <ClCompile Include="MarionBullet_1.cpp">
       <Filter>소스 파일\02.Obj\02.Bullet\01.Marion</Filter>
@@ -841,6 +838,9 @@
     </ClCompile>
     <ClCompile Include="Explosion_05.cpp">
       <Filter>소스 파일\02.Obj\05.Effect\06.Explosion_05</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectFocus.cpp">
+      <Filter>소스 파일\02.Obj\01.SelectFocus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

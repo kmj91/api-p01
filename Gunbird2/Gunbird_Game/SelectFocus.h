@@ -8,12 +8,12 @@
 #define __SELECTPLAYER_H__
 
 #include "Obj.h"
-class CPlayerSelect :
+class CSelectFocus :
 	public CObj
 {
 public:
-	CPlayerSelect();
-	virtual ~CPlayerSelect();
+	CSelectFocus();
+	virtual ~CSelectFocus();
 
 	virtual void Initialize() override;
 	virtual int Update() override;
@@ -22,7 +22,7 @@ public:
 	virtual void Release() override;
 
 	void Key_Input(int _Key);			// 키 입력 처리
-	PLAYER::NAME Get_State();			// 현재 선택한 캐릭터 번호 얻기
+	PLAYER::NAME Get_SelectPlayer();	// 현재 선택한 캐릭터 번호 얻기
 
 private:
 	void CharacterChange();				// 캐릭터 교체

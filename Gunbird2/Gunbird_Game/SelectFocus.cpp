@@ -3,23 +3,23 @@
 // 선택 포커스 조종 및 화면에서 선택한 캐릭터 표시
 
 #include "stdafx.h"
-#include "PlayerSelect.h"
+#include "SelectFocus.h"
 
 #include "BmpMgr.h"
 
 
-CPlayerSelect::CPlayerSelect()
+CSelectFocus::CSelectFocus()
 	: m_ePreCharacter(PLAYER::NAME_END), m_eCurCharacter(PLAYER::NAME_END)
 {
 }
 
 
-CPlayerSelect::~CPlayerSelect()
+CSelectFocus::~CSelectFocus()
 {
 	Release();
 }
 
-void CPlayerSelect::Initialize()
+void CSelectFocus::Initialize()
 {
 	// 기본 포커스 좌표
 	m_tInfo.fX = 150;
@@ -31,7 +31,7 @@ void CPlayerSelect::Initialize()
 	m_eCurCharacter = PLAYER::MARION;
 }
 
-int CPlayerSelect::Update()
+int CSelectFocus::Update()
 {
 	// 렉트 업데이트
 	Update_Rect();
@@ -43,11 +43,11 @@ int CPlayerSelect::Update()
 	return OBJ_NOEVENT;
 }
 
-void CPlayerSelect::Late_Update()
+void CSelectFocus::Late_Update()
 {
 }
 
-void CPlayerSelect::Render(HDC _DC)
+void CSelectFocus::Render(HDC _DC)
 {
 	// 선택한 캐릭터 화면에 표시
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"CharacterSelect");
@@ -70,13 +70,13 @@ void CPlayerSelect::Render(HDC _DC)
 		, RGB(255, 0, 255));
 }
 
-void CPlayerSelect::Release()
+void CSelectFocus::Release()
 {
 }
 
 // 키 입력 처리
 // 포커스를 좌우로 이동하며 선택한 캐릭터 번호 교체
-void CPlayerSelect::Key_Input(int _Key)
+void CSelectFocus::Key_Input(int _Key)
 {
 	switch (_Key)
 	{
@@ -100,13 +100,13 @@ void CPlayerSelect::Key_Input(int _Key)
 }
 
 // 현재 선택한 캐릭터 번호 얻기
-PLAYER::NAME CPlayerSelect::Get_State()
+PLAYER::NAME CSelectFocus::Get_SelectPlayer()
 {
 	return m_ePreCharacter;
 }
 
 // 캐릭터 교체
-void CPlayerSelect::CharacterChange()
+void CSelectFocus::CharacterChange()
 {
 	// 교체할 캐릭터가 있으면
 	if (m_ePreCharacter != m_eCurCharacter)

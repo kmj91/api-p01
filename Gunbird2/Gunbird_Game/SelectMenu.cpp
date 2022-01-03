@@ -12,7 +12,7 @@
 #include "SoundMgr.h"
 #include "GameUIMgr.h"
 
-#include "PlayerSelect.h"
+#include "SelectFocus.h"
 
 
 CSelectMenu::CSelectMenu()
@@ -84,8 +84,8 @@ void CSelectMenu::Initialize()
 
 	// 플레이어 선택 오브젝트
 	// 현재 선택된 플레이어를 보여주는 오브젝트
-	m_pPlayer = CAbstractFactory<CPlayerSelect>::Create();
-	CObjMgr::Get_Instance()->Add_Object(m_pPlayer, OBJID::PLAYER);
+	m_pSelectFocus = CAbstractFactory<CSelectFocus>::Create();
+	CObjMgr::Get_Instance()->Add_Object(m_pSelectFocus, OBJID::PLAYER);
 
 	// 게임 UI 생성
 	CGameUIMgr::Get_Instance()->Init_Logo();
@@ -239,16 +239,16 @@ void CSelectMenu::Key_Check()
 	// 캐릭터 선택 왼쪽
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT))
 	{
-		static_cast<CPlayerSelect*>(m_pPlayer)->Key_Input(VK_LEFT);
+		static_cast<CSelectFocus*>(m_pSelectFocus)->Key_Input(VK_LEFT);
 	}
 	// 캐릭터 선택 오른쪽
 	else if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT))
 	{
-		static_cast<CPlayerSelect*>(m_pPlayer)->Key_Input(VK_RIGHT);
+		static_cast<CSelectFocus*>(m_pSelectFocus)->Key_Input(VK_RIGHT);
 	}
 	else if (CKeyMgr::Get_Instance()->Key_Down('A'))
 	{
-		g_ePlayer_1_Name = static_cast<CPlayerSelect*>(m_pPlayer)->Get_State();
+		g_ePlayer_1_Name = static_cast<CSelectFocus*>(m_pSelectFocus)->Get_SelectPlayer();
 
 		if (g_ePlayer_1_Name == PLAYER::MARION)
 		{

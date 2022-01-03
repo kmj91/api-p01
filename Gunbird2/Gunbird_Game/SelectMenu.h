@@ -26,7 +26,7 @@ private:
 	void Frame_Move();
 
 private:
-	CObj*		m_pPlayer;						// 플레이어 선택 오브젝트
+	CObj*		m_pSelectFocus;					// 플레이어 선택 오브젝트
 	FRAME		m_tFrame[PLAYER::NAME_END];		// 플레이어 이미지 프레임 정보
 };
 

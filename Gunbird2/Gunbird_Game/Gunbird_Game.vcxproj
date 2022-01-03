@@ -224,7 +224,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="SelectMenu.h" />
-    <ClInclude Include="PlayerSelect.h" />
+    <ClInclude Include="SelectFocus.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StaticObj.h" />
     <ClInclude Include="TequilaGallop.h" />
@@ -319,7 +319,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="SelectMenu.cpp" />
-    <ClCompile Include="PlayerSelect.cpp" />
+    <ClCompile Include="SelectFocus.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StaticObj.cpp" />
     <ClCompile Include="TequilaGallop.cpp" />
