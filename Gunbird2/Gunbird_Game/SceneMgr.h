@@ -40,9 +40,9 @@ public:
 
 private:
 	static CSceneMgr*	m_pInstance;
-	CScene*				m_pScene;
-	SCENEID				m_ePreScene;
-	SCENEID				m_eCurScene;
+	CScene*				m_pScene;			// 현재 씬 포인터
+	SCENEID				m_ePreScene;		// 이전 씬 번호
+	SCENEID				m_eCurScene;		// 교체할 씬 번호
 };
 
 

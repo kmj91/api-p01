@@ -1,3 +1,7 @@
+// 기명준
+// 캐릭터 선택 씬
+// 캐릭터 선택 화면
+
 #include "stdafx.h"
 #include "SelectMenu.h"
 
@@ -78,7 +82,8 @@ void CSelectMenu::Initialize()
 	m_tFrame[PLAYER::HEI_COB].dwFrameTime = GetTickCount();
 	m_tFrame[PLAYER::HEI_COB].dwFrameSpeed = 100;
 
-	// 플레이어
+	// 플레이어 선택 오브젝트
+	// 현재 선택된 플레이어를 보여주는 오브젝트
 	m_pPlayer = CAbstractFactory<CPlayerSelect>::Create();
 	CObjMgr::Get_Instance()->Add_Object(m_pPlayer, OBJID::PLAYER);
 
@@ -86,31 +91,40 @@ void CSelectMenu::Initialize()
 	CGameUIMgr::Get_Instance()->Init_Logo();
 	CGameUIMgr::Get_Instance()->Set_Credit(g_iCredit);
 
+	// 캐릭터 선택 화면 BGM
 	CSoundMgr::Get_Instance()->StopSound(CSoundMgr::BGM);
 	CSoundMgr::Get_Instance()->PlayBGM(L"SelectMenu.wav");
 }
 
+// 업데이트
 void CSelectMenu::Update()
 {
 	// 키 입력 처리
 	Key_Check();
 
+	// 일시 정지
 	if (m_isPause)
 		return;
 	
+	// 프레임 처리
 	Frame_Move();
 
+	// 오브젝트 업데이트
 	CObjMgr::Get_Instance()->Update();
 }
 
+// 레이트 업데이트
 void CSelectMenu::Late_update()
 {
+	// 일시 정지
 	if (m_isPause)
 		return;
 
+	// 오브젝트 레이트 업데이트
 	CObjMgr::Get_Instance()->Late_Update();
 }
 
+// 렌더
 void CSelectMenu::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"BG_SelectMenu");
@@ -210,6 +224,7 @@ void CSelectMenu::Key_Check()
 		m_isPause = !m_isPause;
 	}
 
+	// 일시 정지
 	if (m_isPause)
 		return;
 
@@ -221,10 +236,12 @@ void CSelectMenu::Key_Check()
 		CGameUIMgr::Get_Instance()->Add_Credit(1);
 	}
 
+	// 캐릭터 선택 왼쪽
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT))
 	{
 		static_cast<CPlayerSelect*>(m_pPlayer)->Key_Input(VK_LEFT);
 	}
+	// 캐릭터 선택 오른쪽
 	else if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT))
 	{
 		static_cast<CPlayerSelect*>(m_pPlayer)->Key_Input(VK_RIGHT);
@@ -248,6 +265,7 @@ void CSelectMenu::Key_Check()
 	
 }
 
+// 프레임 처리
 void CSelectMenu::Frame_Move()
 {
 	int iCnt = 0;

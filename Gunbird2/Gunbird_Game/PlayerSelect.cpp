@@ -1,3 +1,7 @@
+// 기명준
+// 캐릭터 선택 표시 오브젝트
+// 선택 포커스 조종 및 화면에서 선택한 캐릭터 표시
+
 #include "stdafx.h"
 #include "PlayerSelect.h"
 
@@ -5,7 +9,7 @@
 
 
 CPlayerSelect::CPlayerSelect()
-	: m_ePreState(PLAYER::NAME_END), m_eCurState(PLAYER::NAME_END)
+	: m_ePreCharacter(PLAYER::NAME_END), m_eCurCharacter(PLAYER::NAME_END)
 {
 }
 
@@ -17,18 +21,23 @@ CPlayerSelect::~CPlayerSelect()
 
 void CPlayerSelect::Initialize()
 {
+	// 기본 포커스 좌표
 	m_tInfo.fX = 150;
 	m_tInfo.fY = 760;
 	m_tInfo.iCX = 32;
 	m_tInfo.iCY = 48;
 
-	m_eCurState = PLAYER::MARION;
+	// 기본 선택 캐릭터
+	m_eCurCharacter = PLAYER::MARION;
 }
 
 int CPlayerSelect::Update()
 {
+	// 렉트 업데이트
 	Update_Rect();
-	Scene_Change();
+	// 캐릭터 교체
+	CharacterChange();
+	// 프레임 처리
 	Frame_Move();
 
 	return OBJ_NOEVENT;
@@ -40,8 +49,8 @@ void CPlayerSelect::Late_Update()
 
 void CPlayerSelect::Render(HDC _DC)
 {
+	// 선택한 캐릭터 화면에 표시
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"CharacterSelect");
-
 	GdiTransparentBlt(_DC
 		, 0, 0
 		, 224 * 3, 320 * 3
@@ -50,8 +59,8 @@ void CPlayerSelect::Render(HDC _DC)
 		, 224, 320
 		, RGB(255, 0, 255));
 
+	// 캐릭터 선택 포커스
 	hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"PlayerSelect");
-
 	GdiTransparentBlt(_DC
 		, m_tRect.left, m_tRect.top
 		, m_tInfo.iCX * 3, m_tInfo.iCY * 3
@@ -65,39 +74,44 @@ void CPlayerSelect::Release()
 {
 }
 
+// 키 입력 처리
+// 포커스를 좌우로 이동하며 선택한 캐릭터 번호 교체
 void CPlayerSelect::Key_Input(int _Key)
 {
 	switch (_Key)
 	{
 	case VK_LEFT:
-		if (m_eCurState - 1 < 0)
-			m_eCurState = PLAYER::HEI_COB;
+		if (m_eCurCharacter - 1 < 0)
+			m_eCurCharacter = PLAYER::HEI_COB;
 		else
-			m_eCurState = (PLAYER::NAME)(m_eCurState - 1);
+			m_eCurCharacter = (PLAYER::NAME)(m_eCurCharacter - 1);
 
-		m_tInfo.fX = 54.f + (32.f * 3 * m_eCurState);
+		m_tInfo.fX = 54.f + (32.f * 3 * m_eCurCharacter);
 		break;
 	case VK_RIGHT:
-		if (m_eCurState + 1 >= PLAYER::NAME_END)
-			m_eCurState = PLAYER::ALUCARD;
+		if (m_eCurCharacter + 1 >= PLAYER::NAME_END)
+			m_eCurCharacter = PLAYER::ALUCARD;
 		else
-			m_eCurState = (PLAYER::NAME)(m_eCurState + 1);
+			m_eCurCharacter = (PLAYER::NAME)(m_eCurCharacter + 1);
 
-		m_tInfo.fX = 54.f + (32.f * 3 * m_eCurState);
+		m_tInfo.fX = 54.f + (32.f * 3 * m_eCurCharacter);
 		break;
 	}
 }
 
+// 현재 선택한 캐릭터 번호 얻기
 PLAYER::NAME CPlayerSelect::Get_State()
 {
-	return m_ePreState;
+	return m_ePreCharacter;
 }
 
-void CPlayerSelect::Scene_Change()
+// 캐릭터 교체
+void CPlayerSelect::CharacterChange()
 {
-	if (m_ePreState != m_eCurState)
+	// 교체할 캐릭터가 있으면
+	if (m_ePreCharacter != m_eCurCharacter)
 	{
-		switch (m_eCurState)
+		switch (m_eCurCharacter)
 		{
 		case PLAYER::ALUCARD:
 			m_tFrame.iFrameCnt = 0;
@@ -139,11 +153,10 @@ void CPlayerSelect::Scene_Change()
 			m_tFrame.dwFrameTime = GetTickCount();
 			m_tFrame.dwFrameSpeed = 50;
 			break;
-		case PLAYER::NAME_END:
-			break;
 		default:
 			break;
 		}
-		m_ePreState = m_eCurState;
+		// 교체할 캐릭터 저장
+		m_ePreCharacter = m_eCurCharacter;
 	}
 }

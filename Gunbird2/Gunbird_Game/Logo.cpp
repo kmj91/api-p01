@@ -73,6 +73,7 @@ void CLogo::Late_update()
 	CObjMgr::Get_Instance()->Late_Update();
 }
 
+// ∑ª¥ı
 void CLogo::Render(HDC _DC)
 {
 	// ø¿∫Í¡ß∆Æ ∑ª¥ı
