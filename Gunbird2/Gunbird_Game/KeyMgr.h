@@ -1,3 +1,6 @@
+// 기명준
+// 키 처리 매니저
+
 #pragma once
 
 #ifndef __KEYMGR_H__

@@ -1,3 +1,8 @@
+// 기명준
+// 오브젝트를 관리하는 매니저
+// 씬에서 사용하는 게임내 오브젝트들을 리스트로 관리
+// 충돌 관련 처리도 오브젝트 매니저 Update에서 호출
+
 #include "stdafx.h"
 #include "ObjMgr.h"
 #include "Obj.h"
@@ -40,6 +45,7 @@ void CObjMgr::Update()
 		}
 	}
 
+	// 충돌 처리
 	CCollisionMgr::Collision_Monster(m_listObj[OBJID::PLAYER_BULLET], m_listObj);
 	CCollisionMgr::Collision_Player(m_listObj[OBJID::PLAYER], m_listObj);
 	CCollisionMgr::Collision_Item(m_listObj[OBJID::PLAYER], m_listObj[OBJID::ITEM]);
