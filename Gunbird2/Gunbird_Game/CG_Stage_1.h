@@ -1,3 +1,7 @@
+// 기명준
+// 게임 CG 씬
+// 스테이지 클리어 후 엔딩에 해당하는 씬
+
 #pragma once
 
 #ifndef __CG_STAGE_1_H__

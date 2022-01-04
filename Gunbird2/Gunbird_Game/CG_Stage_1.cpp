@@ -1,3 +1,7 @@
+// 기명준
+// 게임 CG 씬
+// 스테이지 클리어 후 엔딩에 해당하는 씬
+
 #include "stdafx.h"
 #include "CG_Stage_1.h"
 
@@ -35,6 +39,7 @@ void CCG_Stage_1::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI/UI_TheEnd.bmp", L"UI_TheEnd");
 
 	// 오브젝트 생성
+	// 해당 오브젝트 내에서 텍스트 윈도우 생성...
 	CObj* pObj = CAbstractFactory<CCG_Kusuri>::Create();
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UI);
 
