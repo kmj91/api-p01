@@ -1,3 +1,6 @@
+// 기명준
+// 모든 게임 오브젝트들의 부모
+
 #pragma once
 
 #ifndef __OBJ_H__
@@ -16,7 +19,7 @@ public:
 	virtual void Release() = 0;
 
 	// 공격 받음
-	// 파라미터 값 만큼 체력 차감, 체력이 0 이하가되면 m_bDead 가 true
+	// 파라미터 값 만큼 체력 차감, 체력이 0 이하가되면 m_bDead가 true로
 	// _fDamage : 받은 피해량
 	void Hit(float _fDamage);
 	void Set_Pos(float _x, float _y) { m_tInfo.fX = _x; m_tInfo.fY = _y; }
@@ -44,7 +47,9 @@ public:
 	bool isDead() { return m_bDead; }
 
 protected:
+	// 현재 오브젝트 좌표를 기준으로 이미지 렉트 정보 갱신
 	void Update_Rect();
+	// 이미지 프레임 이동
 	void Frame_Move();
 
 protected:
