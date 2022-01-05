@@ -1,3 +1,6 @@
+// 기명준
+// 사운드 매니저
+
 #pragma once
 class CSoundMgr
 {

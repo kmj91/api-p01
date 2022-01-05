@@ -1,3 +1,6 @@
+// 기명준
+// 사운드 매니저
+
 #include "stdafx.h"
 #include "SoundMgr.h"
 
