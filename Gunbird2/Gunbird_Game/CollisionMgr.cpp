@@ -1,3 +1,7 @@
+// 기명준
+// 충돌 처리 매니저
+// 게임 오브젝트간에 상호 충돌 처리
+
 #include "stdafx.h"
 #include "CollisionMgr.h"
 
@@ -22,6 +26,7 @@ CCollisionMgr::~CCollisionMgr()
 {
 }
 
+// 플레이어 공격  -> 몬스터 충돌
 // _Dst : 플레이어 총알
 // _Src : 몬스터들
 void CCollisionMgr::Collision_Monster(list<CObj*>& _Dst, list<CObj*>* _Src)
@@ -131,6 +136,7 @@ void CCollisionMgr::Collision_Monster(list<CObj*>& _Dst, list<CObj*>* _Src)
 	}
 }
 
+// 몬스터 공격 -> 플레이어 충돌
 // _Dst : 플레이어
 // _Src : 몬스터 및 총알
 void CCollisionMgr::Collision_Player(list<CObj*>& _Dst, list<CObj*>* _Src)
@@ -165,6 +171,7 @@ void CCollisionMgr::Collision_Player(list<CObj*>& _Dst, list<CObj*>* _Src)
 	}
 }
 
+// RECT 충돌
 void CCollisionMgr::Collision_Rect(list<CObj*>& _Dst, list<CObj*>& _Src)
 {
 	RECT rc = {};
@@ -182,6 +189,7 @@ void CCollisionMgr::Collision_Rect(list<CObj*>& _Dst, list<CObj*>& _Src)
 	}
 }
 
+// RECT 충돌 + 좌표 보정
 void CCollisionMgr::Collision_RectEx(list<CObj*>& _Dst, list<CObj*>& _Src)
 {
 	float fX = 0.f, fY = 0.f;
@@ -210,6 +218,7 @@ void CCollisionMgr::Collision_RectEx(list<CObj*>& _Dst, list<CObj*>& _Src)
 	}
 }
 
+// 구체 충돌
 void CCollisionMgr::Collision_Sphere(list<CObj*>& _Dst, list<CObj*>& _Src)
 {
 	for (auto& Dst : _Dst)
@@ -225,6 +234,7 @@ void CCollisionMgr::Collision_Sphere(list<CObj*>& _Dst, list<CObj*>& _Src)
 	}
 }
 
+// 아이템 충돌
 // _Dst : 플레이어
 // _Src : 아이템
 void CCollisionMgr::Collision_Item(list<CObj*>& _Dst, list<CObj*>& _Src)
@@ -260,6 +270,7 @@ void CCollisionMgr::Collision_Item(list<CObj*>& _Dst, list<CObj*>& _Src)
 	}
 }
 
+// NPC 이동
 void CCollisionMgr::Collision_Sector(list<CObj*>& _Dst, list<CObj*>& _Src)
 {
 	for (auto& Dst : _Dst)
@@ -268,12 +279,14 @@ void CCollisionMgr::Collision_Sector(list<CObj*>& _Dst, list<CObj*>& _Src)
 		{
 			if (Check_Pos(Dst, Src))
 			{
+				// NPC에게 다음 이동 좌표 설정
 				static_cast<CNPC*>(Src)->Move_DestPos(static_cast<CSector*>(Dst)->Get_DestPosX(), static_cast<CSector*>(Dst)->Get_DestPosY());
 			}
 		}
 	}
 }
 
+// NPC 삭제
 void CCollisionMgr::Collision_RemoveSector(list<CObj*>& _Dst, list<CObj*>& _Src)
 {
 	for (auto& Dst : _Dst)
@@ -288,6 +301,7 @@ void CCollisionMgr::Collision_RemoveSector(list<CObj*>& _Dst, list<CObj*>& _Src)
 	}
 }
 
+// 구체 충돌
 bool CCollisionMgr::Check_Sphere(CObj* _Dst, CObj* _Src)
 {
 	float fX = abs(_Dst->Get_Info().fX - _Src->Get_Info().fX);
@@ -301,6 +315,7 @@ bool CCollisionMgr::Check_Sphere(CObj* _Dst, CObj* _Src)
 	return false;
 }
 
+// RECT 충돌
 bool CCollisionMgr::Check_Rect(CObj* _Dst, CObj* _Src, float* _x, float* _y)
 {
 	float fDisX = abs(_Dst->Get_Info().fX - _Src->Get_Info().fX);
@@ -318,6 +333,7 @@ bool CCollisionMgr::Check_Rect(CObj* _Dst, CObj* _Src, float* _x, float* _y)
 	return false;
 }
 
+// 두 오브젝트 충돌 (RECT)
 bool CCollisionMgr::Check_Pos(CObj * _Dst, CObj * _Src)
 {
 	RECT rect = _Dst->Get_Rect();
