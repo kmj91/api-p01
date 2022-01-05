@@ -1,3 +1,7 @@
+// 기명준
+// bmp 이미지 리소스
+// 불러온 bmp 이미지 파일의 정보를 HDC로 저장
+
 #include "stdafx.h"
 #include "MyBitmap.h"
 
@@ -12,6 +16,8 @@ CMyBitmap::~CMyBitmap()
 	Release();
 }
 
+// bmp 이미지 파일 HDC로 저장
+// _pFileName : 이미지 파일 주소
 void CMyBitmap::Load_Bmp(const TCHAR * _pFileName)
 {
 	HDC hDC = GetDC(g_hWnd);

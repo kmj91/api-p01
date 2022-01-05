@@ -1,3 +1,7 @@
+// 기명준
+// bmp 이미지 리소스
+// 불러온 bmp 이미지 파일의 정보를 HDC로 저장
+
 #pragma once
 
 #ifndef __MYBITMAP_H__
@@ -11,7 +15,10 @@ public:
 	~CMyBitmap();
 
 public:
+	// 이미지의 HDC 반환
 	HDC Get_MemDC() { return m_hMemDC; }
+	// bmp 이미지 파일 HDC로 저장
+	// _pFileName : 이미지 파일 주소
 	void Load_Bmp(const TCHAR* _pFileName);
 	void Release();
 
