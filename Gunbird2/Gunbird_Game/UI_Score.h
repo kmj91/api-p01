@@ -1,3 +1,7 @@
+// 기명준
+// UI 점수
+// 게임 화면에 점수를 숫자 이미지로 출력
+
 #pragma once
 
 #ifndef __UI_SCORE_H__
