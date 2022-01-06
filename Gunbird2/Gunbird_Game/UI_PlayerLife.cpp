@@ -1,3 +1,7 @@
+// 기명준
+// UI 플레이어 라이프
+// 플레이어의 남은 라이프를 표현
+
 #include "stdafx.h"
 #include "UI_PlayerLife.h"
 
@@ -36,6 +40,7 @@ void CUI_PlayerLife::Late_Update()
 
 void CUI_PlayerLife::Render(HDC _DC)
 {
+	// 플레이어 라이프가 없으면 렌더 X
 	if (m_iLife == 0)
 		return;
 
@@ -43,7 +48,7 @@ void CUI_PlayerLife::Render(HDC _DC)
 	int iY = (int)m_tInfo.fY;
 
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"UI_PlayerLife");
-
+	// 반복문을 돌면서 라이프 수 만큼 라이프를 렌더함
 	for (int iCnt = 0; iCnt < m_iLife; ++iCnt)
 	{
 		iX = iX + (iCnt * (PLAYER_LIFE_WIDTH * 3));

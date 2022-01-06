@@ -1,3 +1,6 @@
+// 기명준
+// UI 플레이어 라이프
+
 #pragma once
 
 #ifndef __UI_PLAYERLIFE_H__
