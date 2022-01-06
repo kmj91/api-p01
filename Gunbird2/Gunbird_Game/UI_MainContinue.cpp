@@ -1,3 +1,7 @@
+// 기명준
+// 메인 컨티뉴
+// 1Player 2Player 모두 사망하였을 때
+
 #include "stdafx.h"
 #include "UI_MainContinue.h"
 
