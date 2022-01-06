@@ -1,3 +1,6 @@
+// 기명준
+// UI 매니저
+
 #pragma once
 
 #ifndef __GAMEUI_H__

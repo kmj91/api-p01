@@ -1,3 +1,6 @@
+// 기명준
+// UI 매니저
+
 #include "stdafx.h"
 #include "GameUIMgr.h"
 
@@ -33,6 +36,7 @@ CGameUIMgr::~CGameUIMgr()
 	Release();
 }
 
+// 타이틀 로고 초기화
 void CGameUIMgr::Init_Logo()
 {
 	// 타이틀 로고
@@ -44,6 +48,7 @@ void CGameUIMgr::Init_Logo()
 	CObjMgr::Get_Instance()->Add_Object(m_pCredit, OBJID::UI);
 }
 
+// 캐릭터 선택 메뉴 초기화
 void CGameUIMgr::Init_SeleteMenu()
 {
 	// 크레딧
@@ -51,6 +56,7 @@ void CGameUIMgr::Init_SeleteMenu()
 	CObjMgr::Get_Instance()->Add_Object(m_pCredit, OBJID::UI);
 }
 
+// 게임 스테이지 초기화
 void CGameUIMgr::Init_Stage()
 {
 	if (m_bPlayer_1) {
@@ -183,13 +189,16 @@ void CGameUIMgr::NextMainCount()
 	m_pMainContinue->NextCount();
 }
 
+// 라이프 얻기
 int CGameUIMgr::Get_Life(int _iPlayerNum)
 {
 	int iLife = 0;
 
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		iLife = m_pPlayerLife_1->Get_Life();
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		iLife = m_pPlayerLife_2->Get_Life();
 	}
@@ -200,11 +209,14 @@ int CGameUIMgr::Get_Life(int _iPlayerNum)
 	return iLife;
 }
 
+// 라이프 추가
 void CGameUIMgr::Add_Life(int _iLife, int _iPlayerNum)
 {
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		m_pPlayerLife_1->Add_Life(_iLife);
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		m_pPlayerLife_2->Add_Life(_iLife);
 	}
@@ -213,13 +225,16 @@ void CGameUIMgr::Add_Life(int _iLife, int _iPlayerNum)
 	}
 }
 
+// 스코어 얻기
 int CGameUIMgr::Get_Score(int _iPlayerNum)
 {
 	int iScore = 0;
 
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		iScore = m_pScore_1->Get_Score();
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		iScore = m_pScore_2->Get_Score();
 	}
@@ -230,11 +245,14 @@ int CGameUIMgr::Get_Score(int _iPlayerNum)
 	return iScore;
 }
 
+// 스코어 추가
 void CGameUIMgr::Add_Score(int _iScore, int _iPlayerNum)
 {
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		m_pScore_1->Add_Score(_iScore);
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		m_pScore_2->Add_Score(_iScore);
 	}
@@ -243,13 +261,16 @@ void CGameUIMgr::Add_Score(int _iScore, int _iPlayerNum)
 	}
 }
 
+// 충전량 얻기
 int CGameUIMgr::Get_Charge(int _iPlayerNum)
 {
 	int iCharge = 0;
 
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		iCharge = m_pChargeBar_1->Get_Charge();
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		iCharge = m_pChargeBar_2->Get_Charge();
 	}
@@ -260,11 +281,13 @@ int CGameUIMgr::Get_Charge(int _iPlayerNum)
 	return iCharge;
 }
 
+// 충전량 추가
 void CGameUIMgr::Add_Charge(int _iCharge, int _iPlayerNum)
 {
-	int iCharge;		// 충전양
+	int iCharge;		// 충전량
 	int iChargeLevel;	// 충전 레벨
 
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		// 더하기전 충전 레벨 저장
 		iChargeLevel = m_pChargeBar_1->Get_ChargeLevel();
@@ -306,6 +329,7 @@ void CGameUIMgr::Add_Charge(int _iCharge, int _iPlayerNum)
 			CSoundMgr::Get_Instance()->PlaySound(L"UI_ChargeReadyOK.wav", CSoundMgr::ITEM);
 		}
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		// 더하기전 충전 레벨 저장
 		iChargeLevel = m_pChargeBar_2->Get_ChargeLevel();
@@ -349,13 +373,16 @@ void CGameUIMgr::Add_Charge(int _iCharge, int _iPlayerNum)
 	}
 }
 
+// 충전 레벨 얻기
 int CGameUIMgr::Get_ChargeLevel(int _iPlayerNum)
 {
 	int iChargeLevel = 0;
 
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		iChargeLevel = m_pChargeBar_1->Get_ChargeLevel();
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		iChargeLevel = m_pChargeBar_2->Get_ChargeLevel();
 	}
@@ -366,6 +393,7 @@ int CGameUIMgr::Get_ChargeLevel(int _iPlayerNum)
 	return iChargeLevel;
 }
 
+// 충전 레벨 셋팅
 void CGameUIMgr::Set_ChargeLevel(int _iChargeLevel, int _iPlayerNum)
 {
 	// 1플레이어
@@ -407,6 +435,7 @@ void CGameUIMgr::Set_ChargeLevel(int _iChargeLevel, int _iPlayerNum)
 	}
 }
 
+// 충전 레벨 추가
 void CGameUIMgr::Add_ChargeLevel(int _iChargeLevel, int _iPlayerNum)
 {
 	int iCharge;		// 충전량
@@ -533,13 +562,16 @@ void CGameUIMgr::Add_ChargeLevel(int _iChargeLevel, int _iPlayerNum)
 	}
 }
 
+// 폭탄 수 얻기
 int CGameUIMgr::Get_Bomb(int _iPlayerNum)
 {
 	int iBomb = 0;
 
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		iBomb = m_pBomb_1->Get_Bomb();
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		iBomb = m_pBomb_2->Get_Bomb();
 	}
@@ -550,11 +582,14 @@ int CGameUIMgr::Get_Bomb(int _iPlayerNum)
 	return iBomb;
 }
 
+// 폭탄 수 셋팅
 void CGameUIMgr::Set_Bomb(int _iBomb, int _iPlayerNum)
 {
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		m_pBomb_1->Set_Bomb(_iBomb);
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		m_pBomb_2->Set_Bomb(_iBomb);
 	}
@@ -563,11 +598,14 @@ void CGameUIMgr::Set_Bomb(int _iBomb, int _iPlayerNum)
 	}
 }
 
+// 폭탄 수 추가
 void CGameUIMgr::Add_Bomb(int _iBomb, int _iPlayerNum)
 {
+	// 1 플레이어
 	if (_iPlayerNum == 1 && m_bPlayer_1) {
 		m_pBomb_1->Add_Bomb(_iBomb);
 	}
+	// 2 플레이어
 	else if (_iPlayerNum == 2 && m_bPlayer_2) {
 		m_pBomb_2->Add_Bomb(_iBomb);
 	}
@@ -576,16 +614,19 @@ void CGameUIMgr::Add_Bomb(int _iBomb, int _iPlayerNum)
 	}
 }
 
+// 크레딧 얻기
 int CGameUIMgr::Get_Credit()
 {
 	return m_pCredit->Get_Credit();
 }
 
+// 크레딧 셋팅
 void CGameUIMgr::Set_Credit(int _iCredit)
 {
 	m_pCredit->Set_Credit(_iCredit);
 }
 
+// 크레딧 추가
 void CGameUIMgr::Add_Credit(int _iCredit)
 {
 	int iCredit = m_pCredit->Get_Credit();
