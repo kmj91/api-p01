@@ -1,3 +1,7 @@
+// 기명준
+// UI 고정
+// 별다른 처리없이 초기화 받은 프레임키로 렌더만 함
+
 #pragma once
 
 #ifndef __UI_STATIC_H__
