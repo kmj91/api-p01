@@ -1,3 +1,6 @@
+// 기명준
+// UI 크레딧
+
 #pragma once
 
 #ifndef __UI_CREDIT_H__

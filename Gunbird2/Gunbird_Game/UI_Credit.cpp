@@ -1,3 +1,6 @@
+// 기명준
+// UI 크레딧
+
 #include "stdafx.h"
 #include "UI_Credit.h"
 

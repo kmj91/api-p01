@@ -1,3 +1,6 @@
+// 기명준
+// 게임 시작시 처음 화면에 보이는 타이틀 로고
+
 #pragma once
 
 #ifndef __UI_TITLELOGO_H__
