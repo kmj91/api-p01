@@ -73,6 +73,7 @@ void CMarion::Initialize()
 	m_dwChargeBulletDelay = 150;
 }
 
+// 업데이트
 int CMarion::Update()
 {
 	// 죽음
@@ -394,10 +395,12 @@ int CMarion::Update()
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CMarion::Late_Update()
 {
 }
 
+// 렌더
 void CMarion::Render(HDC _DC)
 {
 	HDC hMemDC;

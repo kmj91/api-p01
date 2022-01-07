@@ -1,3 +1,7 @@
+// 기명준
+// 적 몬스터 로켓
+// 별다른 공격 능력은 없고 아래쪽을 향해 이동
+
 #include "stdafx.h"
 #include "Rocket.h"
 
@@ -20,25 +24,27 @@ CRocket::~CRocket()
 
 void CRocket::Initialize()
 {
+	// 기본 위치 및 크기 설정
 	m_tInfo.iCX = ROCKET_WIDTH * 3;
 	m_tInfo.iCY = ROCKET_HEIGHT * 3;
 	m_tHitRectPos = { 1 * 3, 5 * 3, 20 * 3, 30 * 3 };
 	m_iImageWidth = ROCKET_WIDTH;
 	m_iImageHeight = ROCKET_HEIGHT;
-
+	// 기본 애니메이션 프레임 설정
 	m_tFrame.iFrameCnt = 0;
 	m_tFrame.iFrameStart = 0;
 	m_tFrame.iFrameEnd = 7;
 	m_tFrame.iFrameScene = 0;
 	m_tFrame.dwFrameTime = GetTickCount();
 	m_tFrame.dwFrameSpeed = 20;
-
+	// 이동 속도
 	m_fSpeed = 6.0f;
 
 	// 점수
 	m_iScore = 200;
 }
 
+// 업데이트
 int CRocket::Update()
 {
 	if (m_bRemove)
@@ -60,6 +66,7 @@ int CRocket::Update()
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CRocket::Late_Update()
 {
 	if (m_bHpLock)
@@ -70,6 +77,7 @@ void CRocket::Late_Update()
 		m_bRemove = true;
 }
 
+// 렌더
 void CRocket::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Rocket");
@@ -82,7 +90,8 @@ void CRocket::Render(HDC _DC)
 		, m_iImageWidth, m_iImageHeight
 		, RGB(255, 0, 255));
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}

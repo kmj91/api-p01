@@ -29,6 +29,7 @@ void CStage::Initialize()
 	Load_Stage();
 }
 
+// 업데이트
 void CStage::Update()
 {
 	// 게임 오버 씬 전환
@@ -62,6 +63,7 @@ void CStage::Update()
 	CObjMgr::Get_Instance()->Update();
 }
 
+// 레이트 업데이트
 void CStage::Late_update()
 {
 	// 게임 컨티뉴 중
@@ -74,6 +76,7 @@ void CStage::Late_update()
 	CObjMgr::Get_Instance()->Late_Update();
 }
 
+// 렌더
 void CStage::Render(HDC _DC)
 {
 	CObjMgr::Get_Instance()->Render(_DC);
