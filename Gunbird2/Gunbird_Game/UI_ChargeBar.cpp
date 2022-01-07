@@ -1,3 +1,7 @@
+// 기명준
+// 플레이어 충전 바
+// 충전량과 충전 레벨 관리
+
 #include "stdafx.h"
 #include "UI_ChargeBar.h"
 
@@ -37,7 +41,7 @@ void CUI_ChargeBar::Late_Update()
 void CUI_ChargeBar::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"UI_ChargeBar");
-
+	// m_iCharge : 충전량에 따라 이미지 스프라이트 인덱스 변경
 	GdiTransparentBlt(_DC
 		, m_tInfo.fX, m_tInfo.fY
 		, m_tInfo.iCX, m_tInfo.iCY

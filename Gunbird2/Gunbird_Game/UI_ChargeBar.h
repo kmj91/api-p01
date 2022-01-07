@@ -1,3 +1,7 @@
+// 기명준
+// 플레이어 충전 바
+// 충전량과 충전 레벨 관리
+
 #pragma once
 
 #ifndef __UI_CHARGEBAR_H__
