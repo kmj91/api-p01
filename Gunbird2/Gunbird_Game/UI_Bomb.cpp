@@ -1,3 +1,7 @@
+// 기명준
+// 플레이어 폭탄 수
+// 남은 폭탄 수 관리
+
 #include "stdafx.h"
 #include "UI_Bomb.h"
 
@@ -41,7 +45,7 @@ void CUI_Bomb::Render(HDC _DC)
 	}
 
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"UI_BombNum");
-
+	// m_iBombCnt : 폭탄 개수에 따라 스프라이트 인덱스 변경
 	GdiTransparentBlt(_DC
 		, m_tInfo.fX, m_tInfo.fY
 		, m_tInfo.iCX, m_tInfo.iCY

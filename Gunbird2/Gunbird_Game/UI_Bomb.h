@@ -1,3 +1,7 @@
+// 기명준
+// 플레이어 폭탄 수
+// 남은 폭탄 수 관리
+
 #pragma once
 
 #ifndef __UI_BOMB_H__
