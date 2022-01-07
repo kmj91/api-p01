@@ -1,3 +1,8 @@
+// 기명준
+// 플레이어 마리온
+// 몇몇 애니메이션 프레임의 이미지 길이가 달라서
+// 상태가 변경된 후 위치 좌표를 초기화할 때 주의해야 함
+
 #pragma once
 
 #ifndef __MARION_H__
@@ -26,9 +31,9 @@ public:
 	virtual void Key_Input(int _Key);
 
 private:
-	void Scene_Change();
-	void Move_Change();
-	void Shot();
+	void Scene_Change();			// 프레임 씬 변경 처리
+	void Move_Change();				// 이동 상태 변경 처리
+	void Shot();					// 일반 공격 처리
 	void Create_Effect();			// 별 이펙트 생성
 
 	template <typename T>
