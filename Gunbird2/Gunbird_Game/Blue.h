@@ -1,3 +1,7 @@
+// 기명준
+// 적 몬스터 파란색 헬리콥터
+// 공중 몬스터 선회하면서 등장 그리고 일정 시간 후 퇴장
+
 #pragma once
 
 #ifndef __BLUE_H__
@@ -28,7 +32,7 @@ public:
 
 private:
 	void Scene_Change();
-	void Move(float _fDestX, float _fDestY, float _fAngle);		// 이동
+	bool Move(float _fDestX, float _fDestY, float _fAngle);		// 이동
 	void Shot();
 
 private:
