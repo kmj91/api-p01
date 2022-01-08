@@ -109,8 +109,11 @@ int CBlue::Update()
 		Shot();
 	}
 
+	// 이미지 RECT 정보 및 Hit RECT 정보 갱신
 	Update_Rect();
+	// 프레임 씬 변경 처리
 	Scene_Change();
+	// 애니메이션 프레임 이동
 	Frame_Move();
 
 	return OBJ_NOEVENT;
@@ -155,6 +158,7 @@ void CBlue::Release()
 {
 }
 
+// 프레임 씬 변경 처리
 void CBlue::Scene_Change()
 {
 	if (m_ePreState != m_eCurState)
