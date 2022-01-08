@@ -49,6 +49,7 @@ void CBlue::Initialize()
 	m_iScore = 200;
 }
 
+// 업데이트
 int CBlue::Update()
 {
 	// 삭제
@@ -119,6 +120,7 @@ int CBlue::Update()
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CBlue::Late_Update()
 {
 	// 모든 게임 오브젝트는 초기화 때 무적 상태
@@ -135,6 +137,7 @@ void CBlue::Late_Update()
 	}
 }
 
+// 랜더
 void CBlue::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Blue");
@@ -147,7 +150,8 @@ void CBlue::Render(HDC _DC)
 		, m_iImageWidth, m_iImageHeight
 		, RGB(255, 0, 255));
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
