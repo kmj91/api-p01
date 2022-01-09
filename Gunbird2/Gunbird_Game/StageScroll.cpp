@@ -643,7 +643,7 @@ void CStage::Stage_1()
 	m_arrCreateObjcet[27].enType = OBJTYPE::BLUE;
 
 	// ∏  ø¿∫Í¡ß∆Æ
-	m_arrCreateObjcet[28].iAppearance = 100;
+	m_arrCreateObjcet[28].iAppearance = 320;
 	m_arrCreateObjcet[28].fPosX = 588.f;
 	m_arrCreateObjcet[28].fPosY = 78.f;
 	m_arrCreateObjcet[28].enType = OBJTYPE::STAGE_1_SIGN;
