@@ -1,3 +1,8 @@
+// 기명준
+// 이동 캐논
+// 배치 전까지 무적 배치 후 무적 해제
+// 파괴되면 점수 아이템 생성과 스프라이트를 파괴된 잔해로 변경
+
 #pragma once
 
 #ifndef __MOVERCANNON_H__
@@ -29,10 +34,10 @@ public:
 	void Set_DestPos(float _fX, float _fY) { m_fDestPosX = _fX; m_fDestPosY = _fY; }
 
 private:
-	void Scene_Change();
+	void Scene_Change();	// 프레임 씬 변경 처리
 	bool Move();			// 이동
 	void Aim();				// 조준
-	void Shot();
+	void Shot();			// 공격
 
 private:
 	CMoverCannon::STATE			m_ePreState;
