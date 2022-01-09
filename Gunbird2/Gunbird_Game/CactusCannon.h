@@ -1,3 +1,8 @@
+// 기명준
+// 숨은 선인장 캐논
+// 배치 전까지 무적 배치 후 무적 해제
+// 파괴되면 점수 아이템 생성과 스프라이트를 파괴된 잔해로 변경
+
 #pragma once
 
 #ifndef __CACTUSCANNON_H__
@@ -31,9 +36,9 @@ public:
 	void Set_DestPos(float _fY) { m_fDestPosY = _fY; }
 
 private:
-	void Scene_Change();
+	void Scene_Change();	// 프레임 씬 변경 처리
 	void Aim();				// 조준
-	void Shot();
+	void Shot();			// 공격
 
 private:
 	CCactusCannon::STATE	m_ePreState;

@@ -1,3 +1,8 @@
+// 기명준
+// 숨은 선인장 캐논
+// 배치 전까지 무적 배치 후 무적 해제
+// 파괴되면 점수 아이템 생성과 스프라이트를 파괴된 잔해로 변경
+
 #include "stdafx.h"
 #include "CactusCannon.h"
 
@@ -22,28 +27,32 @@ CCactusCannon::~CCactusCannon()
 
 void CCactusCannon::Initialize()
 {
+	// 기본 위치 및 설정
 	m_tInfo.iCX = CANNON_WIDTH * 3;
 	m_tInfo.iCY = CANNON_HEIGHT * 3;
 	m_tHitRectPos = { 6 * 3, 1 * 3, 26 * 3, 33 * 3 };
 	m_iImageWidth = CANNON_WIDTH;
 	m_iImageHeight = CANNON_HEIGHT;
-
+	// 체력
 	m_fHp = 60.f;
-
+	// 이미지 번호
 	m_iDrawID = CCactusCannon::A_90;
+	// 기본 상태
 	m_eCurState = CCactusCannon::HIDE;
-
+	// 공격 간격
 	m_dwShotDelay = 500;
 
 	// 점수
 	m_iScore = 500;
 }
 
+// 업데이트
 int CCactusCannon::Update()
 {
+	// 삭제
 	if (m_bRemove)
 		return OBJ_DEAD;
-
+	// 죽음
 	if (m_bDead)
 	{
 		if (m_ePreState != CCactusCannon::DESTROY)
@@ -62,34 +71,28 @@ int CCactusCannon::Update()
 		}
 	}
 
-	m_tInfo.fY += g_fBackgroundSpeed * 3.f;			// 배경에 맞춰서 Y축 이동
+	// 배경에 맞춰서 Y축 이동
+	m_tInfo.fY += g_fBackgroundSpeed * 3.f;
 
-	if (m_ePreState == CCactusCannon::ON)
-	{
-		Aim();			// 조준
-		if (m_dwShotTime + m_dwShotDelay < GetTickCount())
-		{
+	// 배치 후
+	if (m_ePreState == CCactusCannon::ON) {
+		// 조준
+		Aim();
+		if (m_dwShotTime + m_dwShotDelay < GetTickCount()) {
+			// 공격
 			Shot();
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 1000;
 		}
 	}
-	else if (m_ePreState == CCactusCannon::HIDE)
-	{
-		if (m_bOnObject)
-		{
-			if (m_tFrame.iFrameCnt == m_tFrame.iFrameEnd)
-			{
-				m_bHpLock = false;
-				m_eCurState = CCactusCannon::ON;
-				m_dwShotTime = GetTickCount();
-			}
-		}
-		else
-		{
-			if (m_tInfo.fY > m_fDestPosY)
-			{
-				m_bOnObject = true;						// 숨어있다가 나옴
+	// 배치 되기 전
+	else if (m_ePreState == CCactusCannon::HIDE) {
+		// 아직 숨은 상태
+		if (!m_bOnObject) {
+			// 목표 Y 좌표를 넘어가면
+			if (m_tInfo.fY > m_fDestPosY) {
+				// 숨어있다가 나옴
+				m_bOnObject = true;
 				m_tFrame.iFrameCnt = 0;
 				m_tFrame.iFrameStart = 0;
 				m_tFrame.iFrameEnd = 6;
@@ -98,27 +101,46 @@ int CCactusCannon::Update()
 				m_tFrame.dwFrameSpeed = 80;
 			}
 		}
+		// 숨어있다가 나옴
+		else {
+			// 애니메이션 프레임이 끝에 도달하면
+			if (m_tFrame.iFrameCnt == m_tFrame.iFrameEnd) {
+				// 무적 해제
+				m_bHpLock = false;
+				// 상태 변경
+				m_eCurState = CCactusCannon::ON;
+				m_dwShotTime = GetTickCount();
+			}
+		}
 	}
 
+	// 이미지 RECT 정보 및 Hit RECT 정보 갱신
 	Update_Rect();
+	// 프레임 씬 변경 처리
 	Scene_Change();
+	// 애니메이션 프레임 이동
 	Frame_Move();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CCactusCannon::Late_Update()
 {
+	// 맵 하단 밖으로 나가면 삭제
 	if (WINCY <= m_tRect.top)
 		m_bRemove = true;
 }
 
+// 렌더
 void CCactusCannon::Render(HDC _DC)
 {
 	HDC hMemDC;
 
+	// 일반 캐논과 다른점이 기본 캐논 이미지 도트 위에 선인장 이미지가 있음...
 	if (m_ePreState == CCactusCannon::HIDE)
 	{
+		// 캐논
 		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Cannon_2");
 		GdiTransparentBlt(_DC
 			, m_tRect.left, m_tRect.top
@@ -188,7 +210,8 @@ void CCactusCannon::Render(HDC _DC)
 			, RGB(255, 0, 255));
 	}
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
@@ -199,12 +222,14 @@ void CCactusCannon::Release()
 {
 }
 
+// 프레임 씬 변경 처리
 void CCactusCannon::Scene_Change()
 {
 	if (m_ePreState != m_eCurState)
 	{
 		switch (m_eCurState)
 		{
+			// 숨어 있음
 		case CCactusCannon::HIDE:
 			m_tFrame.iFrameCnt = 0;
 			m_tFrame.iFrameStart = 0;
@@ -213,8 +238,10 @@ void CCactusCannon::Scene_Change()
 			m_tFrame.dwFrameTime = GetTickCount();
 			m_tFrame.dwFrameSpeed = 999999;
 			break;
+			// 여기서 제어하지 않음 Aim()에서 제어함
 		case CCactusCannon::ON:
 			break;
+			// 파괴
 		case CCactusCannon::DESTROY:
 			m_tFrame.iFrameCnt = 0;
 			m_tFrame.iFrameStart = 0;
@@ -228,18 +255,21 @@ void CCactusCannon::Scene_Change()
 	}
 }
 
+// 조준
 void CCactusCannon::Aim()
 {
-	float	fX = m_pTarget->Get_Info().fX - m_tInfo.fX;
-	float	fY = m_pTarget->Get_Info().fY - m_tInfo.fY;
-	float	fDia = sqrtf(fX * fX + fY * fY);
-	float	fRad = acosf(fX / fDia);
-
+	float fX = m_pTarget->Get_Info().fX - m_tInfo.fX;	// 방향 좌표 X
+	float fY = m_pTarget->Get_Info().fY - m_tInfo.fY;	// 방향 좌표 Y
+	float fDia = sqrtf(fX * fX + fY * fY);				// 현재 위치에서 목적지까지 거리
+	// arccos(cos) = 라디안 값을 구함
+	float fRad = acosf(fX / fDia);
+	// 라디안 값으로 호도각을 구함
 	m_fAngle = fRad * 180.f / PI;
-
+	// 타겟의 Y 좌표가 나의 Y 좌표 보다 크면 부호 반전
 	if (m_tInfo.fY < m_pTarget->Get_Info().fY)
 		m_fAngle *= -1.f;
 
+	// 위에서 구한 호도각으로 스프라이트 인덱스 번호 변경
 	if (-5.f <= m_fAngle && m_fAngle < 5.f)
 		m_iDrawID = CCactusCannon::A0;
 	if (-10.f <= m_fAngle && m_fAngle < -5.f)
@@ -306,8 +336,10 @@ void CCactusCannon::Aim()
 		m_iDrawID = CCactusCannon::A5;
 }
 
+// 공격
 void CCactusCannon::Shot()
 {
+	// 총알 오브젝트 생성
 	CObj* pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX, m_tInfo.fY);
 	pObj->Set_Angle(m_fAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
