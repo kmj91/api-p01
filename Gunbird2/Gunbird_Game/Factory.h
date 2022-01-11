@@ -1,3 +1,7 @@
+// 기명준
+// 지상 공장
+// 파괴되면 폭탄 아이템 드랍
+
 #pragma once
 
 #ifndef __FACTORY_H__
@@ -21,7 +25,7 @@ public:
 	virtual void Release() override;
 
 private:
-	void Scene_Change();
+	void Scene_Change();	// 프레임 씬 변경 처리
 
 private:
 	CFactory::STATE			m_ePreState;

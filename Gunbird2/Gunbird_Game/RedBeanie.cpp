@@ -116,7 +116,7 @@ void CRedBeanie::Late_Update()
 		if (0 <= m_tRect.bottom)
 			m_bHpLock = false;
 
-	// 맵 하단밖으로 나가면 삭제
+	// 맵 하단 밖으로 나가면 삭제
 	if (WINCY + 100 <= m_tRect.top)
 		m_bRemove = true;
 }
