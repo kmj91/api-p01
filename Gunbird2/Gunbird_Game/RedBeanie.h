@@ -1,3 +1,6 @@
+// 기명준
+// 빨간 두건 몬스터
+
 #pragma once
 
 #ifndef __REDBEANIE_H__
@@ -23,9 +26,9 @@ public:
 	void Set_DestPos(float _fY) { m_fDestPosY = _fY; }
 
 private:
-	void Scene_Change();
-	void Frame_MoveEX();
-	void Shot();
+	void Scene_Change();	// 프레임 씬 변경 처리
+	void Frame_MoveEX();	// 이펙트 이미지 프레임 이동
+	void Shot();			// 공격
 
 private:
 	CRedBeanie::STATE		m_ePreState;
@@ -34,7 +37,7 @@ private:
 	DWORD					m_dwShotTime;		// 총알 쏘는 시간
 	DWORD					m_dwShotDelay;		// 총알 쏘는 딜레이
 	int						m_iShot;			// 총알
-	FRAME					m_tBodyFrame;
+	FRAME					m_tBodyFrame;		// 총알 공격 때 이펙트 몸통 기모으는 이펙트 프레임
 };
 
 #endif // !__REDBEANIE_H__
