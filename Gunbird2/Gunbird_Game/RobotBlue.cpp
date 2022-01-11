@@ -1,3 +1,9 @@
+// 기명준
+// 이족 보행 파란색 로봇
+// 이동할 때 다른 오브젝트 처럼 똑같은 속도로 움직이면
+// 굉장히 어색함 마치 런닝 머신위를 걷는 것 같은 느낌을 줌
+// 구간별로 이동할 좌표 속도 값을 따로 정해줌
+
 #include "stdafx.h"
 #include "RobotBlue.h"
 
@@ -27,32 +33,35 @@ CRobotBlue::~CRobotBlue()
 
 void CRobotBlue::Initialize()
 {
+	// 기본 위치 및 설정
 	m_tInfo.iCX = ROBOT_BLUE_WIDTH * 3;
 	m_tInfo.iCY = ROBOT_BLUE_HEIGHT * 3;
 	m_tHitRectPos = { 21 * 3, 16 * 3, 85 * 3, 70 * 3 };
 	m_iImageWidth = ROBOT_BLUE_WIDTH;
 	m_iImageHeight = ROBOT_BLUE_HEIGHT;
-
+	// 기본 애니메이션 프레임 설정
 	m_tTopFrame.iFrameCnt = 0;
 	m_tTopFrame.iFrameStart = 0;
 	m_tTopFrame.iFrameEnd = 7;
 	m_tTopFrame.iFrameScene = 0;
 	m_tTopFrame.dwFrameTime = GetTickCount();
 	m_tTopFrame.dwFrameSpeed = 100;
-
+	// 체력
 	m_fHp = 650.f;
-
+	// 기본 상태
 	m_eCurState = CRobotBlue::IDLE_R;
 
 	// 점수
 	m_iScore = 1500;
 }
 
+// 업데이트
 int CRobotBlue::Update()
 {
+	// 삭제
 	if (m_bRemove)
 		return OBJ_DEAD;
-
+	// 죽음
 	if (m_bDead)
 	{
 		if (m_ePreState != CRobotBlue::DESTROY)
@@ -87,8 +96,10 @@ int CRobotBlue::Update()
 		}
 	}
 
-	m_tInfo.fY += g_fBackgroundSpeed * 3.f;			// 배경에 맞춰서 Y축 이동
+	// 배경에 맞춰서 Y축 이동
+	m_tInfo.fY += g_fBackgroundSpeed * 3.f;
 
+	// AI 로직
 	if (m_ePreState != CRobotBlue::DESTROY)
 	{
 		if (m_iActionCnt == 0)
@@ -237,41 +248,46 @@ int CRobotBlue::Update()
 		//}
 	}
 
-	Aim();			// 조준
+	// 조준
+	Aim();
 
+	// 이미지 RECT 정보 및 Hit RECT 정보 갱신
 	Update_Rect();
+	// 프레임 씬 변경 처리
 	Scene_Change();
+	// 이미지 프레임 이동
 	Frame_Move();
+	// 뚜껑 이미지 프레임 이동
 	Frame_MoveEX();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CRobotBlue::Late_Update()
 {
-	if (m_ePreState != CRobotBlue::DESTROY)
-	{
-		if (m_bHpLock)
-		{
-			if (0 <= m_tRect.bottom && 0 <= m_tRect.right && WINCX >= m_tRect.left)
-			{
-				m_bHpLock = false;
-				m_bOnObject = true;
-			}
+	// 파괴된 상태가 아니고 무적 상태면 배치중임
+	if (m_ePreState != CRobotBlue::DESTROY && m_bHpLock) {
+		// 화면 안으로 들어오면
+		if (0 <= m_tRect.bottom && 0 <= m_tRect.right && WINCX >= m_tRect.left) {
+			// 무적 해제
+			m_bHpLock = false;
+			// 배치 플래그 ON
+			m_bOnObject = true;
 		}
 	}
 
-	if (!m_bOnObject)
-		return;
-
+	// 맵 하단으로 나가면 삭제
 	if (WINCY <= m_tRect.top)
-		m_bDead = true;
+		m_bRemove = true;
 }
 
+// 렌더
 void CRobotBlue::Render(HDC _DC)
 {
 	HDC hMemDC;
 
+	// 파괴된 상태와 일반 상태 구분
 	if (m_ePreState == CRobotBlue::DESTROY)
 	{
 		// 잔해
@@ -317,7 +333,8 @@ void CRobotBlue::Render(HDC _DC)
 			, RGB(255, 0, 255));
 	}
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
@@ -328,6 +345,7 @@ void CRobotBlue::Release()
 {
 }
 
+// 프레임 씬 변경 처리
 void CRobotBlue::Scene_Change()
 {
 	if (m_ePreState != m_eCurState)
@@ -379,6 +397,7 @@ void CRobotBlue::Scene_Change()
 	}
 }
 
+// 뚜껑 이미지 프레임 이동
 void CRobotBlue::Frame_MoveEX()
 {
 	if (m_tTopFrame.dwFrameTime + m_tTopFrame.dwFrameSpeed < GetTickCount())
@@ -391,6 +410,8 @@ void CRobotBlue::Frame_MoveEX()
 	}
 }
 
+// 전방위 공격
+// _fAngle : 호도각 카운트
 void CRobotBlue::Shot_1(float _fAngle)
 {
 	float fCnt = _fAngle;
@@ -415,6 +436,7 @@ void CRobotBlue::Shot_1(float _fAngle)
 	}
 }
 
+// 공격
 void CRobotBlue::Shot_2()
 {
 	float fAngle = m_fAngle;
@@ -427,6 +449,7 @@ void CRobotBlue::Shot_2()
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }
 
+// 조준
 void CRobotBlue::Aim()
 {
 	float	fX = m_pTarget->Get_Info().fX - m_tInfo.fX;
@@ -504,6 +527,10 @@ void CRobotBlue::Aim()
 		m_iDrawID = CRobotBlue::A136;
 }
 
+// 이동
+// 이동할 때 다른 오브젝트 처럼 똑같은 속도로 움직이면
+// 굉장히 어색함 마치 런닝 머신위를 걷는 것 같은 느낌을 줌
+// 프레임 구간별로 이동할 좌표 속도 값을 따로 정해줌
 bool CRobotBlue::Move_RU()
 {
 	if (m_eCurState == CRobotBlue::IDLE_R)

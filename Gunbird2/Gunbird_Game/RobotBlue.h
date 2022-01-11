@@ -1,3 +1,9 @@
+// 기명준
+// 이족 보행 파란색 로봇
+// 이동할 때 다른 오브젝트 처럼 똑같은 속도로 움직이면
+// 굉장히 어색함 마치 런닝 머신위를 걷는 것 같은 느낌을 줌
+// 프레임 구간별로 이동할 좌표 속도 값을 따로 정해줌
+
 #pragma once
 
 #ifndef __ROBOTBLUE_H__
@@ -25,19 +31,19 @@ public:
 	virtual void Release() override;
 
 private:
-	void Scene_Change();
-	void Frame_MoveEX();
-	void Shot_1(float _fAngle);
-	void Shot_2();
-	void Aim();				// 조준
+	void Scene_Change();		// 프레임 씬 변경 처리
+	void Frame_MoveEX();		// 뚜껑 이미지 프레임 이동
+	void Shot_1(float _fAngle);	// 전방위 공격
+	void Shot_2();				// 공격
+	void Aim();					// 조준
 
-	bool Move_RU();			// 이동
+	bool Move_RU();				// 이동
 
 private:
 	CRobotBlue::STATE		m_ePreState;
 	CRobotBlue::STATE		m_eCurState;
-	int						m_iOldFrame;
-	int						m_iActionCnt;
+	int						m_iOldFrame;		// 이전 프레임 저장 값
+	int						m_iActionCnt;		// 패턴 행동 카운트 값
 	DWORD					m_dwShotTime;		// 총알 쏘는 시간
 	DWORD					m_dwShotDelay;		// 총알 쏘는 딜레이
 	FRAME					m_tTopFrame;		// 뚜껑 프레임
