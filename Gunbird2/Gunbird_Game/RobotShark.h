@@ -1,3 +1,7 @@
+// 기명준
+// 중간 보스 로봇 샤크 공중 몬스터
+// 파괴되면 파워업 아이템 드랍
+
 #pragma once
 
 #ifndef __ROBOTSHARK_H__
@@ -22,19 +26,16 @@ public:
 
 	void Set_DestPos(float _fX, float _fY) { m_fDestPosX = _fX; m_fDestPosY = _fY; }
 	void Set_OutPos(float _fX, float _fY) { m_fOutPosX = _fX; m_fOutPosY = _fY; }
-	void Set_OutTime(DWORD _dwTime) { m_dwOutTime = _dwTime; }
 
 private:
-	bool Move(float _fDestX, float _fDestY);	// 이동
-	bool MoveAngle(float _fDestX, float _fDestY);	// 이동
-	void Frame_MoveEX();
-	void Shot_1();
-	void Shot_2();
-	void Shot_3();
+	bool Move(float _fDestX, float _fDestY);		// 이동
+	bool MoveAngle(float _fDestX, float _fDestY);	// 선회 이동
+	void Frame_MoveEX();		// 몸통 이미지 프레임 이동
+	void Shot_1();				// 공격 패턴 1
+	void Shot_2();				// 공격 패턴 2
+	void Shot_3();				// 공격 패턴 3
 
 private:
-	DWORD				m_dwOnTime;			// 배치된 시간
-	DWORD				m_dwOutTime;		// 배치되고 퇴장하기까지의 시간
 	float				m_fDestPosX;		// 바깥에서 화면 안으로 배치될 좌표 X
 	float				m_fDestPosY;		// 바깥에서 화면 안으로 배치될 좌표 Y
 	float				m_fOutPosX;			// 화면 밖으로 퇴장할 좌표 X

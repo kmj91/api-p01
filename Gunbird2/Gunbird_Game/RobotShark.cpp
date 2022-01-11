@@ -1,3 +1,7 @@
+// 기명준
+// 중간 보스 로봇 샤크 공중 몬스터
+// 파괴되면 파워업 아이템 드랍
+
 #include "stdafx.h"
 #include "RobotShark.h"
 
@@ -14,7 +18,7 @@
 
 
 CRobotShark::CRobotShark()
-	: m_dwOnTime(0), m_dwOutTime(0), m_fDestPosX(0.f), m_fDestPosY(0.f), m_fOutPosX(0.f), m_fOutPosY(0.f),
+	: m_fDestPosX(0.f), m_fDestPosY(0.f), m_fOutPosX(0.f), m_fOutPosY(0.f),
 	m_dwShotTime(0), m_dwShotDelay(0), m_eAttackState(CRobotShark::END),
 	m_tBodyFrame{}, m_tPersonFrame{}, m_bOnObject(false), m_bOutObject(false)
 {
@@ -28,6 +32,7 @@ CRobotShark::~CRobotShark()
 
 void CRobotShark::Initialize()
 {
+	// 기본 위치 및 설정
 	m_tInfo.iCX = ROBOT_SHARK_WIDTH * 3;
 	m_tInfo.iCY = ROBOT_SHARK_HEIGHT * 3;
 	m_tHitRectPos = { 5 * 3, 2 * 3, 69 * 3, 62 * 3 };
@@ -57,24 +62,27 @@ void CRobotShark::Initialize()
 	m_tPersonFrame.iFrameScene = 1;
 	m_tPersonFrame.dwFrameTime = GetTickCount();
 	m_tPersonFrame.dwFrameSpeed = 999999;
-
+	// 이동 속도
 	m_fSpeed = 5.0f;
+	// 체력
 	m_fHp = 500;
-
+	// 공격 간격
 	m_dwShotDelay = 1200;
+	// 공격 패턴 상태
 	m_eAttackState = CRobotShark::SHOT_1;
 
 	// 점수
 	m_iScore = 2000;
 }
 
+// 업데이트
 int CRobotShark::Update()
 {
+	// 삭제
 	if (m_bRemove)
 		return OBJ_DEAD;
-
-	if (m_bDead)
-	{
+	// 죽음
+	if (m_bDead) {
 		CObj* pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
@@ -93,20 +101,21 @@ int CRobotShark::Update()
 		return OBJ_DEAD;
 	}
 
-	if (!m_bOnObject)
-	{
-		if (Move(m_fDestPosX, m_fDestPosY))
-		{
+	// 배치 되기 전
+	if (!m_bOnObject) {
+		// 배치 좌표로 이동
+		if (Move(m_fDestPosX, m_fDestPosY)) {
 			// 목적지에 도착
 			m_bOnObject = true;
-			m_dwOnTime = GetTickCount();
+			// 이동 속도 변경
 			m_fSpeed = 1.f;
 		}
 	}
-	else
-	{
-		if (m_dwShotTime + m_dwShotDelay < GetTickCount())
-		{
+	// 배치 된 후
+	else {
+		// 공격 시간이 됬으면
+		if (m_dwShotTime + m_dwShotDelay < GetTickCount()) {
+			// 공격 처리
 			switch (m_eAttackState)
 			{
 			case CRobotShark::SHOT_1:
@@ -136,54 +145,55 @@ int CRobotShark::Update()
 				Shot_3();
 				break;
 			}
-			
+			// 공격 후 시간 저장
 			m_dwShotTime = GetTickCount();
 		}
 
-		if (m_bOutObject)
-		{
-			MoveAngle(m_fOutPosX, m_fOutPosY);
-		}
-		else
-		{
-			// 퇴장 시간인가?
-			DWORD dwTime = GetTickCount();
-			if ((dwTime - m_dwOnTime) > m_dwOutTime)
-			{
+		// 퇴장하기 전
+		if (!m_bOutObject) {
+			// 이동
+			if (Move(m_fDestPosX - 300.f, m_fDestPosY)) {
+				// 퇴장 플래그
 				m_bOutObject = true;
+				// 상태 변경
 				m_eAttackState = CRobotShark::END;
+				// 선회 각도
 				m_fAngle = -60.f;
+				// 이동 속도 변경
+				m_fSpeed = 3.f;
 			}
-			else
-			{
-				if (Move(m_fDestPosX - 300.f, m_fDestPosY))
-				{
-					m_fSpeed = 3.f;
-				}
+		}
+		// 맵 바깥으로 퇴장
+		else {
+			// 선회 이동
+			if (MoveAngle(m_fOutPosX, m_fOutPosY)) {
+				// 도착하면 삭제
+				m_bRemove = true;
 			}
 		}
 	}
 
+	// 이미지 RECT 정보 및 Hit RECT 정보 갱신
 	Update_Rect();
+	// 이미지 프레임 이동
 	Frame_Move();
+	// 몸통 이미지 프레임 이동
 	Frame_MoveEX();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CRobotShark::Late_Update()
 {
+	// 모든 게임 오브젝트는 초기화 때 무적 상태
+	// 몬스터는 일단 화면에 보이고 나서 무적 해제 됨
 	if (m_bHpLock)
 		if (0 <= m_tRect.top && 0 <= m_tRect.left && WINCX >= m_tRect.right)
 			m_bHpLock = false;
-
-	if (!m_bOnObject)
-		return;
-
-	if (0 >= m_tRect.bottom)
-		m_bRemove = true;
 }
 
+// 렌더
 void CRobotShark::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"RobotShark");
@@ -215,7 +225,8 @@ void CRobotShark::Render(HDC _DC)
 		, m_iImageWidth, m_iImageHeight
 		, RGB(255, 0, 255));
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
@@ -226,63 +237,77 @@ void CRobotShark::Release()
 {
 }
 
+// 이동
+// _fDestX : 목적지 좌표 X
+// _fDestY : 목적지 좌표 Y
+// 반환 값 : 목적지에 도착했으면 true 아니면 false
 bool CRobotShark::Move(float _fDestX, float _fDestY)
 {
-	float fvx;
-	float fvy;
-	float fX = _fDestX - m_tInfo.fX;
-	float fY = _fDestY - m_tInfo.fY;
-	float fDia = sqrtf(fX * fX + fY * fY);	// 현제 위치에서 목적지까지 거리
+	float fX = _fDestX - m_tInfo.fX;		// 방향 좌표 X
+	float fY = _fDestY - m_tInfo.fY;		// 방향 좌표 Y
+	float fDia = sqrtf(fX * fX + fY * fY);	// 현재 위치에서 목적지까지 거리
+	float fSpeed = m_fSpeed;				// 이동 속도
 
-	if (fDia) {
-		fvx = (_fDestX - m_tInfo.fX) / fDia * m_fSpeed;
-		fvy = (_fDestY - m_tInfo.fY) / fDia * m_fSpeed;
-	}
+	// 목적지까지의 거리가 이동 속도보다 작다면
+	// 목표 거리만큼 이동할 수 있게 속도 값을 바꿈
+	if (fDia < fSpeed)
+		fSpeed = fDia;
 
 	// 목적지에 도착하지 않았으면 이동 처리
-	if (fDia >= m_fSpeed)
-	{
-		m_tInfo.fX += fvx;
-		m_tInfo.fY += fvy;
-		return false;
-	}
+	m_tInfo.fX += fX / fDia * fSpeed;
+	m_tInfo.fY += fY / fDia * fSpeed;
 
-	return true;
+	// 목적지에 도착했는지?
+	if (fDia - fSpeed == 0)
+		return true;
+
+	return false;
 }
 
+// 선회 이동
+// _fDestX : 목적지 좌표 X
+// _fDestY : 목적지 좌표 Y
+// 반환 값 : 목적지에 도착했으면 true 아니면 false
 bool CRobotShark::MoveAngle(float _fDestX, float _fDestY)
 {
-	float fvx;
-	float fvy;
-	float fRad;
-	float fvx2;
-	float fvy2;
-	float fX = _fDestX - m_tInfo.fX;
-	float fY = _fDestY - m_tInfo.fY;
-	float fDia = sqrtf(fX * fX + fY * fY);	// 현제 위치에서 목적지까지 거리
+	float fX = _fDestX - m_tInfo.fX;		// 방향 좌표 X
+	float fY = _fDestY - m_tInfo.fY;		// 방향 좌표 Y
+	float fDia = sqrtf(fX * fX + fY * fY);	// 현재 위치에서 목적지까지 거리
+	float fvx;					// 직선 이동 좌표 X
+	float fvy;					// 직선 이동 좌표 Y
+	float fRad;					// _fAngle 라디안 값
+	float fvx2;					// 회전 결과 좌표 값 X
+	float fvy2;					// 회전 결과 좌표 값 Y
+	float fSpeed = m_fSpeed;	// 이동 속도
 
-	if (fDia) {
-		fvx = (_fDestX - m_tInfo.fX) / fDia * m_fSpeed;
-		fvy = (_fDestY - m_tInfo.fY) / fDia * m_fSpeed;
-	}
+	// 목적지까지의 거리가 이동 속도보다 작다면
+	// 목표 거리만큼 이동할 수 있게 속도 값을 바꿈
+	if (fDia < fSpeed)
+		fSpeed = fDia;
 
-	// 목적지에 도착하지 않았으면 이동 처리
-	if (fDia >= m_fSpeed)
-	{
-		// 선회 각도
-		fRad = PI / 180.f * m_fAngle;
+	// fX / fDia 결과는 이동 거리가 1일 때 이동하는 X 좌표 값 단위벡터
+	// 단위벡터에 fSpeed(이동 속도)를 곱해서 원하는 만큼 이동하는 좌표 값을 구함
+	// fvx, fvy는 직선이동했을 때의 좌표 값
+	fvx = fX / fDia * fSpeed;
+	fvy = fY / fDia * fSpeed;
 
-		fvx2 = cos(fRad) * fvx - sin(fRad) * fvy;
-		fvy2 = sin(fRad) * fvx + cos(fRad) * fvy;
+	// 선회 각도 라디안 값
+	fRad = PI / 180.f * m_fAngle;
+	// 회전 이동한 좌표 값
+	fvx2 = cos(fRad) * fvx - sin(fRad) * fvy;
+	fvy2 = sin(fRad) * fvx + cos(fRad) * fvy;
+	// 위에서 구한 값을 현재 좌표에 더해서 좌표 이동
+	m_tInfo.fX += fvx2;
+	m_tInfo.fY += fvy2;
 
-		m_tInfo.fX += fvx2;
-		m_tInfo.fY += fvy2;
-		return false;
-	}
+	// 목적지에 도착했는지?
+	if (fDia - fSpeed == 0)
+		return true;
 
-	return true;
+	return false;
 }
 
+// 몸통 이미지 프레임 이동
 void CRobotShark::Frame_MoveEX()
 {
 	if (m_tBodyFrame.dwFrameTime + m_tBodyFrame.dwFrameSpeed < GetTickCount())
@@ -304,6 +329,8 @@ void CRobotShark::Frame_MoveEX()
 	}
 }
 
+// 공격 패턴 1
+// 흩뿌리기
 void CRobotShark::Shot_1()
 {
 	float fCnt = 0;
@@ -347,6 +374,8 @@ void CRobotShark::Shot_1()
 	}
 }
 
+// 공격 패턴 2
+// 팔 직선 공격
 void CRobotShark::Shot_2()
 {
 	// 왼팔
@@ -368,6 +397,8 @@ void CRobotShark::Shot_2()
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }
 
+// 공격 패턴 3
+// 팔 교차 공격
 void CRobotShark::Shot_3()
 {
 	// 왼팔

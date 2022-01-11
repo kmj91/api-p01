@@ -665,7 +665,6 @@ void CStage::Stage_1()
 	
 	// 중보
 	m_arrCreateObjcet[32].iAppearance = 500;
-	m_arrCreateObjcet[32].dwOutTime = 7000;
 	m_arrCreateObjcet[32].fPosX = 500.f;
 	m_arrCreateObjcet[32].fPosY = -100.f;
 	m_arrCreateObjcet[32].fDestPosX = 500.f;
@@ -1750,7 +1749,6 @@ void CStage::Create_Object_Stage_1()
 			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
 			static_cast<CRobotShark*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);		// 목적지
 			static_cast<CRobotShark*>(pObj)->Set_OutPos(pObjectInfo->fOutPosX, pObjectInfo->fOutPosY);		// 퇴장 위치
-			static_cast<CRobotShark*>(pObj)->Set_OutTime(pObjectInfo->dwOutTime);		// 화면에 보이는 시간	
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_SIGN:
