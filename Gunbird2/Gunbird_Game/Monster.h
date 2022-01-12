@@ -8,7 +8,7 @@
 #define __MONSTER_H__
 
 #include "Obj.h"
-class CMonster :
+class CMonster abstract:
 	public CObj
 {
 public:
