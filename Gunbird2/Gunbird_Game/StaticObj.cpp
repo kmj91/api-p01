@@ -1,3 +1,7 @@
+// 기명준
+// 고정 오브젝트
+// 배경의 일부이거나 높이를 표현하기 위해 덮어씌우는 오브젝트
+
 #include "stdafx.h"
 #include "StaticObj.h"
 
@@ -18,25 +22,31 @@ void CStaticObj::Initialize()
 {
 }
 
+// 업데이트
 int CStaticObj::Update()
 {
 	if (m_bDead)
 		return OBJ_DEAD;
 
+	// 배경에 맞춰서 Y축 이동
 	if (!g_bStopMapScroll)
-		m_tInfo.fY += g_fBackgroundSpeed * 3.f;			// 배경에 맞춰서 Y축 이동
+		m_tInfo.fY += g_fBackgroundSpeed * 3.f;
 
+	// 이미지 RECT 정보 갱신
+	// 배경의 일부이기 때문에 Hit RECT는 갱신 불필요
 	Update_RectEx();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CStaticObj::Late_Update()
 {
 	if (WINCY <= m_tRect.top)
 		m_bDead = true;
 }
 
+// 렌더
 void CStaticObj::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
@@ -54,6 +64,7 @@ void CStaticObj::Release()
 {
 }
 
+// 이미지 RECT 정보 갱신
 void CStaticObj::Update_RectEx()
 {
 	m_tRect.left = (LONG)m_tInfo.fX;
