@@ -35,7 +35,7 @@ void CShark::Initialize()
 // 업데이트
 int CShark::Update()
 {
-	// 죽음
+	// 삭제
 	if (m_bDead)
 		return OBJ_DEAD;
 
