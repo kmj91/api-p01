@@ -65,6 +65,9 @@ void CStaticObj::Release()
 }
 
 // 이미지 RECT 정보 갱신
+// 배경의 일부이기 때문에 Hit RECT는 갱신 불필요
+// 이미지를 배치할 때 이미지 중점 좌표로 배치를 안하고 왼쪽 상단 꼭지점으로 배치함
+// 그래서 기존의 Update_Rect() 함수를 사용하지 않음
 void CStaticObj::Update_RectEx()
 {
 	m_tRect.left = (LONG)m_tInfo.fX;

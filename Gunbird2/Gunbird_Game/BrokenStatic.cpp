@@ -1,3 +1,8 @@
+// 기명준
+// 파괴되는 고정 오브젝트
+// 배경의 일부이거나 높이를 표현하기 위해 덮어씌우는 오브젝트
+// 파괴되기 때문에 CStaticObj 구분됨
+
 #include "stdafx.h"
 #include "BrokenStatic.h"
 
@@ -24,11 +29,13 @@ void CBrokenStatic::Initialize()
 	Release();
 }
 
+// 업데이트
 int CBrokenStatic::Update()
 {
+	// 삭제
 	if (m_bRemove)
 		return OBJ_DEAD;
-
+	// 죽음
 	if (m_bDead)
 	{
 		float fX = m_tInfo.fX + (m_tInfo.iCX / 2);
@@ -54,14 +61,15 @@ int CBrokenStatic::Update()
 		return OBJ_DEAD;
 	}
 		
-
-	m_tInfo.fY += g_fBackgroundSpeed * 3.f;			// 배경에 맞춰서 Y축 이동
-
+	// 배경에 맞춰서 Y축 이동
+	m_tInfo.fY += g_fBackgroundSpeed * 3.f;
+	// 이미지 RECT 정보 및 Hit RECT 정보 갱신
 	Update_RectEx();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CBrokenStatic::Late_Update()
 {
 	if (m_bHpLock)
@@ -72,6 +80,7 @@ void CBrokenStatic::Late_Update()
 		m_bRemove = true;
 }
 
+// 렌더
 void CBrokenStatic::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
@@ -84,7 +93,8 @@ void CBrokenStatic::Render(HDC _DC)
 		, m_iImageWidth, m_iImageHeight
 		, RGB(255, 0, 255));
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
@@ -95,6 +105,9 @@ void CBrokenStatic::Release()
 {
 }
 
+// 이미지 RECT 정보 및 Hit RECT 정보 갱신
+// 이미지를 배치할 때 이미지 중점 좌표로 배치를 안하고 왼쪽 상단 꼭지점으로 배치함
+// 그래서 기존의 Update_Rect() 함수를 사용하지 않음
 void CBrokenStatic::Update_RectEx()
 {
 	m_tRect.left = (LONG)m_tInfo.fX;
