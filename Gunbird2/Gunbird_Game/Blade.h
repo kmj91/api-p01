@@ -1,3 +1,7 @@
+// 기명준
+// NPC 블레이드 배경 취급
+// 게임 플레이 중간에 모습을 보임
+
 #pragma once
 
 #ifndef __BLADE_H__
@@ -21,8 +25,8 @@ public:
 	virtual void Release() override;
 
 private:
-	void Scene_Change();
-	void Move();
+	void Scene_Change();	// 프레임 씬 변경 처리
+	void Move();			// 이동
 
 private:
 	CBlade::STATE			m_ePreState;
