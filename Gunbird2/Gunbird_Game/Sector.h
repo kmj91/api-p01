@@ -1,3 +1,7 @@
+// 기명준
+// NPC 이동을 위한 보이지 않는 사각 영역
+// 이동 좌표를 보관
+
 #pragma once
 
 #ifndef __SECTOR_H__
