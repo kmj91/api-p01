@@ -1,10 +1,14 @@
+// 기명준
+// 아이템 인터페이스
+// 아이템 종류를 구분하는 것과 점수 값을 멤버 변수로 가지고 있음
+
 #pragma once
 
 #ifndef __ITEM_H__
 #define __ITEM_H__
 
 #include "Obj.h"
-class CItem :
+class CItem abstract :
 	public CObj
 {
 public:
