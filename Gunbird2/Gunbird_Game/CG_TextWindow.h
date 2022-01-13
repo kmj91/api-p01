@@ -1,3 +1,7 @@
+// 기명준
+// 게임 엔딩 씬 텍스트 창
+// 대사 출력
+
 #pragma once
 
 #ifndef __CG_TEXTWINDOW_H__

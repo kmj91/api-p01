@@ -1,3 +1,7 @@
+// 기명준
+// 게임 엔딩 씬 CG 오브젝트
+// 이미지 프레임 끝에 도달하면 텍스트 윈도우 생성
+
 #include "stdafx.h"
 #include "CG_Kusuri.h"
 
@@ -19,24 +23,26 @@ CCG_Kusuri::~CCG_Kusuri()
 
 void CCG_Kusuri::Initialize()
 {
+	// 이미지 크기 초기화
 	m_tInfo.iCX = CG_KUSURI_WIDTH * 3;
 	m_tInfo.iCY = CG_KUSURI_HEIGHT * 3;
 	m_iImageWidth = CG_KUSURI_WIDTH;
 	m_iImageHeight = CG_KUSURI_HEIGHT;
-
+	// 기본 애니메이션 프레임 설정
 	m_tFrame.iFrameCnt = 0;
 	m_tFrame.iFrameStart = 0;
 	m_tFrame.iFrameEnd = 9;
 	m_tFrame.iFrameScene = 0;
 	m_tFrame.dwFrameTime = GetTickCount();
 	m_tFrame.dwFrameSpeed = 40;
-
+	// 좌표 초기화
 	m_tInfo.fX = 113.f * 3.f;
 	m_tInfo.fY = 65.f * 3.f;
 }
 
 int CCG_Kusuri::Update()
 {
+	// 삭제
 	if (m_bDead)
 		return OBJ_DEAD;
 

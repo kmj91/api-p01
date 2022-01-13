@@ -1,3 +1,7 @@
+// 기명준
+// 게임 엔딩 씬 텍스트 창
+// 대사 출력
+
 #include "stdafx.h"
 #include "CG_TextWindow.h"
 
@@ -20,17 +24,20 @@ CCG_TextWindow::~CCG_TextWindow()
 
 void CCG_TextWindow::Initialize()
 {
+	// 좌표 및 이미지 크기 초기화
 	m_tInfo.fX = WINCX >> 1;
 	m_tInfo.fY = WINCY - (55.f * 3.f);
 	m_tInfo.iCX = CG_TEXT_BOX_WIDTH;
 	m_tInfo.iCY = CG_TEXT_BOX_HEIGHT;
 	m_iImageWidth = CG_TEXT_BOX_WIDTH;
 	m_iImageHeight = CG_TEXT_BOX_HEIGHT;
-
+	// 기본 상태
 	m_eState = CCG_TextWindow::ON_TEXTBOX;
+	// 현재 시간 저장
 	m_dwTime = GetTickCount();
+	// 딜레이 초기화
 	m_dwDelay = 1000;
-
+	// CG 이미지 크기 초기화
 	m_tStandingInfo[0].iCX = CG_MARION_STANDING_WIDTH * 3;
 	m_tStandingInfo[0].iCY = CG_MARION_STANDING_HEIGHT * 3;
 	m_tStandingInfo[1].iCX = CG_USAGI_STANDING_WIDTH * 3;
