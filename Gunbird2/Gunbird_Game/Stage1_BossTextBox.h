@@ -1,3 +1,8 @@
+// 기명준
+// 보스전 텍스트 박스
+// 대사 출력 후 보스전 진행
+// 대사는 이미지 파일임
+
 #pragma once
 
 #ifndef __STAGE1_BOSSTEXTBOX_H__
@@ -22,7 +27,7 @@ public:
 
 private:
 	void Update_RectEX();
-	void Scene_Change();
+	void Scene_Change();		// 프레임 씬 변경 처리
 
 private:
 	CStage1_BossTextBox::STATE		m_ePreState;

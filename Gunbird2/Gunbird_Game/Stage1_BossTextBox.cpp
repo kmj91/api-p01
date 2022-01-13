@@ -1,3 +1,8 @@
+// 기명준
+// 보스전 텍스트 박스
+// 대사 출력 후 보스전 진행
+// 대사는 이미지 파일임
+
 #include "stdafx.h"
 #include "Stage1_BossTextBox.h"
 
@@ -22,17 +27,20 @@ CStage1_BossTextBox::~CStage1_BossTextBox()
 
 void CStage1_BossTextBox::Initialize()
 {
+	// 좌표 및 이미지 크기 초기화
 	m_tInfo.fX = WINCX >> 1;
 	m_tInfo.fY = WINCY - 150.f;
 	m_tInfo.iCX = TEXT_BOX_WIDTH * 3;
 	m_tInfo.iCY = TEXT_BOX_HEIGHT * 3;
 	m_iImageWidth = TEXT_BOX_WIDTH;
 	m_iImageHeight = TEXT_BOX_HEIGHT;
-
+	// 기본 상태
 	m_eCurState = CStage1_BossTextBox::ON_TEXTBOX;
+	// 진행 딜레이
 	m_dwDelay = 3000;
+	// 생성 딜레이
 	m_dwCreateDelay = 1000;
-
+	// CG 이미지 크기 정보
 	m_tStandingInfo[0].iCX = SHARK_STANDING_WIDTH * 3;
 	m_tStandingInfo[0].iCY = SHARK_STANDING_HEIGHT * 3;
 	m_tStandingInfo[1].iCX = GIMMICK_STANDING_WIDTH * 3;
@@ -41,11 +49,14 @@ void CStage1_BossTextBox::Initialize()
 	m_tStandingInfo[2].iCY = BLADE_STANDING_HEIGHT * 3;
 }
 
+// 업데이트
 int CStage1_BossTextBox::Update()
 {
+	// 삭제
 	if (m_bDead)
 		return OBJ_DEAD;
 
+	// 순차적으로 이벤트 진행
 	switch (m_ePreState)
 	{
 	case CStage1_BossTextBox::ON_TEXTBOX:
@@ -159,19 +170,24 @@ int CStage1_BossTextBox::Update()
 	}
 
 	
-
+	// 텍스트 다이얼로그 RECT 정보 및 Hit RECT 정보 갱신
 	Update_Rect();
+	// CG RECT 정보 갱신
 	Update_RectEX();
+	// 프레임 씬 변경 처리
 	Scene_Change();
+	// 이미지 프레임 이동
 	Frame_Move();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CStage1_BossTextBox::Late_Update()
 {
 }
 
+// 렌더
 void CStage1_BossTextBox::Render(HDC _DC)
 {
 	HDC hMemDC;
@@ -255,6 +271,7 @@ void CStage1_BossTextBox::Release()
 {
 }
 
+// CG RECT 정보 갱신
 void CStage1_BossTextBox::Update_RectEX()
 {
 	for (int i = 0; i < 3; ++i)
@@ -266,6 +283,7 @@ void CStage1_BossTextBox::Update_RectEX()
 	}
 }
 
+// 프레임 씬 변경 처리
 void CStage1_BossTextBox::Scene_Change()
 {
 	if (m_ePreState != m_eCurState)
