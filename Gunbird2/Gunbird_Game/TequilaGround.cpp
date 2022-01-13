@@ -110,46 +110,43 @@ int CTequilaGround::Update()
 	// 죽음
 	if (m_bDead)
 	{
-		if (!m_bDestroy)
+		// 처음 파괴되면
+		if (!m_bDestroy && m_ePreState != STATE::DESTROY)
 		{
-			// 처음 파괴되면
-			if (m_ePreState != STATE::DESTROY)
-			{
-				// 파괴 상태로 변경
-				m_eCurState = STATE::DESTROY;
-				// 파괴되서 HP 다시 락
-				m_bHpLock = true;
-				// 파괴 플래그 true
-				m_bDestroy = true;
+			// 파괴 상태로 변경
+			m_eCurState = STATE::DESTROY;
+			// 파괴되서 HP 다시 락
+			m_bHpLock = true;
+			// 파괴 플래그 true
+			m_bDestroy = true;
 
-				// 2페이즈 보스 생성
-				CObj* pObj = CAbstractFactory<CTequilaGallop>::Create(m_tInfo.fX, m_tInfo.fY);
-				pObj->Set_Target(m_pTarget);
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_BOSS, false);
+			// 2페이즈 보스 생성
+			CObj* pObj = CAbstractFactory<CTequilaGallop>::Create(m_tInfo.fX, m_tInfo.fY);
+			pObj->Set_Target(m_pTarget);
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_BOSS, false);
 
-				// 파괴 이펙트 생성
-				pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			// 파괴 이펙트 생성
+			pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				int irand = rand() % 3 + 1;
-				pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - (55.f * 3.f), m_tInfo.fY + (12.f * 3.f));
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-				pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + (55.f * 3.f), m_tInfo.fY + (12.f * 3.f));
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			int irand = rand() % 3 + 1;
+			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - (55.f * 3.f), m_tInfo.fY + (12.f * 3.f));
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + (55.f * 3.f), m_tInfo.fY + (12.f * 3.f));
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - (27.f * 3.f), m_tInfo.fY);
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-				pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + (27.f * 3.f), m_tInfo.fY);
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - (27.f * 3.f), m_tInfo.fY);
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + (27.f * 3.f), m_tInfo.fY);
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				// 공격중에 죽을경우 다음 공격상태로 전환되면서 죽는 경우가 있음
-				// 그래서 상태 바로 전환
-				Scene_Change();
-			}
+			// 공격중에 죽을경우 다음 공격상태로 전환되면서 죽는 경우가 있음
+			// 그래서 상태 바로 전환
+			Scene_Change();
 		}	
 	}
 
@@ -290,9 +287,8 @@ void CTequilaGround::Render(HDC _DC)
 		break;
 	}
 
-
-	// 충돌 박스
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
