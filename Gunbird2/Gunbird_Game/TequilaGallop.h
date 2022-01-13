@@ -1,3 +1,8 @@
+// 기명준
+// 2 페이즈 보스
+// 등 공격 패턴 때 양쪽 팔 부분의 Hit Rect가 이동 함
+// 팔이 파괴되면 반대 방향으로 반동 이동 함
+
 #pragma once
 
 #ifndef __TEQUILAGALLOP_H__
@@ -41,7 +46,7 @@ private:
 	virtual void Check_Damage(int _iPlayerNum) override;	// 보스 부위별 파괴 데미지 체크
 
 private:
-	void Scene_Change();
+	void Scene_Change();	// 프레임 씬 변경 처리
 	void Frame_MoveEX();	// 부분 스프라이트 프레임 업데이트
 	void Action();			// 보스 행동
 	void Move();			// 이동
@@ -53,7 +58,7 @@ private:
 	void Front_Shot(float _fX, float _fY);		// 가슴 공격
 	void Back_Shot(float _fX, float _fY);		// 등 공격
 	void Shoulder_Shot();	// 어깨 공격
-	void Shot_5(float _fAngle);
+	void Destroy_Shot(float _fAngle);	// 파괴된 후 공격
 
 private:
 	STATE			m_ePreState;		// 현재 상태

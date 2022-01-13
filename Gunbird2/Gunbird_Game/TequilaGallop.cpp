@@ -1,3 +1,8 @@
+// 기명준
+// 2 페이즈 보스
+// 등 공격 패턴 때 양쪽 팔 부분의 Hit Rect가 이동 함
+// 팔이 파괴되면 반대 방향으로 반동 이동 함
+
 #include "stdafx.h"
 #include "TequilaGallop.h"
 
@@ -40,14 +45,15 @@ CTequilaGallop::~CTequilaGallop()
 
 void CTequilaGallop::Initialize()
 {
+	// 이미지 크기 설정
 	m_tInfo.iCX = TEQUILA_GALLOP_WIDTH * 3;
 	m_tInfo.iCY = TEQUILA_GALLOP_HEIGHT * 3;
 	m_iImageWidth = TEQUILA_GALLOP_WIDTH;
 	m_iImageHeight = TEQUILA_GALLOP_HEIGHT;
-
+	// 체력
 	m_fHp = 5000;
 	//m_fHp = 100;
-
+	// 충돌 렉트 위치 및 부분 체력 설정
 	m_vecHitRectPos.reserve(3);
 	m_vecHitRectPos.emplace_back(RECT{ 73 * 3, 55 * 3, 113 * 3, 131 * 3 });		// 인덱스 0번 상체
 	m_vecHitRectPos.emplace_back(RECT{ 24 * 3, 55 * 3, 73 * 3, 122 * 3 });		// 인덱스 1번 왼팔
@@ -59,10 +65,11 @@ void CTequilaGallop::Initialize()
 	m_vecRectHp.emplace_back(5000.f);
 	m_vecRectHp.emplace_back(1800.f);
 	m_vecRectHp.emplace_back(1800.f);
-
+	// 기본 상태
 	m_eCurState = STATE::WAIT;
-
+	// 공격 간격
 	m_dwShotDelay = 2000;
+	// 현재 시간 저장
 	m_dwShotTime = GetTickCount();
 
 	// 패턴
@@ -73,7 +80,7 @@ void CTequilaGallop::Initialize()
 	m_vecPattern.emplace_back(STATE::L_ARM_ATTACK);
 	m_vecPattern.emplace_back(STATE::SHOULDER_ATTACK);
 	m_vecPattern.emplace_back(STATE::BACK_ATTACK);
-
+	// 부위 파괴 이펙트 관련 초기화
 	m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].iEffectCnt = 30;
 	m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].dwDelay = 50;
 	m_bDamageFlagArr[static_cast<UINT>(SPRITE::R_ARM)].iEffectCnt = 30;
@@ -83,50 +90,53 @@ void CTequilaGallop::Initialize()
 	m_iScore = 5000;
 }
 
+// 업데이트
 int CTequilaGallop::Update()
 {
+	// 삭제
 	if (m_bRemove)
 		return OBJ_DEAD;
-
+	// 죽음
 	if (m_bDead)
 	{
-		if (!m_bDestroy)
+		// 처음 파괴되면
+		if (!m_bDestroy && m_ePreState != STATE::DESTROY)
 		{
-			if (m_ePreState != STATE::DESTROY)
-			{
-				m_eCurState = STATE::DESTROY;
-				m_bHpLock = true;		// 파괴되서 HP 다시 락
-				m_bDestroy = true;
+			// 파괴 상태로 변경
+			m_eCurState = STATE::DESTROY;
+			// 파괴되서 HP 다시 락
+			m_bHpLock = true;
+			// 파괴 플래그 true
+			m_bDestroy = true;
 
-				// 파괴 이펙트 생성
-				CObj* pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			// 파괴 이펙트 생성
+			CObj* pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				int irand = rand() % 3 + 1;
-				pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-				pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			int irand = rand() % 3 + 1;
+			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-				pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-				pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-				pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
-				static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
-				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
+			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
+			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
+			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				// 공격중에 죽을경우 다음 공격상태로 전환되면서 죽는 경우가 있음
-				// 그래서 상태 바로 전환
-				Scene_Change();
-			}
+			// 공격중에 죽을경우 다음 공격상태로 전환되면서 죽는 경우가 있음
+			// 그래서 상태 바로 전환
+			Scene_Change();
 		}
 	}
 
@@ -137,21 +147,28 @@ int CTequilaGallop::Update()
 	// 데미지 파괴 이펙트
 	DamageEffect();
 	// 상체 흔들기
+	// 주기적으로 흔들림
 	Shake_Body();
-
+	// 이미지 RECT 정보 및 Hit RECT 정보 갱신
+	// Obj가 아닌 Boss의 Update_Rect 호출
 	Update_Rect();
+	// 프레임 씬 변경 처리
 	Scene_Change();
+	// 부분 이미지 프레임 이동
 	Frame_MoveEX();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CTequilaGallop::Late_Update()
 {
+	// 맵 하단 바깥으로 나가면 삭제
 	if (WINCY <= m_tRect.top)
 		m_bRemove = true;
 }
 
+// 렌더
 void CTequilaGallop::Render(HDC _DC)
 {
 	HDC hMemDC;
@@ -277,7 +294,8 @@ void CTequilaGallop::Render(HDC _DC)
 		break;
 	}
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
@@ -340,10 +358,13 @@ void CTequilaGallop::Check_Damage(int _iPlayerNum)
 	}
 }
 
+// 프레임 씬 변경 처리
 void CTequilaGallop::Scene_Change()
 {
+	// 이전 상태와 다르면 교체
 	if (m_ePreState != m_eCurState)
 	{
+		// 보스가 여러 프레임으로 구성되어있음
 		switch (m_eCurState)
 		{
 			// 대기
@@ -686,6 +707,7 @@ void CTequilaGallop::Action()
 		// 공격 도중 파괴 됬다면 중단해야됨
 		if (m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].bDamage)
 		{
+			// 다음 패턴을 위해 초기화
 			m_bAttack = false;
 			m_eCurState = STATE::NEXT_PATTERN;
 			m_dwShotTime = GetTickCount();
@@ -696,9 +718,13 @@ void CTequilaGallop::Action()
 		// 5번째 스프라이트 프레임에 공격함
 		if (!m_bAttack && m_tSubFrameArr[static_cast<UINT>(SPRITE::L_ARM)].iFrameCnt == 5)
 		{
+			// 공격
 			m_bAttack = true;
+			// 공격 간격
 			m_dwShotDelay = 100;
+			// 총알 각도 초기화
 			m_fShotAngle = 0.f;
+			// 공격 횟수 초기화
 			m_dwShotCnt = 0;
 
 			// 상체 스프라이트 변경
@@ -718,7 +744,9 @@ void CTequilaGallop::Action()
 			if (m_dwShotCnt >= 7) {
 				m_bAttack = false;
 			}
+			// 왼팔 공격
 			L_Arm_Shot();
+			// 현재 공격 시간 저장
 			m_dwShotTime = GetTickCount();
 		}
 
@@ -731,6 +759,7 @@ void CTequilaGallop::Action()
 		// 공격 끝
 		if (m_tSubFrameArr[static_cast<UINT>(SPRITE::L_ARM)].iFrameCnt == m_tSubFrameArr[static_cast<UINT>(SPRITE::L_ARM)].iFrameEnd)
 		{
+			// 다음 패턴을 위해 초기화
 			m_bAttack = false;
 			m_eCurState = STATE::NEXT_PATTERN;
 			m_dwShotTime = GetTickCount();
@@ -746,6 +775,7 @@ void CTequilaGallop::Action()
 		// 공격 도중 파괴 됬다면 중단해야됨
 		if (m_bDamageFlagArr[static_cast<UINT>(SPRITE::R_ARM)].bDamage)
 		{
+			// 다음 패턴을 위해 초기화
 			m_bAttack = false;
 			m_eCurState = STATE::NEXT_PATTERN;
 			m_dwShotTime = GetTickCount();
@@ -756,9 +786,13 @@ void CTequilaGallop::Action()
 		// 5번째 스프라이트 프레임에 공격함
 		if (!m_bAttack && m_tSubFrameArr[static_cast<UINT>(SPRITE::R_ARM)].iFrameCnt == 5)
 		{
+			// 공격
 			m_bAttack = true;
+			// 공격 간격
 			m_dwShotDelay = 100;
+			// 총알 각도 초기화
 			m_fShotAngle = 0.f;
+			// 공격 횟수 초기화
 			m_dwShotCnt = 0;
 
 			// 상체 스프라이트 변경
@@ -778,7 +812,9 @@ void CTequilaGallop::Action()
 			if (m_dwShotCnt >= 7) {
 				m_bAttack = false;
 			}
+			// 오른팔 공격
 			R_Arm_Shot();
+			// 현재 공격 시간 저장
 			m_dwShotTime = GetTickCount();
 		}
 
@@ -791,6 +827,7 @@ void CTequilaGallop::Action()
 		// 공격 끝
 		if (m_tSubFrameArr[static_cast<UINT>(SPRITE::R_ARM)].iFrameCnt == m_tSubFrameArr[static_cast<UINT>(SPRITE::R_ARM)].iFrameEnd)
 		{
+			// 다음 패턴을 위해 초기화
 			m_bAttack = false;
 			m_eCurState = STATE::NEXT_PATTERN;
 			m_dwShotTime = GetTickCount();
@@ -806,13 +843,14 @@ void CTequilaGallop::Action()
 		// 기를 모으고 공격함
 		if (!m_bAttack)
 		{
+			// 공격
 			m_bAttack = true;
+			// 현재 충전 시간 저장
 			m_dwChargeTime = GetTickCount();
+			// 공격 간격
 			m_dwShotDelay = 200;
+			// 공격 횟수 초기화
 			m_dwShotCnt = 0;
-
-			// 충전 공격 시간
-			m_dwChargeTime = GetTickCount();
 
 			// 충전 이펙트 생성
 			// 왼쪽
@@ -834,9 +872,7 @@ void CTequilaGallop::Action()
 		
 		// 충전 시간이 지나지 않았으면
 		if (m_dwChargeTime + m_dwChargeDelay > GetTickCount())
-		{
 			break;
-		}
 
 		// 공격
 		if (m_bAttack &&
@@ -847,6 +883,7 @@ void CTequilaGallop::Action()
 			// 6번 쐈으면 멈춤
 			if (m_dwShotCnt >= 6)
 			{
+				// 다음 패턴을 위해 초기화
 				m_bAttack = false;
 				m_eCurState = STATE::NEXT_PATTERN;
 				m_dwShotTime = GetTickCount();
@@ -871,28 +908,24 @@ void CTequilaGallop::Action()
 		break;
 		// 등 공격
 	case STATE::BACK_ATTACK:
-		if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 1)
-		{
+		// 등 공격 패턴 때 팔의 좌표가 바뀜
+		// 프레임 진행에 따라 팔의 좌표 변경
+		if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 1) {
 			m_fArmPosY = 3.f * 3.f;
 		}
-		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 2)
-		{
+		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 2) {
 			m_fArmPosY = 7.f * 3.f;
 		}
-		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 3)
-		{
+		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 3) {
 			m_fArmPosY = 12.f * 3.f;
 		}
-		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 4)
-		{
+		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 4) {
 			m_fArmPosY = 16.f * 3.f;
 		}
-		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 5)
-		{
+		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 5) {
 			m_fArmPosY = 19.f * 3.f;
 		}
-		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 6)
-		{
+		else if (m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 6) {
 			m_fArmPosY = 24.f * 3.f;
 		}
 
@@ -900,8 +933,11 @@ void CTequilaGallop::Action()
 		// 8번째 프레임에서 공격 시작함
 		if (!m_bAttack && m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == 8)
 		{
+			// 공격
 			m_bAttack = true;
+			// 공격 간격
 			m_dwShotDelay = 400;
+			// 공격 횟수 초기화
 			m_dwShotCnt = 0;
 			// 프레임 고정
 			m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameStart = 8;
@@ -942,6 +978,7 @@ void CTequilaGallop::Action()
 		if (!m_bAttack &&
 			m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameCnt == m_tSubFrameArr[static_cast<UINT>(SPRITE::BODY)].iFrameEnd)
 		{
+			// 다음 패턴을 위해 초기화
 			m_eCurState = STATE::NEXT_PATTERN;
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 1000;
@@ -957,17 +994,23 @@ void CTequilaGallop::Action()
 		// 공격 도중 파괴 됬다면 중단해야됨
 		if (m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].bDamage && m_bDamageFlagArr[static_cast<UINT>(SPRITE::R_ARM)].bDamage)
 		{
+			// 다음 패턴을 위해 초기화
 			m_eCurState = STATE::NEXT_PATTERN;
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 1000;
 			break;
 		}
 
+		// 처음 공격
 		if (!m_bAttack)
 		{
+			// 공격 시작
 			m_bAttack = true;
+			// 현재 공격 시간 저장
 			m_dwShotTime = GetTickCount();
+			// 공격 딜레이
 			m_dwShotDelay = 600;
+			// 공격 횟수 초기화
 			m_dwShotCnt = 0;
 		}
 
@@ -990,27 +1033,30 @@ void CTequilaGallop::Action()
 		// 공격 끝
 		if (!m_bAttack)
 		{
+			// 다음 패턴을 위해 초기화
 			m_eCurState = STATE::NEXT_PATTERN;
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 1000;
 		}
 		break;
+		// 파괴
 	case STATE::DESTROY:
 		if (m_dwShotTime + m_dwShotDelay < GetTickCount())
 		{
 			m_eCurState = STATE::FINAL_1;
-			Shot_5(0.f);
-			Shot_5(30.f);
+			Destroy_Shot(0.f);
+			Destroy_Shot(30.f);
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 		}
 		break;
+		// FINAL_1 ~ FINAL_4 까지 파괴되면서 주위로 총알을 흩뿌림
 	case STATE::FINAL_1:
 		if (m_dwShotTime + m_dwShotDelay < GetTickCount())
 		{
 			m_eCurState = STATE::FINAL_2;
-			Shot_5(20.f);
-			Shot_5(50.f);
+			Destroy_Shot(20.f);
+			Destroy_Shot(50.f);
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 
@@ -1043,8 +1089,8 @@ void CTequilaGallop::Action()
 		if (m_dwShotTime + m_dwShotDelay < GetTickCount())
 		{
 			m_eCurState = STATE::FINAL_3;
-			Shot_5(-15.f);
-			Shot_5(-45.f);
+			Destroy_Shot(-15.f);
+			Destroy_Shot(-45.f);
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 
@@ -1077,8 +1123,8 @@ void CTequilaGallop::Action()
 		if (m_dwShotTime + m_dwShotDelay < GetTickCount())
 		{
 			m_eCurState = STATE::FINAL_4;
-			Shot_5(-5.f);
-			Shot_5(25.f);
+			Destroy_Shot(-5.f);
+			Destroy_Shot(25.f);
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 
@@ -1111,8 +1157,8 @@ void CTequilaGallop::Action()
 		if (m_dwShotTime + m_dwShotDelay < GetTickCount())
 		{
 			m_eCurState = STATE::FINAL_5;
-			Shot_5(5.f);
-			Shot_5(-25.f);
+			Destroy_Shot(5.f);
+			Destroy_Shot(-25.f);
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 
@@ -1148,8 +1194,9 @@ void CTequilaGallop::Action()
 			m_tInfo.fY = m_tInfo.fY + 3.f;
 
 			if (!g_bStageClear && m_tInfo.fY > 450.f) {
-				// 스테이지 클리어 플래그
+				// 스테이지 클리어 플래그 true
 				g_bStageClear = true;
+				// 클리어 사운드
 				CSoundMgr::Get_Instance()->StopSound(CSoundMgr::BGM);
 				CSoundMgr::Get_Instance()->PlaySound(L"Stage_Clear.wav", CSoundMgr::BGM);
 			}
@@ -1159,6 +1206,8 @@ void CTequilaGallop::Action()
 }
 
 // 이동
+// 기본적으로 좌우로 반복 이동을 함
+// 부위 파괴가 되면 반대 방향으로 빠르게 반동 이동 함
 void CTequilaGallop::Move()
 {
 	// 바퀴 연기 이펙트 생성
@@ -1346,6 +1395,7 @@ void CTequilaGallop::DamageEffect()
 }
 
 // 상체 흔들기
+// 주기적으로 흔들림
 void CTequilaGallop::Shake_Body()
 {
 	if (m_bHpLock)
@@ -1741,7 +1791,8 @@ void CTequilaGallop::Shoulder_Shot()
 	}
 }
 
-void CTequilaGallop::Shot_5(float _fAngle)
+// 파괴된 후 공격
+void CTequilaGallop::Destroy_Shot(float _fAngle)
 {
 	float fCnt = _fAngle;
 
