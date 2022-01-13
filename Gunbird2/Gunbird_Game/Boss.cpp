@@ -1,3 +1,8 @@
+// 기명준
+// 보스 인터페이스
+// 보스들은 여러개의 복합적인 RECT로 구성되어서
+// Obj의 Hit RECT말고 이 곳의 RECT '배열'을 사용
+
 #include "stdafx.h"
 #include "Boss.h"
 
