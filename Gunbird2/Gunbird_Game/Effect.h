@@ -1,10 +1,15 @@
+// 기명준
+// 이펙트 인터페이스
+// 이펙트 생성 시간과 딜레이를 이용해서 지연해서 이펙트를 발생하게 하기도 함
+// 상대 좌표를 가지고 타겟 + 상대좌표를 통해 위치 좌표를 생성하기도 함
+
 #pragma once
 
 #ifndef __EFFECT_H__
 #define __EFFECT_H__
 
 #include "Obj.h"
-class CEffect :
+class CEffect abstract:
 	public CObj
 {
 public:
