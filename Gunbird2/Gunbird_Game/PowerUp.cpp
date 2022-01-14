@@ -1,3 +1,8 @@
+// 기명준
+// 파워업 아이템
+// 화면 안에서 특정 각도로 부딪히며 돌아다님
+// 파괴자 호출되면 파워업 텍스트 오브젝트 생성
+
 #include "stdafx.h"
 #include "PowerUp.h"
 
@@ -19,28 +24,30 @@ CPowerUp::~CPowerUp()
 
 void CPowerUp::Initialize()
 {
+	// 이미지 크기 및 Hit RECT 초기화
 	m_tInfo.iCX = POWER_UP_WIDTH * 3;
 	m_tInfo.iCY = POWER_UP_HEIGHT * 3;
 	m_tHitRectPos = { 0, 0, POWER_UP_WIDTH * 3, POWER_UP_HEIGHT * 3 };
 	m_iImageWidth = POWER_UP_WIDTH;
 	m_iImageHeight = POWER_UP_HEIGHT;
-
+	// 이미지 프레임 초기화
 	m_tFrame.iFrameCnt = 0;
 	m_tFrame.iFrameStart = 0;
 	m_tFrame.iFrameEnd = 7;
 	m_tFrame.iFrameScene = 0;
 	m_tFrame.dwFrameTime = GetTickCount();
 	m_tFrame.dwFrameSpeed = 80;
-
+	// 이동 속도
 	m_fSpeed = 4.0f;
-
+	// 랜덤 각도 초기화
 	int iRadValue = rand() % 20;
 	m_fAngle = -70.f + (float)iRadValue;
 	m_fRadian = PI * m_fAngle / 180.f;
-
+	// 아이템 타입 초기화
 	m_enItemType = ITEM::POWER_UP;
 }
 
+// 업데이트
 int CPowerUp::Update()
 {
 	if (m_bDead)
@@ -65,17 +72,20 @@ int CPowerUp::Update()
 		m_fRadian = 2 * PI - m_fRadian;
 	}
 
-
+	// 이미지 RECT 정보 및 Hit RECT 정보 갱신
 	Update_Rect();
+	// 이미지 프레임 이동
 	Frame_Move();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CPowerUp::Late_Update()
 {
 }
 
+// 렌더
 void CPowerUp::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"PowerUp");
