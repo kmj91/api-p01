@@ -1,3 +1,6 @@
+// 기명준
+// 플레이어 사망 이펙트
+
 #pragma once
 
 #ifndef __PLAYERDEAD_H__
