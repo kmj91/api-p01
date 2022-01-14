@@ -1,3 +1,7 @@
+// 기명준
+// 몬스터 파괴 이펙트
+// 딜레이 값에 따라 지연되서 터지거나 함
+
 #include "stdafx.h"
 #include "Explosion_03.h"
 
@@ -17,11 +21,12 @@ CExplosion_03::~CExplosion_03()
 
 void CExplosion_03::Initialize()
 {
+	// 이미지 크기 초기화
 	m_tInfo.iCX = EXPLOSION_03_WIDTH * 3;
 	m_tInfo.iCY = EXPLOSION_03_HEIGHT * 3;
 	m_iImageWidth = EXPLOSION_03_WIDTH;
 	m_iImageHeight = EXPLOSION_03_HEIGHT;
-
+	// 이미지 프레임 초기화
 	m_tFrame.iFrameCnt = 0;
 	m_tFrame.iFrameStart = 0;
 	m_tFrame.iFrameEnd = 14;
@@ -30,36 +35,45 @@ void CExplosion_03::Initialize()
 	m_tFrame.dwFrameSpeed = 30;
 }
 
+// 업데이트
 int CExplosion_03::Update()
 {
+	// 삭제
 	if (m_bDead)
 		return OBJ_DEAD;
-
-	if (m_dwEffectTime + m_dwEffectDelay > GetTickCount())		// 이펙트 딜레이
+	// 이펙트 딜레이 시간이 지나지 않았으면
+	if (m_dwEffectTime + m_dwEffectDelay > GetTickCount())
 		return OBJ_NOEVENT;
 	else
 	{
+		// 시간이 지났으면
 		if (!m_bOnEffect)
 		{
+			// 플래그 true
 			m_bOnEffect = true;
+			// 사운드 재생
 			CSoundMgr::Get_Instance()->StopSound(CSoundMgr::EXPLOSION_3);
 			CSoundMgr::Get_Instance()->PlaySound(L"Explosion_03.wav", CSoundMgr::EXPLOSION_3);
 		}
 	}
 
+	// 이미지 RECT 정보 갱신
 	Update_Rect();
+	// 이미지 프레임 이동
 	Frame_Move();
-
+	// 프레임이 끝이면 삭제
 	if (m_tFrame.iFrameCnt == m_tFrame.iFrameEnd)		// 프레임이 끝이면 사라짐
 		m_bDead = true;
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CExplosion_03::Late_Update()
 {
 }
 
+// 렌더
 void CExplosion_03::Render(HDC _DC)
 {
 	if (!m_bOnEffect)

@@ -1,3 +1,7 @@
+// 기명준
+// 몬스터 파괴 이펙트
+// 딜레이 값에 따라 지연되서 터지거나 함
+
 #pragma once
 
 #ifndef __EXPLOSION_03_H__
