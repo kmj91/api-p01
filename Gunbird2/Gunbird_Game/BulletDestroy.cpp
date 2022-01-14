@@ -1,3 +1,7 @@
+// 기명준
+// 적 총알이 명중하거나 폭탄에 의해 제거되면 생성되는 이펙트
+// 총알 종류에따라 다른 이펙트 출력
+
 #include "stdafx.h"
 #include "BulletDestroy.h"
 
@@ -18,24 +22,33 @@ void CBulletDestroy::Initialize()
 {
 }
 
+// 업데이트
 int CBulletDestroy::Update()
 {
+	// 삭제
 	if (m_bDead)
 		return OBJ_DEAD;
 
+	// 이미지 프레임 이동
 	Frame_Move();
 
-	if (m_tFrame.iFrameCnt == m_tFrame.iFrameEnd)		// 프레임이 끝이면 사라짐
+	// 프레임이 끝이면 삭제
+	if (m_tFrame.iFrameCnt == m_tFrame.iFrameEnd)
 		m_bDead = true;
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CBulletDestroy::Late_Update()
 {
+	// 이 오브젝트가 Update에서 생성되서 Update를 건너 뛰고 Late_Update를 하는 경우가 발생함
+	// 그래서 Late_Udpate에서 갱신함
+	// 이미지 RECT 정보 및 Hit RECT 정보 갱신
 	Update_Rect();
 }
 
+// 렌더
 void CBulletDestroy::Render(HDC _DC)
 {
 	HDC hMemDC;
@@ -72,7 +85,7 @@ void CBulletDestroy::Release()
 {
 }
 
-// 총알 종류
+// 총알 종류에 따라 이미지 프레임 초기화
 void CBulletDestroy::Set_BulletType(BULLETTYPE _eBullet)
 {
 	switch (_eBullet)
