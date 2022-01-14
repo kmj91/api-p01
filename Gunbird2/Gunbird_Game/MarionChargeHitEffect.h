@@ -1,3 +1,6 @@
+// 기명준
+// 마리온 충전 공격 명중 이펙트
+
 #pragma once
 
 #ifndef __MARIONCHARGEHITEFFECT_H__
