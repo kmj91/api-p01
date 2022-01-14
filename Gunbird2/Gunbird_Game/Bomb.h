@@ -1,3 +1,7 @@
+// 기명준
+// 폭탄 횟수 증가 아이템
+// 화면 안에서 특정 각도로 부딪히며 돌아다님
+
 #pragma once
 
 #ifndef __BOMB_H__
@@ -18,7 +22,7 @@ public:
 	virtual void Release() override;
 
 private:
-	float m_fRadian;
+	float m_fRadian;	// 이동 각도 라디안
 };
 
 #endif // !__BOMB_H__

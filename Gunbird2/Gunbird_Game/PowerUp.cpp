@@ -50,9 +50,11 @@ void CPowerUp::Initialize()
 // 업데이트
 int CPowerUp::Update()
 {
+	// 삭제
 	if (m_bDead)
 		return OBJ_DEAD;
 
+	// 이동
 	m_tInfo.fX += cosf(m_fRadian) * m_fSpeed;
 	m_tInfo.fY += -sinf(m_fRadian) * m_fSpeed;
 
