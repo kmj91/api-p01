@@ -1,3 +1,6 @@
+// 기명준
+// 충전 이펙트
+
 #pragma once
 
 #ifndef __EFFECT_CHARGE_H__
