@@ -43,18 +43,11 @@ int CExplosion_05::Update()
 	// 삭제
 	if (m_bDead)
 		return OBJ_DEAD;
-	// 이펙트 딜레이 시간이 지나지 않았으면
-	if (m_dwEffectTime + m_dwEffectDelay > GetTickCount())
+	// 이펙트 딜레이 시간이 지나면 플래그 true
+	if (!m_bOnEffect && m_dwEffectTime + m_dwEffectDelay > GetTickCount())
 		return OBJ_NOEVENT;
 	else
-	{
-		// 시간이 지났으면
-		if (!m_bOnEffect)
-		{
-			// 플래그 true
-			m_bOnEffect = true;
-		}
-	}
+		m_bOnEffect = true;
 
 	// 아래로 이동
 	m_tInfo.fY += m_fSpeed;
