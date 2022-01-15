@@ -1,3 +1,6 @@
+// 기명준
+// 보스 바퀴 연기
+
 #pragma once
 
 #ifndef __WHEELSMOKE_H__
