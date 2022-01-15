@@ -1,3 +1,6 @@
+// 기명준
+// 마리온 별 이펙트
+
 #pragma once
 
 #ifndef __MARIONEFFECT_H__
