@@ -1,10 +1,14 @@
+// 기명준
+// 총알 인터페이스
+// 총알 데미지와 지연 생성을 위한 시간 값과 딜레이를 가지고 있음
+
 #pragma once
 #include "Obj.h"
 
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
-class CBullet :
+class CBullet abstract:
 	public CObj
 {
 public:
