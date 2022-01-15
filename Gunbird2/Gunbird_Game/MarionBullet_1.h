@@ -1,3 +1,6 @@
+// 기명준
+// 마리온 기본 총알
+
 #pragma once
 
 #ifndef __MARIONBULLETPOWER_1_H__
