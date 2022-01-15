@@ -38,7 +38,7 @@ public:
 private:
 	DWORD m_dwEffectCreateTime;		// 이펙트 생성 시간
 	DWORD m_dwEffectCreateDelay;	// 이펙트 생성 딜레이
-	BULLET * m_stpSubBulletCnt;
+	BULLET * m_stpSubBulletCnt;		// 플레이어 서브 미사일 개수 구조체 포인터(화면에 생성할 수있는 미사일 개수가 제한되어있음)
 };
 
 #endif // !__MARIONGUIDEDBULLET_H__
