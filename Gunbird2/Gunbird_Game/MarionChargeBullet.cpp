@@ -1,3 +1,6 @@
+// 기명준
+// 마리온 충전 공격 총알
+
 #include "stdafx.h"
 #include "MarionChargeBullet.h"
 
@@ -20,24 +23,29 @@ CMarionChargeBullet::~CMarionChargeBullet()
 
 void CMarionChargeBullet::Initialize()
 {
+	// 이미지 위치 및 크기 초기화
 	m_tInfo.iCX = MARION_CHARGE_BULLET_WIDTH * 3;
 	m_tInfo.iCY = MARION_CHARGE_BULLET_HEIGHT * 3;
 	m_tHitRectPos = { 2 * 3, 2 * 3, 34 * 3, 36 * 3 };
 	m_iImageWidth = MARION_CHARGE_BULLET_WIDTH;
 	m_iImageHeight = MARION_CHARGE_BULLET_HEIGHT;
-
+	// 이동 속도
 	m_fSpeed = 1.f;
+	// 체력(명중하면서 적 체력만큼 총알 체력도 차감 0이되면 소멸)
 	m_fHp = 50.f;
+	// 데미지
 	m_fDamage = 500.f;
-
+	// 기본 상태
 	m_eCurState = CMarionChargeBullet::START;
 }
 
+// 업데이트
 int CMarionChargeBullet::Update()
 {
+	// 삭제
 	if (m_bRemove)
 		return OBJ_DEAD;
-
+	// 명중
 	if (m_bDead)
 	{
 		CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_CHARGE_BULLET_HIT);
@@ -49,39 +57,43 @@ int CMarionChargeBullet::Update()
 		return OBJ_DEAD;
 	}
 
-	switch (m_ePreState)
-	{
-	case CMarionChargeBullet::START:
-		m_tInfo.fX += cosf(m_fAngle * PI / 180.f) * m_fSpeed;
-		m_tInfo.fY -= sinf(m_fAngle * PI / 180.f) * m_fSpeed;
+	// 이동
+	m_tInfo.fX += cosf(m_fAngle * PI / 180.f) * m_fSpeed;
+	m_tInfo.fY -= sinf(m_fAngle * PI / 180.f) * m_fSpeed;
 
+	// 처음에는 작은데 점점 커지면서
+	// 일정 크기 이후 이미지 프레임을 반복 이동속도 증가
+	if (m_ePreState == CMarionChargeBullet::START) {
 		if (m_tFrame.iFrameCnt == m_tFrame.iFrameEnd)
 		{
 			m_eCurState = CMarionChargeBullet::REPEAT;
 			m_fSpeed = 10.f;
 		}
-		break;
-	case CMarionChargeBullet::REPEAT:
-		m_tInfo.fX += cosf(m_fAngle * PI / 180.f) * m_fSpeed;
-		m_tInfo.fY -= sinf(m_fAngle * PI / 180.f) * m_fSpeed;
-		break;
 	}
 
+	// 프레임 씬 변경 처리
 	Scene_Change();
+	// 이미지 프레임 이동
 	Frame_Move();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CMarionChargeBullet::Late_Update()
 {
+	// 이 오브젝트가 Update에서 생성되서 Update를 건너 뛰고 Late_Update를 하는 경우가 발생함
+	// 그래서 Late_Udpate에서 갱신함
+	// 이미지 RECT 및 Hit RECT 정보 갱신
 	Update_Rect();
 
+	// 맵 바깥으로 나가면 삭제
 	if (0 >= m_tRect.right || 0 >= m_tRect.bottom
 		|| WINCX <= m_tRect.left || WINCY <= m_tRect.top)
 		m_bRemove = true;
 }
 
+// 렌더
 void CMarionChargeBullet::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Marion_Charge_Bullet");
@@ -94,7 +106,8 @@ void CMarionChargeBullet::Render(HDC _DC)
 		, m_iImageWidth, m_iImageHeight
 		, RGB(255, 0, 255));
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
@@ -105,6 +118,7 @@ void CMarionChargeBullet::Release()
 {
 }
 
+// 프레임 씬 변경 처리
 void CMarionChargeBullet::Scene_Change()
 {
 	if (m_ePreState != m_eCurState)

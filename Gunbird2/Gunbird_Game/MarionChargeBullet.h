@@ -1,3 +1,6 @@
+// 기명준
+// 마리온 충전 공격 총알
+
 #pragma once
 
 #ifndef __MARIONCHARGEBULLET_H__
@@ -21,7 +24,7 @@ public:
 	virtual void Release() override;
 
 private:
-	void Scene_Change();
+	void Scene_Change();	// 프레임 씬 변경 처리
 
 private:
 	CMarionChargeBullet::STATE		m_ePreState;
