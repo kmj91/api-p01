@@ -1,3 +1,6 @@
+// 기명준
+// 마리온 총알 파워 레벨 2
+
 #pragma once
 
 #ifndef __MARIONBULLET_3_H__
