@@ -1,3 +1,8 @@
+// 기명준
+// 마리온 유도 미사일
+// 각도에 따라 이미지 인덱스가 달라짐
+// 날아가면서 주기적으로 별 이펙트 생성
+
 #pragma once
 
 #ifndef __MARIONGUIDEDBULLET_H__
@@ -26,7 +31,7 @@ public:
 	virtual void Render(HDC _DC) override;
 	virtual void Release() override;
 
-	void Init_Angle();
+	void Init_Angle();	// 각도 초기화
 
 	void Set_BulletCnt(BULLET * _stpSubBulletCnt) { m_stpSubBulletCnt = _stpSubBulletCnt; }
 
