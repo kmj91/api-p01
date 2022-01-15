@@ -1,3 +1,6 @@
+// 기명준
+// 마리온 근접 공격 명중 이펙트
+
 #pragma once
 
 #ifndef __EFFECT_MARIONMELEEHIT_H__
@@ -16,7 +19,6 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC _DC) override;
 	virtual void Release() override;
-
 };
 
 #endif // !__EFFECT_MARIONMELEEHIT_H__
