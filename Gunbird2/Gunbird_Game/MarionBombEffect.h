@@ -1,3 +1,7 @@
+// 기명준
+// 마리온 폭탄 이펙트
+// 캐릭터 중심으로 회전 이동 함
+
 #pragma once
 
 #ifndef __MARIONBOMBEFFECT_H__
@@ -29,12 +33,12 @@ public:
 	void Set_DestPos(float _fDestX, float _fDestY) { m_fDestX = _fDestX; m_fDestY = _fDestY; }
 
 private:
-	void Move();
-	void Angle();
+	bool Move();		// 회전 이동
+	void Angle();		// 각도에 따른 이미지 변경
 
 private:
-	float m_fDestX;
-	float m_fDestY;
+	float m_fDestX;					// 이동 좌표 X
+	float m_fDestY;					// 이동 좌표 Y
 	DWORD m_dwEffectCreateTime;		// 이펙트 생성 시간
 	DWORD m_dwEffectCreateDelay;	// 이펙트 생성 딜레이
 };

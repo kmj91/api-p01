@@ -20,48 +20,57 @@ CMarionBombEffect::~CMarionBombEffect()
 
 void CMarionBombEffect::Initialize()
 {
+	// 이미지 크기 초기화
 	m_tInfo.iCX = MARION_GUIDED_BULLET_WIDTH * 3;
 	m_tInfo.iCY = MARION_GUIDED_BULLET_HEIGHT * 3;
 	m_iImageWidth = MARION_GUIDED_BULLET_WIDTH;
 	m_iImageHeight = MARION_GUIDED_BULLET_HEIGHT;
-
+	// 이동 속도
 	m_fSpeed = 10.f;
 }
 
+// 업데이트
 int CMarionBombEffect::Update()
 {
+	// 삭제
 	if (m_bRemove)
 		return OBJ_DEAD;
 
-	if (m_dwEffectTime + m_dwEffectDelay > GetTickCount())		// 이펙트 딜레이
+	// 이펙트 딜레이 시간이 지나면 플래그 true
+	if (!m_bOnEffect && m_dwEffectTime + m_dwEffectDelay > GetTickCount())
 		return OBJ_NOEVENT;
 	else
-	{
-		if (!m_bOnEffect)
-		{
-			m_bOnEffect = true;
-		}
-	}
+		m_bOnEffect = true;
 
 	// 회전 이동
-	Move();
+	if (Move()) {
+		// 도착하면 삭제
+		m_bRemove = true;
+	}
 	// 각도에 따른 이미지 변경
 	Angle();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CMarionBombEffect::Late_Update()
 {
+	// 이 오브젝트가 Update에서 생성되서 Update를 건너 뛰고 Late_Update를 하는 경우가 발생함
+	// 그래서 Late_Udpate에서 갱신함
+	// 이미지 RECT 정보 갱신
 	Update_Rect();
 
+	// 맵 바깥으로 나가면 삭제
 	if (0 >= m_tRect.right || 0 >= m_tRect.bottom
 		|| WINCX <= m_tRect.left || WINCY <= m_tRect.top)
 		m_bRemove = true;
 }
 
+// 렌더
 void CMarionBombEffect::Render(HDC _DC)
 {
+	// 플래그가 true가 아니면 렌더를 하지 않음
 	if (!m_bOnEffect)
 		return;
 
@@ -80,54 +89,65 @@ void CMarionBombEffect::Release()
 {
 }
 
-void CMarionBombEffect::Move()
+// 회전 이동
+bool CMarionBombEffect::Move()
 {
-	float fvx;
-	float fvy;
-	float fRad;
-	float fvx2;
-	float fvy2;
-	float fX = m_fDestX - m_tInfo.fX;
-	float fY = m_fDestY - m_tInfo.fY;
-	float fDia = sqrtf(fX * fX + fY * fY);	// 현제 위치에서 목적지까지 거리
+	float fX = m_fDestX - m_tInfo.fX;		// 방향 좌표 X
+	float fY = m_fDestY - m_tInfo.fY;		// 방향 좌표 Y
+	float fDia = sqrtf(fX * fX + fY * fY);	// 현재 위치에서 목적지까지 거리
+	float fvx;					// 직선 이동 좌표 X
+	float fvy;					// 직선 이동 좌표 Y
+	float fRad;					// _fAngle 라디안 값
+	float fvx2;					// 회전 결과 좌표 값 X
+	float fvy2;					// 회전 결과 좌표 값 Y
+	float fSpeed = m_fSpeed;	// 이동 속도
 
-	if (fDia) {
-		fvx = fX / fDia * m_fSpeed;
-		fvy = fY / fDia * m_fSpeed;
-	}
+	// 목적지까지의 거리가 이동 속도보다 작다면
+	// 목표 거리만큼 이동할 수 있게 속도 값을 바꿈
+	if (fDia < fSpeed)
+		fSpeed = fDia;
 
-	// 목적지에 도착하지 않았으면 이동 처리
-	if (fDia >= m_fSpeed)
+	// fX / fDia 결과는 이동 거리가 1일 때 이동하는 X 좌표 값 단위벡터
+	// 단위벡터에 fSpeed(이동 속도)를 곱해서 원하는 만큼 이동하는 좌표 값을 구함
+	// fvx, fvy는 직선이동했을 때의 좌표 값
+	fvx = fX / fDia * fSpeed;
+	fvy = fY / fDia * fSpeed;
+
+	// 선회 각도 라디안 값
+	fRad = PI / 180.f * m_fAngle;
+	// 회전 이동한 좌표 값
+	fvx2 = cos(fRad) * fvx - sin(fRad) * fvy;
+	fvy2 = sin(fRad) * fvx + cos(fRad) * fvy;
+	// 위에서 구한 값을 현재 좌표에 더해서 좌표 이동
+	m_tInfo.fX += fvx2;
+	m_tInfo.fY += fvy2;
+
+	// 이펙트 생성
+	if (m_dwEffectCreateTime + m_dwEffectCreateDelay < GetTickCount())
 	{
-		// 선회 각도
-		fRad = PI / 180.f * m_fAngle;
-
-		fvx2 = cos(fRad) * fvx - sin(fRad) * fvy;
-		fvy2 = sin(fRad) * fvx + cos(fRad) * fvy;
-
-		m_tInfo.fX += fvx2;
-		m_tInfo.fY += fvy2;
-
-		// 이펙트 생성
-		if (m_dwEffectCreateTime + m_dwEffectCreateDelay < GetTickCount())
-		{
-			m_dwEffectCreateTime = GetTickCount();
-			CObj* pObj = CAbstractFactory<CMarionEffect>::Create(m_tInfo.fX, m_tRect.bottom);
-			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-		}
-		
+		m_dwEffectCreateTime = GetTickCount();
+		CObj* pObj = CAbstractFactory<CMarionEffect>::Create(m_tInfo.fX, m_tRect.bottom);
+		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 	}
+
+	// 목적지에 도착했는지?
+	if (fDia - fSpeed == 0)
+		return true;
+
+	return false;
 }
 
+// 각도에 따른 이미지 변경
 void CMarionBombEffect::Angle()
 {
-	float	fX = m_fDestX - m_tInfo.fX;
-	float	fY = m_fDestY - m_tInfo.fY;
-	float	fDia = sqrtf(fX * fX + fY * fY);
-	float	fRad = acosf(fX / fDia);
-
+	float fX = m_fDestX - m_tInfo.fX;		// 방향 좌표 X
+	float fY = m_fDestY - m_tInfo.fY;		// 방향 좌표 Y
+	float fDia = sqrtf(fX * fX + fY * fY);	// 거리
+	// arccos(cos) = 라디안 값을 구함
+	float fRad = acosf(fX / fDia);
+	// 라디안 값으로 호도각을 구함
 	float fAngle = fRad * 180.f / PI;
-
+	// 목적지의 Y 좌표가 나의 Y 좌표 보다 크면 부호 반전
 	if (m_tInfo.fY < m_fDestY)
 		fAngle *= -1.f;
 
@@ -139,6 +159,7 @@ void CMarionBombEffect::Angle()
 		fAngle = fAngle + 360;
 	}
 
+	// 각도에 따라 이미지 인덱스 번호 교체
 	if (80.f < fAngle && fAngle < 100.f)
 		m_iDrawID = CMarionBombEffect::A90;
 	else if (60.f <= fAngle && fAngle <= 80.f)
