@@ -51,15 +51,16 @@ void CStage::Update()
 	// 키 입력 처리
 	Key_Check();
 
-	// 게임 컨티뉴 중
+	// 게임이 일시 정지 혹은 컨티뉴면
 	if (m_isPause || g_bCountdownStop) {
 		// UI만 업데이트
 		CObjMgr::Get_Instance()->UI_Update();
 		return;
 	}
 
-	Create_Object();	// 오브젝트 만들기
-
+	// 오브젝트 만들기
+	Create_Object();
+	// 오브젝트 업데이트
 	CObjMgr::Get_Instance()->Update();
 }
 
