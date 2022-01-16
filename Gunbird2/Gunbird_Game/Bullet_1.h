@@ -1,3 +1,6 @@
+// 기명준
+// 적 총알 1
+
 #pragma once
 
 #ifndef __BULLET_1_H__

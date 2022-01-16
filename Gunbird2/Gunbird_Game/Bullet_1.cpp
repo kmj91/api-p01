@@ -1,3 +1,6 @@
+// 기명준
+// 적 총알 1
+
 #include "stdafx.h"
 #include "Bullet_1.h"
 
@@ -19,29 +22,31 @@ CBullet_1::~CBullet_1()
 
 void CBullet_1::Initialize()
 {
+	// 이미지 위치 및 크기 초기화
 	m_tInfo.iCX = BULLET_1_WIDTH * 3;
 	m_tInfo.iCY = BULLET_1_HEIGHT * 3;
 	m_tHitRectPos = { 3 * 3, 3 * 3, 9 * 3, 9 * 3 };
 	m_iImageWidth = BULLET_1_WIDTH;
 	m_iImageHeight = BULLET_1_HEIGHT;
-
+	// 이미지 프레임 초기화
 	m_tFrame.iFrameCnt = 0;
 	m_tFrame.iFrameStart = 1;
 	m_tFrame.iFrameEnd = 8;
 	m_tFrame.iFrameScene = 0;
 	m_tFrame.dwFrameTime = GetTickCount();
 	m_tFrame.dwFrameSpeed = 80;
-
+	// 이동 속도
 	m_fSpeed = 5.f;
 }
 
+// 업데이트
 int CBullet_1::Update()
 {
 	// 총알 삭제
 	if(m_bRemove)
 		return OBJ_DEAD;
 
-	// 총알 딜레이
+	// 총알 딜레이 시간이 지나면 플래그 true
 	if (m_dwBulletTime + m_dwBulletDelay > GetTickCount())
 		return OBJ_NOEVENT;
 	else
@@ -49,6 +54,7 @@ int CBullet_1::Update()
 
 	// 총알이 부딪히거나 폭탄으로 제거됨
 	if (m_bDead) {
+		// 총알 파괴 이펙트 생성
 		CObj* pObj = CAbstractFactory<CBulletDestroy>::Create(m_tInfo.fX, m_tInfo.fY, BULLETTYPE::BULLET_1);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
@@ -60,13 +66,16 @@ int CBullet_1::Update()
 		m_tInfo.fY -= sinf(m_fAngle * PI / 180.f) * m_fSpeed;
 	}
 	
+	// 이미지 프레임 이동
 	Frame_Move();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CBullet_1::Late_Update()
 {
+	// 플래그가 false면 예외
 	if (!m_bOnBullet)
 		return;
 
@@ -79,6 +88,7 @@ void CBullet_1::Late_Update()
 
 void CBullet_1::Render(HDC _DC)
 {
+	// 플래그가 false면 예외
 	if (!m_bOnBullet)
 		return;
 
@@ -92,7 +102,8 @@ void CBullet_1::Render(HDC _DC)
 		, m_iImageWidth, m_iImageHeight
 		, RGB(255, 0, 255));
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}
