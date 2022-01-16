@@ -1,3 +1,7 @@
+// 기명준
+// 적 총알 2
+// 딜레이 값에 따라 지연되서 발사됨
+
 #include "stdafx.h"
 #include "Bullet_2.h"
 
@@ -19,29 +23,31 @@ CBullet_2::~CBullet_2()
 
 void CBullet_2::Initialize()
 {
+	// 이미지 위치 및 크기 초기화
 	m_tInfo.iCX = BULLET_2_WIDTH * 3;
 	m_tInfo.iCY = BULLET_2_HEIGHT * 3;
 	m_tHitRectPos = { 4 * 4, 3 * 3, 12 * 3, 12 * 3 };
 	m_iImageWidth = BULLET_2_WIDTH;
 	m_iImageHeight = BULLET_2_HEIGHT;
-
+	// 이미지 프레임 초기화
 	m_tFrame.iFrameCnt = 0;
 	m_tFrame.iFrameStart = 1;
 	m_tFrame.iFrameEnd = 8;
 	m_tFrame.iFrameScene = 0;
 	m_tFrame.dwFrameTime = GetTickCount();
 	m_tFrame.dwFrameSpeed = 80;
-
+	// 이동 속도
 	m_fSpeed = 8.f;
 }
 
+// 업데이트
 int CBullet_2::Update()
 {
 	// 총알 삭제
 	if (m_bRemove)
 		return OBJ_DEAD;
 
-	// 총알 딜레이
+	// 총알 딜레이 시간이 지나면 플래그 true
 	if (m_dwBulletTime + m_dwBulletDelay > GetTickCount())
 		return OBJ_NOEVENT;
 	else
@@ -60,18 +66,25 @@ int CBullet_2::Update()
 		m_tInfo.fY -= sinf(m_fAngle * PI / 180.f) * m_fSpeed;
 	}
 
+	// 이미지 프레임 이동
 	Frame_Move();
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CBullet_2::Late_Update()
 {
+	// 플래그가 false면 예외
 	if (!m_bOnBullet)
 		return;
 
+	// 이 오브젝트가 Update에서 생성되서 Update를 건너 뛰고 Late_Update를 하는 경우가 발생함
+	// 그래서 Late_Udpate에서 갱신함
+	// 이미지 RECT 및 Hit RECT 정보 갱신
 	Update_Rect();
 
+	// 맵 바깥으로 나가면 삭제
 	if (-50 >= m_tRect.right || -50 >= m_tRect.bottom
 		|| WINCX + 50 <= m_tRect.left || WINCY + 50 <= m_tRect.top)
 		m_bDead = true;
@@ -79,6 +92,7 @@ void CBullet_2::Late_Update()
 
 void CBullet_2::Render(HDC _DC)
 {
+	// 플래그가 false면 예외
 	if (!m_bOnBullet)
 		return;
 
@@ -92,7 +106,8 @@ void CBullet_2::Render(HDC _DC)
 		, m_iImageWidth, m_iImageHeight
 		, RGB(255, 0, 255));
 
-	// 충돌 박스
+	// 만약 옵션에서 충돌 박스 보기를 켰다면 (넘버패드 1번 키)
+	// 충돌 박스도 렌더 해줘야함
 	if (!g_bHitRectRender) {
 		return;
 	}

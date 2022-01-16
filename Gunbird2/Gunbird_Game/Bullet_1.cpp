@@ -1,5 +1,6 @@
 // 기명준
 // 적 총알 1
+// 딜레이 값에 따라 지연되서 발사됨
 
 #include "stdafx.h"
 #include "Bullet_1.h"
@@ -79,8 +80,12 @@ void CBullet_1::Late_Update()
 	if (!m_bOnBullet)
 		return;
 
+	// 이 오브젝트가 Update에서 생성되서 Update를 건너 뛰고 Late_Update를 하는 경우가 발생함
+	// 그래서 Late_Udpate에서 갱신함
+	// 이미지 RECT 및 Hit RECT 정보 갱신
 	Update_Rect();
 
+	// 맵 바깥으로 나가면 삭제
 	if (-50 >= m_tRect.right || -50 >= m_tRect.bottom
 		|| WINCX + 50 <= m_tRect.left || WINCY + 50 <= m_tRect.top)
 		m_bDead = true;
