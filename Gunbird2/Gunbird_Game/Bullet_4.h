@@ -1,3 +1,7 @@
+// 기명준
+// 적 총알 4
+// 딜레이 값에 따라 지연되서 발사됨
+
 #pragma once
 
 #ifndef __BULLET_4_H__
