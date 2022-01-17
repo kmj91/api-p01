@@ -87,6 +87,7 @@ void CLogo::Release()
 	CSoundMgr::Get_Instance()->StopAll();
 }
 
+// 키 입력 처리
 void CLogo::Key_Check()
 {
 	// 윈도우가 활성화 됬을 때만 키처리
