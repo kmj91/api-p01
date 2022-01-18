@@ -592,26 +592,6 @@ void CMarion::PowerDown()
 	}
 }
 
-// 키 입력 처리
-// 직접적인 키 입력 확인은 씬의 Key_Check() 함수에서
-void CMarion::Key_Input(int _Key)
-{
-	// 키 조작 불가 상태
-	if (m_ePreState == PLAYER::RESPAWN ||
-		m_ePreState == PLAYER::DEAD ||
-		m_ePreState == PLAYER::BOMB ||
-		g_bStageClear)
-		return;
-
-	// 입력 받은 키
-	switch (_Key)
-	{
-		break;
-	}
-
-	
-}
-
 // 캐릭터 왼쪽 이동
 // 씬에서 해당 키 입력이 들어오면 호출됨
 void CMarion::Move_LL()

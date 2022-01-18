@@ -26,9 +26,6 @@ public:
 	virtual void PowerUp() override;
 	// 총알 파워 다운
 	virtual void PowerDown() override;
-	// 키 입력
-	// _Key : 입력된 키 enum 값
-	virtual void Key_Input(int _Key);
 	// 캐릭터 이동
 	virtual void Move_LL();
 	virtual void Move_LU();
