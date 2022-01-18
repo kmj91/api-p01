@@ -606,25 +606,6 @@ void CMarion::Key_Input(int _Key)
 	// 입력 받은 키
 	switch (_Key)
 	{
-		// 컨티뉴
-	case KEY::CONTINUE:
-		if (m_ePreState == PLAYER::CONTINUE) {
-			// 크레딧이 있으면
-			if (0 < CGameUIMgr::Get_Instance()->Get_Credit())
-			{
-				// 크레딧 감소
-				CGameUIMgr::Get_Instance()->Add_Credit(-1);
-				// 크레딧 저장
-				g_iCredit = CGameUIMgr::Get_Instance()->Get_Credit();
-				// 목숨 증가
-				CGameUIMgr::Get_Instance()->Add_Life(2, m_iPlayerNum);
-				// 컨티뉴 정지
-				CGameUIMgr::Get_Instance()->Off_ContinueCountdown(m_iPlayerNum);
-				// 선택 사운드
-				CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_DEAD);
-				CSoundMgr::Get_Instance()->PlaySound(L"Marion_Start.wav", CSoundMgr::PLAYER_DEAD);
-			}
-		}
 		break;
 	}
 
@@ -954,6 +935,30 @@ void CMarion::Melee()
 	// 근접 공격 사운드
 	CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_MELEE);
 	CSoundMgr::Get_Instance()->PlaySound(L"Marion_Melee.wav", CSoundMgr::PLAYER_MELEE);
+}
+
+// 다시 하기
+// 컨티뉴 상태일 때 이어하기 기능
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Continue()
+{
+	if (m_ePreState == PLAYER::CONTINUE) {
+		// 크레딧이 있으면
+		if (0 < CGameUIMgr::Get_Instance()->Get_Credit())
+		{
+			// 크레딧 감소
+			CGameUIMgr::Get_Instance()->Add_Credit(-1);
+			// 크레딧 저장
+			g_iCredit = CGameUIMgr::Get_Instance()->Get_Credit();
+			// 목숨 증가
+			CGameUIMgr::Get_Instance()->Add_Life(2, m_iPlayerNum);
+			// 컨티뉴 정지
+			CGameUIMgr::Get_Instance()->Off_ContinueCountdown(m_iPlayerNum);
+			// 선택 사운드
+			CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_DEAD);
+			CSoundMgr::Get_Instance()->PlaySound(L"Marion_Start.wav", CSoundMgr::PLAYER_DEAD);
+		}
+	}
 }
 
 // 프레임 씬 변경 처리

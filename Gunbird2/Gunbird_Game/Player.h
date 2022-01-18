@@ -47,6 +47,8 @@ public:
 	virtual void Bomb() = 0;
 	// 근접 공격
 	virtual void Melee() = 0;
+	// 다시 하기
+	virtual void Continue() = 0;
 
 public:
 	// 플레이어 번호 반환

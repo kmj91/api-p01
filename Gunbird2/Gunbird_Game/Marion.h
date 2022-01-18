@@ -48,6 +48,8 @@ public:
 	virtual void Bomb();
 	// 근접 공격
 	virtual void Melee();
+	// 다시 하기
+	virtual void Continue();
 
 private:
 	void Scene_Change();			// 프레임 씬 변경 처리

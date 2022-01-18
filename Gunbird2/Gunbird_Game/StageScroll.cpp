@@ -84,7 +84,7 @@ void CStage::Key_Check()
 	// 1 플레이어 시작하기
 	if (CKeyMgr::Get_Instance()->Key_Down('1'))
 	{
-		g_pPlayer_1->Key_Input(KEY::CONTINUE);
+		g_pPlayer_1->Continue();
 	}
 
 	// 5 key 
