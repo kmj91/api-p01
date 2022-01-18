@@ -103,61 +103,60 @@ void CStage::Key_Check()
 	{
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_UP))
 		{
-			g_pPlayer_1->Key_Input(KEY::LU);
+			g_pPlayer_1->Move_LU();
 		}
 		else if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
 		{
-			g_pPlayer_1->Key_Input(KEY::LD);
+			g_pPlayer_1->Move_LD();
 		}
 		else
-			g_pPlayer_1->Key_Input(KEY::LL);
+			g_pPlayer_1->Move_LL();
 	}
 	else if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT))
 	{
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_UP))
 		{
-			g_pPlayer_1->Key_Input(KEY::RU);
+			g_pPlayer_1->Move_RU();
 		}
 		else if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
 		{
-			g_pPlayer_1->Key_Input(KEY::RD);
+			g_pPlayer_1->Move_RD();
 		}
 		else
-			g_pPlayer_1->Key_Input(KEY::RR);
+			g_pPlayer_1->Move_RR();
 	}
 	else if (CKeyMgr::Get_Instance()->Key_Pressing(VK_UP))
 	{
-		g_pPlayer_1->Key_Input(KEY::UU);
+		g_pPlayer_1->Move_UU();
 	}
 	else if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
 	{
-		g_pPlayer_1->Key_Input(KEY::DD);
+		g_pPlayer_1->Move_DD();
 	}
 	else
-		g_pPlayer_1->Key_Input(KEY::NO_KEY);
+		g_pPlayer_1->Move_End();
 
 	// 공격
 	if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
 	{
-		g_pPlayer_1->Key_Input(KEY::ATK);
+		g_pPlayer_1->Attack();
 	}
 	// 공격키에서 땜
-	// 세미 오토 형식이라 이런 키값이 필요함
 	else
 	{
-		g_pPlayer_1->Key_Input(KEY::ATK_END);
+		g_pPlayer_1->Attack_End();
 	}
 
 	// 폭탄
 	if (CKeyMgr::Get_Instance()->Key_Pressing('S'))
 	{
-		g_pPlayer_1->Key_Input(KEY::BOMB);
+		g_pPlayer_1->Bomb();
 	}
 
 	// 근접 공격
 	if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
 	{
-		g_pPlayer_1->Key_Input(KEY::MELEE);
+		g_pPlayer_1->Melee();
 	}
 
 	return;

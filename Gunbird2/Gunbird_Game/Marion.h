@@ -29,12 +29,33 @@ public:
 	// 키 입력
 	// _Key : 입력된 키 enum 값
 	virtual void Key_Input(int _Key);
+	// 캐릭터 이동
+	virtual void Move_LL();
+	virtual void Move_LU();
+	virtual void Move_LD();
+	virtual void Move_RR();
+	virtual void Move_RU();
+	virtual void Move_RD();
+	virtual void Move_UU();
+	virtual void Move_DD();
+	// 이동 끝
+	virtual void Move_End();
+	// 일반 공격
+	virtual void Attack();
+	// 일반 공격 끝
+	virtual void Attack_End();
+	// 폭탄 공격
+	virtual void Bomb();
+	// 근접 공격
+	virtual void Melee();
 
 private:
 	void Scene_Change();			// 프레임 씬 변경 처리
 	void Move_Change();				// 이동 상태 변경 처리
 	void Shot();					// 일반 공격 처리
 	void Create_Effect();			// 별 이펙트 생성
+	bool CanKeyInput();				// 키 처리가 가능한지 검사
+	bool CanAttack();				// 공격할 수 있는지 검사
 
 	template <typename T>
 	CObj* Create_Bullet(float _fX, float _fY, float _fAngle)

@@ -606,242 +606,6 @@ void CMarion::Key_Input(int _Key)
 	// 입력 받은 키
 	switch (_Key)
 	{
-		// 이동키를 입력하지 않을 경우
-	case KEY::NO_KEY:
-		// 캐릭터 기울기가 0보다 크면
-		if (m_fAngelY > 0)
-		{
-			// 기울기 감소 혹은 0으로 고정
-			if (m_fAngelY - m_fRotSpeed > 0)
-				m_fAngelY -= m_fRotSpeed;
-			else
-				m_fAngelY = 0.f;
-		}
-		// 캐릭터 키울기가 0보다 작으면
-		else
-		{
-			// 기울기 증가 혹은 0으로 고정
-			if(m_fAngelY + m_fRotSpeed < 0)
-				m_fAngelY += m_fRotSpeed;
-			else
-				m_fAngelY = 0.f;
-		}
-		break;
-		// 이동 관련 LL, LU, LD...
-		// 왼쪽 이동
-	case KEY::LL:
-		// X좌표 감소
-		if (m_tHitRect.left - m_fSpeed > 0)
-			m_tInfo.fX -= m_fSpeed;
-		// 기울기 감소
-		if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
-			m_fAngelY -= m_fRotSpeed;
-		break;
-		// 왼쪽 위 이동
-	case KEY::LU:
-		// X, Y 좌표 감소
-		if (m_tHitRect.left - m_fSpeed / sqrtf(2.f) > 0)
-			m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
-		if (m_tHitRect.top - m_fSpeed / sqrtf(2.f) > 100)
-			m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
-		// 기울기 감소
-		if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
-			m_fAngelY -= m_fRotSpeed;
-		break;
-		// 왼쪽 아래 이동
-	case KEY::LD:
-		// X 감소, Y 증가
-		if (m_tHitRect.left - m_fSpeed / sqrtf(2.f) > 0)
-			m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
-		if (m_tHitRect.bottom + m_fSpeed / sqrtf(2.f) < WINCY - 100)
-			m_tInfo.fY += m_fSpeed / sqrtf(2.f);
-		// 기울기 감소
-		if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
-			m_fAngelY -= m_fRotSpeed;
-		break;
-		// 오른쪽 이동
-	case KEY::RR:
-		// X 좌표 증가
-		if (m_tHitRect.right + m_fSpeed < WINCX)
-			m_tInfo.fX += m_fSpeed;
-		// 기울기 증가
-		if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
-			m_fAngelY += m_fRotSpeed;
-		break;
-		// 오른쪽 위 이동
-	case KEY::RU:
-		// X 증가, Y 감소
-		if (m_tHitRect.right + m_fSpeed / sqrtf(2.f) < WINCX)
-			m_tInfo.fX += m_fSpeed / sqrtf(2.f);
-		if (m_tHitRect.top - m_fSpeed / sqrtf(2.f) > 100)
-			m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
-		// 기울기 증가
-		if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
-			m_fAngelY += m_fRotSpeed;
-		break;
-		// 오른쪽 아래 이동
-	case KEY::RD:
-		// X, Y 좌표 증가
-		if (m_tHitRect.right + m_fSpeed / sqrtf(2.f) < WINCX)
-			m_tInfo.fX += m_fSpeed / sqrtf(2.f);
-		if (m_tHitRect.bottom + m_fSpeed / sqrtf(2.f) < WINCY - 100)
-			m_tInfo.fY += m_fSpeed / sqrtf(2.f);
-		// 기울기 증가
-		if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
-			m_fAngelY += m_fRotSpeed;
-		break;
-		// 위쪽 이동
-	case KEY::UU:
-		// Y 좌표 감소
-		if (m_tHitRect.top - m_fSpeed > 100)
-			m_tInfo.fY -= m_fSpeed;
-		// 기울기가 0보다 크면
-		if (m_fAngelY > 0)
-		{
-			// 기울기 감소 혹은 0으로 고정
-			if (m_fAngelY - m_fRotSpeed > 0)
-				m_fAngelY -= m_fRotSpeed;
-			else
-				m_fAngelY = 0.f;
-		}
-		// 0보다 작다면
-		else
-		{
-			// 기울기 증가 혹은 0으로 고정
-			if (m_fAngelY + m_fRotSpeed < 0)
-				m_fAngelY += m_fRotSpeed;
-			else
-				m_fAngelY = 0.f;
-		}
-		break;
-		// 아래로 이동
-	case KEY::DD:
-		// Y 좌표 증가
-		if (m_tHitRect.bottom + m_fSpeed < WINCY - 100)
-			m_tInfo.fY += m_fSpeed;
-		// 기울기가 0보다 크면
-		if (m_fAngelY > 0)
-		{
-			// 기울기 감소 혹은 0으로 고정
-			if (m_fAngelY - m_fRotSpeed > 0)
-				m_fAngelY -= m_fRotSpeed;
-			else
-				m_fAngelY = 0.f;
-		}
-		// 0보다 작다면
-		else
-		{
-			// 기울기 증가 혹은 0으로 고정
-			if (m_fAngelY + m_fRotSpeed < 0)
-				m_fAngelY += m_fRotSpeed;
-			else
-				m_fAngelY = 0.f;
-		}
-		break;
-		// 공격
-	case KEY::ATK:
-		if (m_dwKeyTime + m_dwKeyDelay < GetTickCount())
-		{
-			// 상태 검사
-			switch (m_ePreState)
-			{
-				// 충전 공격, 죽음, 리스폰 상태면 공격할 수 없음
-			case PLAYER::CHARGE_START:
-			case PLAYER::CHARGE_REPEAT:
-			case PLAYER::DEAD:
-			case PLAYER::RESPAWN:
-				return;
-			}
-
-			// 공격 플래그가 false면
-			if (!m_bOnShot)
-			{
-				// 공격 플래그 true로
-				m_bOnShot = true;
-				// 충전 공격 시간 시작
-				m_dwChargeTime = GetTickCount();
-			}
-
-			// 공격 횟수가 0보다 작으면 (세미오토 방식이라 한번의 공격으로 3번의 공격이 나감)
-			if (m_iShotCnt <= 0)
-			{
-				// 3으로 초기화 및 공격 시간 간격 초기화
-				m_iShotCnt = 3;
-				m_dwBulletTime = GetTickCount();
-				m_dwKeyTime = GetTickCount();
-			}
-
-			// 공격버튼을 일정시간 계속 누르고 있었다면 충전 공격을 함
-			if (m_dwChargeTime + m_dwChargeDelay < GetTickCount())
-			{
-				// 충전 공격
-				if (m_ePreState != PLAYER::CHARGE_START &&
-					1 <= CGameUIMgr::Get_Instance()->Get_ChargeLevel(m_iPlayerNum))
-				{
-					m_eCurState = PLAYER::CHARGE_START;
-					m_bImmutable = true;
-					m_iShotCnt = 0;
-				}
-			}
-		}
-		break;
-		// 공격키에서 땜
-		// 세미 오토 형식이라 이런 키값이 필요함
-	case KEY::ATK_END:
-		// 공격 플래그 false로
-		m_bOnShot = false;
-		break;
-		// 폭탄
-	case KEY::BOMB:
-		// 남은 폭탄이 없으면 폭탄 공격 불가
-		if (CGameUIMgr::Get_Instance()->Get_Bomb(m_iPlayerNum) == 0) {
-			break;
-		}
-
-		// 폭탄 사용 개수 감소
-		CGameUIMgr::Get_Instance()->Add_Bomb(-1, m_iPlayerNum);
-
-		// 폭탄을 사용한 처음에만
-		// 화면에 보이는 몬스터 총알 사탕으로 교체
-		CObjMgr::Get_Instance()->Change_Candy();
-
-		// 폭탄 공격 사운드
-		CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_BOMB);
-		CSoundMgr::Get_Instance()->PlaySound(L"Marion_Bomb.wav", CSoundMgr::PLAYER_BOMB);
-		// 이펙트 사운드
-		CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_BOMB_EFFECT);
-		CSoundMgr::Get_Instance()->PlaySound(L"Marion_BombEffect.wav", CSoundMgr::PLAYER_BOMB_EFFECT);
-		// 폭탄 공격 상태로 변경
-		m_eCurState = PLAYER::BOMB;
-		// 무적 상태
-		m_bHpLock = true;
-		// 이미지 스프라이트 고정
-		m_bImmutable = true;
-		break;
-		// 근접 공격
-	case KEY::MELEE:
-		// 이미 근접 공격 중이면 불가
-		if (m_ePreState == PLAYER::MELEE) {
-			break;
-		}
-
-		// 충전량이 없으면 사용 불가
-		if (CGameUIMgr::Get_Instance()->Get_ChargeLevel(m_iPlayerNum) < 1) {
-			break;
-		}
-		
-		// 춘정량 소모
-		CGameUIMgr::Get_Instance()->Add_ChargeLevel(-1, m_iPlayerNum);
-		// 근접 공격 상태로 변경
-		m_eCurState = PLAYER::MELEE;
-		// 이미지 스프라이트 고정
-		m_bImmutable = true;
-		// 근접 공격 적중 플래그 초기화
-		m_bMeleeHit = false;
-		// 근접 공격 사운드
-		CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_MELEE);
-		CSoundMgr::Get_Instance()->PlaySound(L"Marion_Melee.wav", CSoundMgr::PLAYER_MELEE);
-		break;
 		// 컨티뉴
 	case KEY::CONTINUE:
 		if (m_ePreState == PLAYER::CONTINUE) {
@@ -868,6 +632,328 @@ void CMarion::Key_Input(int _Key)
 	// 이동에 따라 플레이어 스프라이트가 변경됨
 	if (!m_bImmutable)
 		Move_Change();
+}
+
+// 캐릭터 왼쪽 이동
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Move_LL()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// X좌표 감소
+	if (m_tHitRect.left - m_fSpeed > 0)
+		m_tInfo.fX -= m_fSpeed;
+	// 기울기 감소
+	if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
+		m_fAngelY -= m_fRotSpeed;
+}
+
+// 캐릭터 왼쪽 위 이동
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Move_LU()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// X, Y 좌표 감소
+	if (m_tHitRect.left - m_fSpeed / sqrtf(2.f) > 0)
+		m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
+	if (m_tHitRect.top - m_fSpeed / sqrtf(2.f) > 100)
+		m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
+	// 기울기 감소
+	if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
+		m_fAngelY -= m_fRotSpeed;
+}
+
+// 캐릭터 왼쪽 아래 이동
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Move_LD()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// X 감소, Y 증가
+	if (m_tHitRect.left - m_fSpeed / sqrtf(2.f) > 0)
+		m_tInfo.fX -= m_fSpeed / sqrtf(2.f);
+	if (m_tHitRect.bottom + m_fSpeed / sqrtf(2.f) < WINCY - 100)
+		m_tInfo.fY += m_fSpeed / sqrtf(2.f);
+	// 기울기 감소
+	if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
+		m_fAngelY -= m_fRotSpeed;
+}
+
+// 캐릭터 오른쪽 이동
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Move_RR()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// X 좌표 증가
+	if (m_tHitRect.right + m_fSpeed < WINCX)
+		m_tInfo.fX += m_fSpeed;
+	// 기울기 증가
+	if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
+		m_fAngelY += m_fRotSpeed;
+}
+
+// 캐릭터 오른쪽 위 이동
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Move_RU()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// X 증가, Y 감소
+	if (m_tHitRect.right + m_fSpeed / sqrtf(2.f) < WINCX)
+		m_tInfo.fX += m_fSpeed / sqrtf(2.f);
+	if (m_tHitRect.top - m_fSpeed / sqrtf(2.f) > 100)
+		m_tInfo.fY -= m_fSpeed / sqrtf(2.f);
+	// 기울기 증가
+	if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
+		m_fAngelY += m_fRotSpeed;
+}
+
+// 캐릭터 오른쪽 아래 이동
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Move_RD()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// X, Y 좌표 증가
+	if (m_tHitRect.right + m_fSpeed / sqrtf(2.f) < WINCX)
+		m_tInfo.fX += m_fSpeed / sqrtf(2.f);
+	if (m_tHitRect.bottom + m_fSpeed / sqrtf(2.f) < WINCY - 100)
+		m_tInfo.fY += m_fSpeed / sqrtf(2.f);
+	// 기울기 증가
+	if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
+		m_fAngelY += m_fRotSpeed;
+}
+
+// 캐릭터 위쪽 이동
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Move_UU()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// Y 좌표 감소
+	if (m_tHitRect.top - m_fSpeed > 100)
+		m_tInfo.fY -= m_fSpeed;
+	// 기울기가 0보다 크면
+	if (m_fAngelY > 0)
+	{
+		// 기울기 감소 혹은 0으로 고정
+		if (m_fAngelY - m_fRotSpeed > 0)
+			m_fAngelY -= m_fRotSpeed;
+		else
+			m_fAngelY = 0.f;
+	}
+	// 0보다 작다면
+	else
+	{
+		// 기울기 증가 혹은 0으로 고정
+		if (m_fAngelY + m_fRotSpeed < 0)
+			m_fAngelY += m_fRotSpeed;
+		else
+			m_fAngelY = 0.f;
+	}
+}
+
+// 캐릭 아래쪽 이동
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Move_DD()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// Y 좌표 증가
+	if (m_tHitRect.bottom + m_fSpeed < WINCY - 100)
+		m_tInfo.fY += m_fSpeed;
+	// 기울기가 0보다 크면
+	if (m_fAngelY > 0)
+	{
+		// 기울기 감소 혹은 0으로 고정
+		if (m_fAngelY - m_fRotSpeed > 0)
+			m_fAngelY -= m_fRotSpeed;
+		else
+			m_fAngelY = 0.f;
+	}
+	// 0보다 작다면
+	else
+	{
+		// 기울기 증가 혹은 0으로 고정
+		if (m_fAngelY + m_fRotSpeed < 0)
+			m_fAngelY += m_fRotSpeed;
+		else
+			m_fAngelY = 0.f;
+	}
+}
+
+// 이동 키를 누르지 않으면 캐릭터 기울기를 0으로 점차 복구함
+// 씬에서 아무 이동 키도 누르지 않으면 호출됨
+void CMarion::Move_End()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// 캐릭터 기울기가 0보다 크면
+	if (m_fAngelY > 0)
+	{
+		// 기울기 감소 혹은 0으로 고정
+		if (m_fAngelY - m_fRotSpeed > 0)
+			m_fAngelY -= m_fRotSpeed;
+		else
+			m_fAngelY = 0.f;
+	}
+	// 캐릭터 키울기가 0보다 작으면
+	else
+	{
+		// 기울기 증가 혹은 0으로 고정
+		if (m_fAngelY + m_fRotSpeed < 0)
+			m_fAngelY += m_fRotSpeed;
+		else
+			m_fAngelY = 0.f;
+	}
+}
+
+// 일반 공격
+// 한번의 공격으로 3번 공격하는 세미 오토 방식
+// 일정 시간 이상 누르면 충전 공격으로 바뀜
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Attack()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// 공격 딜레이 시간이 지나지 않음
+	if (m_dwKeyTime + m_dwKeyDelay > GetTickCount())
+		return;
+
+	// 공격 조작 불가 상태 예외
+	if (!CanAttack())
+		return;
+
+	// 공격 플래그가 false면
+	if (!m_bOnShot)
+	{
+		// 공격 플래그 true로
+		m_bOnShot = true;
+		// 충전 공격 시간 시작
+		m_dwChargeTime = GetTickCount();
+	}
+
+	// 공격 횟수가 0보다 작으면 (세미오토 방식이라 한번의 공격으로 3번의 공격이 나감)
+	if (m_iShotCnt <= 0)
+	{
+		// 3으로 초기화 및 공격 시간 간격 초기화
+		m_iShotCnt = 3;
+		m_dwBulletTime = GetTickCount();
+		m_dwKeyTime = GetTickCount();
+	}
+
+	// 공격버튼을 일정시간 계속 누르고 있었다면 충전 공격을 함
+	if (m_dwChargeTime + m_dwChargeDelay < GetTickCount())
+	{
+		// 충전 공격
+		if (m_ePreState != PLAYER::CHARGE_START &&
+			1 <= CGameUIMgr::Get_Instance()->Get_ChargeLevel(m_iPlayerNum))
+		{
+			m_eCurState = PLAYER::CHARGE_START;
+			m_bImmutable = true;
+			m_iShotCnt = 0;
+		}
+	}
+}
+
+// 일반 공격 키를 누르지 않으면 공격 플래그를 false로 초기화
+void CMarion::Attack_End()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// 공격 플래그 false로
+	m_bOnShot = false;
+}
+
+// 폭탄 공격
+// 남은 폭탄이 없으면 사용 불가 폭탄 1개를 소모
+// 폭탄을 쓰는 순간 화면에 있는 적 총알을 전부 캔디로 교체함
+// 이 후에 폭탄이 지속되는 동안 적이 공격해서 생성되는 총알은 제거됨
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Bomb()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// 남은 폭탄이 없으면 폭탄 공격 불가
+	if (CGameUIMgr::Get_Instance()->Get_Bomb(m_iPlayerNum) == 0)
+		return;
+
+	// 폭탄 사용 개수 감소
+	CGameUIMgr::Get_Instance()->Add_Bomb(-1, m_iPlayerNum);
+
+	// 폭탄을 사용한 처음에만
+	// 화면에 보이는 몬스터 총알 사탕으로 교체
+	CObjMgr::Get_Instance()->Change_Candy();
+
+	// 폭탄 공격 사운드
+	CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_BOMB);
+	CSoundMgr::Get_Instance()->PlaySound(L"Marion_Bomb.wav", CSoundMgr::PLAYER_BOMB);
+	// 이펙트 사운드
+	CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_BOMB_EFFECT);
+	CSoundMgr::Get_Instance()->PlaySound(L"Marion_BombEffect.wav", CSoundMgr::PLAYER_BOMB_EFFECT);
+	// 폭탄 공격 상태로 변경
+	m_eCurState = PLAYER::BOMB;
+	// 무적 상태
+	m_bHpLock = true;
+	// 이미지 스프라이트 고정
+	m_bImmutable = true;
+}
+
+// 근접 공격
+// 충전 게이지를 사용하여 공격
+// 사용하는 동안 이미지 스프라이트 고정
+// 씬에서 해당 키 입력이 들어오면 호출됨
+void CMarion::Melee()
+{
+	// 키 조작 불가 상태 예외
+	if (!CanKeyInput())
+		return;
+
+	// 이미 근접 공격 중이면 불가
+	if (m_ePreState == PLAYER::MELEE)
+		return;
+
+	// 충전량이 없으면 사용 불가
+	if (CGameUIMgr::Get_Instance()->Get_ChargeLevel(m_iPlayerNum) < 1)
+		return;
+
+	// 춘정량 소모
+	CGameUIMgr::Get_Instance()->Add_ChargeLevel(-1, m_iPlayerNum);
+	// 근접 공격 상태로 변경
+	m_eCurState = PLAYER::MELEE;
+	// 이미지 스프라이트 고정
+	m_bImmutable = true;
+	// 근접 공격 적중 플래그 초기화
+	m_bMeleeHit = false;
+	// 근접 공격 사운드
+	CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_MELEE);
+	CSoundMgr::Get_Instance()->PlaySound(L"Marion_Melee.wav", CSoundMgr::PLAYER_MELEE);
 }
 
 // 프레임 씬 변경 처리
@@ -1321,4 +1407,34 @@ void CMarion::Create_Effect()
 			break;
 		}
 	}
+}
+
+// 키 처리가 가능한지 검사
+// 키 처리 관련 멤버 함수에서 호출함
+// 반환 값 : 키 조작이 불가능한 상태면 false, 가능하면 true
+bool CMarion::CanKeyInput()
+{
+	// 키 조작 불가 상태 예외
+	if (m_ePreState == PLAYER::RESPAWN ||
+		m_ePreState == PLAYER::DEAD ||
+		m_ePreState == PLAYER::BOMB ||
+		g_bStageClear)
+		return false;
+
+	return true;
+}
+
+// 공격할 수 있는지 검사
+// 공격키 처리 함수에서 호출함
+// 반환 값 : 공격이 불가능한 상태면 false, 가능하면 true
+bool CMarion::CanAttack()
+{
+	// 공격 조작 불가 상태 예외
+	if (m_ePreState == PLAYER::CHARGE_START ||
+		m_ePreState == PLAYER::CHARGE_REPEAT ||
+		m_ePreState == PLAYER::DEAD ||
+		m_ePreState == PLAYER::RESPAWN)
+		return false;
+
+	return true;
 }

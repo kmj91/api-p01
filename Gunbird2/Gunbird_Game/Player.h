@@ -30,6 +30,23 @@ public:
 	// 키 입력
 	// _Key : 입력된 키 enum 값
 	virtual void Key_Input(int _Key) {}
+	// 캐릭터 이동
+	virtual void Move_LL() = 0;
+	virtual void Move_LU() = 0;
+	virtual void Move_LD() = 0;
+	virtual void Move_RR() = 0;
+	virtual void Move_RU() = 0;
+	virtual void Move_RD() = 0;
+	virtual void Move_UU() = 0;
+	virtual void Move_DD() = 0;
+	virtual void Move_End() = 0;
+	// 일반 공격
+	virtual void Attack() = 0;
+	virtual void Attack_End() = 0;
+	// 폭탄 공격
+	virtual void Bomb() = 0;
+	// 근접 공격
+	virtual void Melee() = 0;
 
 public:
 	// 플레이어 번호 반환
