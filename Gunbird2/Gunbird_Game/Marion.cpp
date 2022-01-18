@@ -841,10 +841,6 @@ void CMarion::Attack()
 	if (!CanKeyInput())
 		return;
 
-	// 공격 딜레이 시간이 지나지 않음
-	if (m_dwKeyTime + m_dwKeyDelay > GetTickCount())
-		return;
-
 	// 공격 조작 불가 상태 예외
 	if (!CanAttack())
 		return;
@@ -858,8 +854,9 @@ void CMarion::Attack()
 		m_dwChargeTime = GetTickCount();
 	}
 
-	// 공격 횟수가 0보다 작으면 (세미오토 방식이라 한번의 공격으로 3번의 공격이 나감)
-	if (m_iShotCnt <= 0)
+	// 공격 횟수가 0보다 작고 (세미오토 방식이라 한번의 공격으로 3번의 공격이 나감)
+	// 키 입력 딜레이 시간이 지났으면 일반 공격 횟수 카운트 초기화
+	if (m_iShotCnt <= 0 && m_dwKeyTime + m_dwKeyDelay < GetTickCount())
 	{
 		// 3으로 초기화 및 공격 시간 간격 초기화
 		m_iShotCnt = 3;
@@ -867,17 +864,17 @@ void CMarion::Attack()
 		m_dwKeyTime = GetTickCount();
 	}
 
-	// 공격버튼을 일정시간 계속 누르고 있었다면 충전 공격을 함
-	if (m_dwChargeTime + m_dwChargeDelay < GetTickCount())
+	// 공격버튼을 일정시간 계속 누르고 있고 충전 상태가 아니며 충전 게이지가 있다면 충전 공격 준비
+	if (m_dwChargeTime + m_dwChargeDelay < GetTickCount() &&
+		m_ePreState != PLAYER::CHARGE_START &&
+		1 <= CGameUIMgr::Get_Instance()->Get_ChargeLevel(m_iPlayerNum))
 	{
-		// 충전 공격
-		if (m_ePreState != PLAYER::CHARGE_START &&
-			1 <= CGameUIMgr::Get_Instance()->Get_ChargeLevel(m_iPlayerNum))
-		{
-			m_eCurState = PLAYER::CHARGE_START;
-			m_bImmutable = true;
-			m_iShotCnt = 0;
-		}
+		// 충전 공격 상태로
+		m_eCurState = PLAYER::CHARGE_START;
+		// 이미지 스프라이트 고정
+		m_bImmutable = true;
+		// 남은 일반 공격 횟수 0으로 초기화
+		m_iShotCnt = 0;
 	}
 }
 
