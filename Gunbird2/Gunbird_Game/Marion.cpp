@@ -609,10 +609,7 @@ void CMarion::Key_Input(int _Key)
 		break;
 	}
 
-	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
-	// 이동에 따라 플레이어 스프라이트가 변경됨
-	if (!m_bImmutable)
-		Move_Change();
+	
 }
 
 // 캐릭터 왼쪽 이동
@@ -629,6 +626,11 @@ void CMarion::Move_LL()
 	// 기울기 감소
 	if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
 		m_fAngelY -= m_fRotSpeed;
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 캐릭터 왼쪽 위 이동
@@ -647,6 +649,11 @@ void CMarion::Move_LU()
 	// 기울기 감소
 	if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
 		m_fAngelY -= m_fRotSpeed;
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 캐릭터 왼쪽 아래 이동
@@ -665,6 +672,11 @@ void CMarion::Move_LD()
 	// 기울기 감소
 	if (m_fAngelY - m_fRotSpeed > -m_fMaxRotAngle)
 		m_fAngelY -= m_fRotSpeed;
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 캐릭터 오른쪽 이동
@@ -681,6 +693,11 @@ void CMarion::Move_RR()
 	// 기울기 증가
 	if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
 		m_fAngelY += m_fRotSpeed;
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 캐릭터 오른쪽 위 이동
@@ -699,6 +716,11 @@ void CMarion::Move_RU()
 	// 기울기 증가
 	if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
 		m_fAngelY += m_fRotSpeed;
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 캐릭터 오른쪽 아래 이동
@@ -717,6 +739,11 @@ void CMarion::Move_RD()
 	// 기울기 증가
 	if (m_fAngelY + m_fRotSpeed < m_fMaxRotAngle)
 		m_fAngelY += m_fRotSpeed;
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 캐릭터 위쪽 이동
@@ -748,6 +775,11 @@ void CMarion::Move_UU()
 		else
 			m_fAngelY = 0.f;
 	}
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 캐릭 아래쪽 이동
@@ -779,6 +811,11 @@ void CMarion::Move_DD()
 		else
 			m_fAngelY = 0.f;
 	}
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 이동 키를 누르지 않으면 캐릭터 기울기를 0으로 점차 복구함
@@ -807,6 +844,11 @@ void CMarion::Move_End()
 		else
 			m_fAngelY = 0.f;
 	}
+
+	// 이미지 스프라이트가 고정 상태가 아니면 이동에 의한 상태 변경 처리
+	// 이동에 따라 플레이어 스프라이트가 변경됨
+	if (!m_bImmutable)
+		Move_Change();
 }
 
 // 일반 공격
@@ -942,23 +984,25 @@ void CMarion::Melee()
 // 씬에서 해당 키 입력이 들어오면 호출됨
 void CMarion::Continue()
 {
-	if (m_ePreState == PLAYER::CONTINUE) {
-		// 크레딧이 있으면
-		if (0 < CGameUIMgr::Get_Instance()->Get_Credit())
-		{
-			// 크레딧 감소
-			CGameUIMgr::Get_Instance()->Add_Credit(-1);
-			// 크레딧 저장
-			g_iCredit = CGameUIMgr::Get_Instance()->Get_Credit();
-			// 목숨 증가
-			CGameUIMgr::Get_Instance()->Add_Life(2, m_iPlayerNum);
-			// 컨티뉴 정지
-			CGameUIMgr::Get_Instance()->Off_ContinueCountdown(m_iPlayerNum);
-			// 선택 사운드
-			CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_DEAD);
-			CSoundMgr::Get_Instance()->PlaySound(L"Marion_Start.wav", CSoundMgr::PLAYER_DEAD);
-		}
-	}
+	// 컨티뉴 상태가 아니면 예외
+	if (m_ePreState != PLAYER::CONTINUE)
+		return;
+
+	// 크레딧이 없으면 다시하기 못함
+	if (0 == CGameUIMgr::Get_Instance()->Get_Credit())
+		return;
+
+	// 크레딧 감소
+	CGameUIMgr::Get_Instance()->Add_Credit(-1);
+	// 크레딧 저장
+	g_iCredit = CGameUIMgr::Get_Instance()->Get_Credit();
+	// 목숨 증가
+	CGameUIMgr::Get_Instance()->Add_Life(2, m_iPlayerNum);
+	// 컨티뉴 정지
+	CGameUIMgr::Get_Instance()->Off_ContinueCountdown(m_iPlayerNum);
+	// 선택 사운드
+	CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_DEAD);
+	CSoundMgr::Get_Instance()->PlaySound(L"Marion_Start.wav", CSoundMgr::PLAYER_DEAD);
 }
 
 // 프레임 씬 변경 처리
