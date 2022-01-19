@@ -254,13 +254,13 @@ int CMarion::Update()
 			LONG lX = (LONG)m_tInfo.fX - lCX;
 			LONG lY = (LONG)m_tInfo.fY - lCY;
 
-			// 근접 렉트
+			// 근접 공격 히트 렉트
 			m_tMeleeRect.left = lX;
 			m_tMeleeRect.top = lY;
 			m_tMeleeRect.right = lX + (27 * 3);
 			m_tMeleeRect.bottom = lY + (42 * 3);
 
-			// 몬스터에게 지속적인 데미지
+			// RECT에 충돌하는 몬스터에게 지속적인 데미지
 			bool bHit = CObjMgr::Get_Instance()->Demage_Monster(&m_tMeleeRect, 20.f, m_iPlayerNum);
 
 			// 근접 공격 이펙트 생성
