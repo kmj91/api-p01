@@ -910,6 +910,12 @@ void CMarion::Bomb()
 	// 폭탄을 사용한 처음에만
 	// 화면에 보이는 몬스터 총알 사탕으로 교체
 	CObjMgr::Get_Instance()->Change_Candy();
+	// 폭탄 공격 상태로 변경
+	m_eCurState = PLAYER::BOMB;
+	// 무적 상태
+	m_bHpLock = true;
+	// 이미지 스프라이트 고정
+	m_bImmutable = true;
 
 	// 폭탄 공격 사운드
 	CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_BOMB);
@@ -917,12 +923,6 @@ void CMarion::Bomb()
 	// 이펙트 사운드
 	CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_BOMB_EFFECT);
 	CSoundMgr::Get_Instance()->PlaySound(L"Marion_BombEffect.wav", CSoundMgr::PLAYER_BOMB_EFFECT);
-	// 폭탄 공격 상태로 변경
-	m_eCurState = PLAYER::BOMB;
-	// 무적 상태
-	m_bHpLock = true;
-	// 이미지 스프라이트 고정
-	m_bImmutable = true;
 }
 
 // 근접 공격
