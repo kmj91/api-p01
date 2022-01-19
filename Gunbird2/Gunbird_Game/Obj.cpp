@@ -24,7 +24,9 @@ void CObj::Hit(float _fDamage)
 		m_bDead = true;
 }
 
-// 현재 오브젝트 좌표를 기준으로 이미지 렉트 정보 갱신
+// 현재 오브젝트 좌표를 기준으로 이미지 Rect 정보 및 Hit Rect 갱신
+// CObj를 상속받은 게임 오브젝트들이 Update나 Late_Update에서 호출합니다.
+// 보스 같은 특정 오브젝트는 CObj를 사용하지 않고 별도의 Update_Rect 함수를 가지고 있기도 합니다.
 void CObj::Update_Rect()
 {
 	// 이미지의 길이를 반으로 나눈 값을 저장합니다.
