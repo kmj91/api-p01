@@ -26,7 +26,7 @@ private:
 	void Key_Check();
 	void Create_Object();
 	void Stage_1();
-	void Create_Object_Stage_1();
+	void Create_Object_Stage_1();		// 스테이지 1 게임 오브젝트 생성
 
 private:
 	CObj*			m_pBackground;				// 스크롤되는 배경 포인터

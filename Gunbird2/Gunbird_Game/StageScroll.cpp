@@ -1621,25 +1621,30 @@ void CStage::Stage_1()
 #pragma endregion
 }
 
+// 스테이지 1 게임 오브젝트 생성
+// m_arrCreateObjcet 배열을 순회하면서 조건에 맞는 게임 오브젝트를 생성합니다.
+// Update 함수에서 Create_Object를 호출하고 그곳에서 이 함수를 호출함
 void CStage::Create_Object_Stage_1()
 {
 	CObj* pObj;
-	CREATE_OBJECT* pObjectInfo;
+	CREATE_OBJECT* pObjectInfo;		// 배열 인덱스 포인터
 
+	// m_arrCreateObjcet 배열을 순회
 	for (int iCnt = 0; iCnt < 300; ++iCnt)
 	{
+		// 오브젝트 타입이 초기화가 안됬다면 생성 예외
 		if (m_arrCreateObjcet[iCnt].enType == OBJTYPE::NO_OBJECT)
 			continue;
-
+		// 생성했다면 예외
 		if (m_arrCreateObjcet[iCnt].bFlag)
 			continue;
-
+		// 생성 타이밍인 iAppearance 좌표가 현재 배경 스크롤의 위치 좌표 fY와 비교해서 크거나 작다면 예외
 		if ((float)BACKGROUND_TOTAL_HEIGHT - m_pBackground->Get_Info().fY < m_arrCreateObjcet[iCnt].iAppearance
 			|| (float)BACKGROUND_TOTAL_HEIGHT - m_pBackground->Get_Info().fY - BACKGROUND_SPEED > m_arrCreateObjcet[iCnt].iAppearance)
 			continue;
-
+		// 생성 정보 구조체
 		pObjectInfo = &m_arrCreateObjcet[iCnt];
-
+		// enType 값으로 구별
 		switch (pObjectInfo->enType)
 		{
 		case OBJTYPE::ROCKET:
