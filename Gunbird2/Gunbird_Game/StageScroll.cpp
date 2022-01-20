@@ -1649,223 +1649,129 @@ void CStage::Create_Object_Stage_1()
 		{
 		case OBJTYPE::ROCKET:
 			// 추상 팩토리 패턴으로 생성
-			pObj = CAbstractFactory<CRocket>::Create();
+			pObj = CAbstractFactory<CRocket>::Create(pObjectInfo->fPosX, pObjectInfo->fPosY);
 			// 오브젝트 매니저 리스트에 오브젝트 추가 두번째 값은 오브젝트 배열을 분류할 타입
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
-			// 리스폰 위치
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);
 			// 생성 플래그 true
 			pObjectInfo->bFlag = true;
 			break;
 		case OBJTYPE::BLUE:
-			pObj = CAbstractFactory<CBlue>::Create();
+			pObj = CAbstractFactory<CBlue>::Create_Air(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if (g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
-			static_cast<CBlue*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);	// 목적지
-			static_cast<CBlue*>(pObj)->Set_OutPos(pObjectInfo->fOutPosX, pObjectInfo->fOutPosY);		// 퇴장 위치
-			static_cast<CBlue*>(pObj)->Set_OutTime(pObjectInfo->dwOutTime);		// 화면에 보이는 시간	
-			static_cast<CBlue*>(pObj)->Set_DestAngle(pObjectInfo->fDestAngle);		// 배치 선회 각도
-			static_cast<CBlue*>(pObj)->Set_OutAngle(pObjectInfo->fOutAngle);		// 퇴장 선회 각도
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::RED:
-			pObj = CAbstractFactory<CRed>::Create();
+			pObj = CAbstractFactory<CRed>::Create_Air(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if (g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
-			static_cast<CRed*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);		// 목적지
-			static_cast<CRed*>(pObj)->Set_OutPos(pObjectInfo->fOutPosX, pObjectInfo->fOutPosY);		// 퇴장 위치
-			static_cast<CRed*>(pObj)->Set_OutTime(pObjectInfo->dwOutTime);			// 화면에 보이는 시간	
-			static_cast<CRed*>(pObj)->Set_DestAngle(pObjectInfo->fDestAngle);		// 배치 선회 각도
-			static_cast<CRed*>(pObj)->Set_OutAngle(pObjectInfo->fOutAngle);		// 퇴장 선회 각도
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::CANNON:
-			pObj = CAbstractFactory<CCannon>::Create();
+			pObj = CAbstractFactory<CCannon>::Create_DestY(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UPPER_MONSTER);	// 지붕위에 있어야되서 지상몹보다 높은 위치
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if (g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
-			static_cast<CCannon*>(pObj)->Set_DestPos(pObjectInfo->fDestPosY);	// 숨어있다가 나올 타이밍
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::CACTUS_CANNON:
-			pObj = CAbstractFactory<CCactusCannon>::Create();
+			pObj = CAbstractFactory<CCactusCannon>::Create_DestY(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if (g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
-			static_cast<CCactusCannon*>(pObj)->Set_DestPos(pObjectInfo->fDestPosY);	// 숨어있다가 나올 타이밍
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::MOVER_CANNON:
-			pObj = CAbstractFactory<CMoverCannon>::Create();
+			pObj = CAbstractFactory<CMoverCannon>::Create_Dest(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if(g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
-			static_cast<CMoverCannon*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);		// 목적지
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::ROBOT_BLUE:
-			pObj = CAbstractFactory<CRobotBlue>::Create();
+			pObj = CAbstractFactory<CRobotBlue>::Create_Target(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if (g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::RED_BEANIE:
-			pObj = CAbstractFactory<CRedBeanie>::Create();
+			pObj = CAbstractFactory<CRedBeanie>::Create_DestY(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if (g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
-			static_cast<CRedBeanie*>(pObj)->Set_DestPos(pObjectInfo->fDestPosY);		// 목적지
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::FACTORY:
-			pObj = CAbstractFactory<CFactory>::Create();
+			pObj = CAbstractFactory<CFactory>::Create_Target(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if (g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::ROBOT_SHARK:
-			pObj = CAbstractFactory<CRobotShark>::Create();
+			pObj = CAbstractFactory<CRobotShark>::Create_DestOut(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			static_cast<CRobotShark*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);		// 목적지
-			static_cast<CRobotShark*>(pObj)->Set_OutPos(pObjectInfo->fOutPosX, pObjectInfo->fOutPosY);		// 퇴장 위치
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_SIGN:
-			pObj = CAbstractFactory<CStaticObj>::Create();
+			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Sign",
+												STAGE_1_SIGN_WIDTH, STAGE_1_SIGN_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_FrameKey(L"Stage1_Sign");
-			pObj->Set_ImageSize(STAGE_1_SIGN_WIDTH, STAGE_1_SIGN_HEIGHT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_ROOF:
-			pObj = CAbstractFactory<CStaticObj>::Create();
+			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Roof",
+												STAGE_1_ROOF_WIDTH, STAGE_1_ROOF_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_FrameKey(L"Stage1_Roof");
-			pObj->Set_ImageSize(STAGE_1_ROOF_WIDTH, STAGE_1_ROOF_HEIGHT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_SHOP:
-			pObj = CAbstractFactory<CStaticObj>::Create();
+			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Shop",
+												STAGE_1_SHOP_WIDTH, STAGE_1_SHOP_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_FrameKey(L"Stage1_Shop");
-			pObj->Set_ImageSize(STAGE_1_SHOP_WIDTH, STAGE_1_SHOP_HEIGHT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_SHOP_ROOF:
-			pObj = CAbstractFactory<CStaticObj>::Create();
+			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Shop_Roof",
+												STAGE_1_SHOP_ROOF_WIDTH, STAGE_1_SHOP_ROOF_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_FrameKey(L"Stage1_Shop_Roof");
-			pObj->Set_ImageSize(STAGE_1_SHOP_ROOF_WIDTH, STAGE_1_SHOP_ROOF_HEIGHT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_BROKEN_SIGN:
-			pObj = CAbstractFactory<CBrokenStatic>::Create();
+			pObj = CAbstractFactory<CBrokenStatic>::Create_BrokenStatic(pObjectInfo, L"Stage1_BrokenSign",
+													STAGE_1_BROKEN_SIGN_WIDTH, STAGE_1_BROKEN_SIGN_HEIGHT,
+													RECT{ 15 * 3, 69 * 3, 122 * 3, 147 * 3 }, 600.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_FrameKey(L"Stage1_BrokenSign");
-			pObj->Set_ImageSize(STAGE_1_BROKEN_SIGN_WIDTH, STAGE_1_BROKEN_SIGN_HEIGHT);
-			pObj->Set_HitRectPos(RECT{ 15 * 3, 69 * 3, 122 * 3, 147 * 3 });
-			pObj->Set_Hp(600.f);		// 체력
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_RIGHT_ROCK:
-			pObj = CAbstractFactory<CMoveStatic>::Create();
+			pObj = CAbstractFactory<CMoveStatic>::Create_MoveStatic(pObjectInfo, L"Stage1_RightRock",
+												STAGE_1_RIGHT_ROCK_WIDTH, STAGE_1_RIGHT_ROCK_HEIGHT, 1.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_FrameKey(L"Stage1_RightRock");
-			pObj->Set_Speed(1.f);
-			pObj->Set_ImageSize(STAGE_1_RIGHT_ROCK_WIDTH, STAGE_1_RIGHT_ROCK_HEIGHT);
-			static_cast<CMoveStatic*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);	// 이동할 타이밍
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_LEFT_ROCK:
-			pObj = CAbstractFactory<CMoveStatic>::Create();
+			pObj = CAbstractFactory<CMoveStatic>::Create_MoveStatic(pObjectInfo, L"Stage1_LeftRock",
+												STAGE_1_LEFT_ROCK_WIDTH, STAGE_1_LEFT_ROCK_HEIGHT, 1.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_FrameKey(L"Stage1_LeftRock");
-			pObj->Set_Speed(1.f);
-			pObj->Set_ImageSize(STAGE_1_LEFT_ROCK_WIDTH, STAGE_1_LEFT_ROCK_HEIGHT);
-			static_cast<CMoveStatic*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);	// 이동할 타이밍
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_BRIDGE:
-			pObj = CAbstractFactory<CStaticObj>::Create();
+			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Bridge",
+												STAGE_1_BRIDGE_WIDTH, STAGE_1_BRIDGE_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_FrameKey(L"Stage1_Bridge");
-			pObj->Set_ImageSize(STAGE_1_BRIDGE_WIDTH, STAGE_1_BRIDGE_HEIGHT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::SHARK:
-			pObj = CAbstractFactory<CShark>::Create();
+			pObj = CAbstractFactory<CShark>::Create_Dest(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::NPC);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			static_cast<CShark*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);	// 이동 위치
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::GIMMICK:
-			pObj = CAbstractFactory<CGimmick>::Create();
+			pObj = CAbstractFactory<CGimmick>::Create_Dest(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::NPC);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			static_cast<CGimmick*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);	// 이동 위치
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::BLADE:
-			pObj = CAbstractFactory<CBlade>::Create();
+			pObj = CAbstractFactory<CBlade>::Create_Dest(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::NPC);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			static_cast<CBlade*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);	// 이동 위치
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::SECTOR:
-			pObj = CAbstractFactory<CSector>::Create();
+			pObj = CAbstractFactory<CSector>::Create_Sector(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::SECTOR);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObj->Set_Size(pObjectInfo->iWidth, pObjectInfo->iHeight);			// 크기
-			static_cast<CSector*>(pObj)->Set_DestPos(pObjectInfo->fDestPosX, pObjectInfo->fDestPosY);	// 이동 위치
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::TEQUILA_GROUND:
-			pObj = CAbstractFactory<CTequilaGround>::Create();
+			pObj = CAbstractFactory<CTequilaGround>::Create_Target(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_BOSS);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			if (g_pPlayer_1)				// 타겟
-				pObj->Set_Target(g_pPlayer_1);
-			else
-				pObj->Set_Target(g_pPlayer_2);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		}
