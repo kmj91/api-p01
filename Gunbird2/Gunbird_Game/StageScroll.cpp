@@ -1648,10 +1648,14 @@ void CStage::Create_Object_Stage_1()
 		switch (pObjectInfo->enType)
 		{
 		case OBJTYPE::ROCKET:
+			// 추상 팩토리 패턴으로 생성
 			pObj = CAbstractFactory<CRocket>::Create();
+			// 오브젝트 매니저 리스트에 오브젝트 추가 두번째 값은 오브젝트 배열을 분류할 타입
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
-			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);				// 리스폰 위치
-			pObjectInfo->bFlag = true;	// 생성함
+			// 리스폰 위치
+			pObj->Set_Pos(pObjectInfo->fPosX, pObjectInfo->fPosY);
+			// 생성 플래그 true
+			pObjectInfo->bFlag = true;
 			break;
 		case OBJTYPE::BLUE:
 			pObj = CAbstractFactory<CBlue>::Create();
