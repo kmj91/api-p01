@@ -12,12 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Headers", "00.Headers", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{8D0171F3-D888-4A1B-B19C-7DB803136193}"
 	ProjectSection(SolutionItems) = preProject
-		Headers\AbstractFactory.h = Headers\AbstractFactory.h
 		Headers\Define.h = Headers\Define.h
 		Headers\Enum.h = Headers\Enum.h
 		Headers\Extern.h = Headers\Extern.h
 		Headers\Function.h = Headers\Function.h
 		Headers\Functor.h = Headers\Functor.h
+		Headers\ObjFactory.h = Headers\ObjFactory.h
 		Headers\Struct.h = Headers\Struct.h
 	EndProjectSection
 EndProject

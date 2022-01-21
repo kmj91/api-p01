@@ -1,11 +1,11 @@
 #pragma once
-#ifndef __ABSTRACTFACTORY_H__
-#define __ABSTRACTFACTORY_H__
+#ifndef __OBJFACTORY_H__
+#define __OBJFACTORY_H__
 
 class CObj;
 
 template <typename T>
-class CAbstractFactory
+class CObjFactory
 {
 public:
 	static T* Create()
@@ -176,4 +176,4 @@ public:
 	}
 };
 
-#endif // !__ABSTRACTFACTORY_H__
+#endif // !__OBJFACTORY_H__

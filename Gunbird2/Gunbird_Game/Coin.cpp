@@ -54,7 +54,7 @@ int CCoin::Update()
 	// 플레이어와 충돌해서 획득된 상황
 	if (m_bDead) {
 		// 점수 텍스트 출력
-		CObj* pObj = CAbstractFactory<CUI_ScoreText>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CUI_ScoreText>::Create(m_tInfo.fX, m_tInfo.fY);
 		pObj->Set_SceneID(1);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UI);
 

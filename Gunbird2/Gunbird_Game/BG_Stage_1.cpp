@@ -49,7 +49,7 @@ int CBG_Stage_1::Update()
 			m_bBossRoom = true;
 			g_bStopMapScroll = true;
 
-			CObj* pObj = CAbstractFactory<CStage1_BossTextBox>::Create();
+			CObj* pObj = CObjFactory<CStage1_BossTextBox>::Create();
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UI);
 
 			CSoundMgr::Get_Instance()->StopSound(CSoundMgr::BGM);

@@ -43,7 +43,7 @@ int CMarionBullet_3::Update()
 	// ИэСп
 	if (m_bDead)
 	{
-		CObj* pObj = CAbstractFactory<CBulletHit>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CBulletHit>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 		return OBJ_DEAD;

@@ -108,19 +108,19 @@ int CStage1_BossTextBox::Update()
 		{
 			m_eCurState = CStage1_BossTextBox::MOVE_BlADE;
 
-			CObj* pObj = CAbstractFactory<CSector>::Create();
+			CObj* pObj = CObjFactory<CSector>::Create();
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::SECTOR);
 			pObj->Set_Pos(285, 400);				// 리스폰 위치
 			pObj->Set_Size(30, 30);			// 크기
 			static_cast<CSector*>(pObj)->Set_DestPos(50.f, 0.f);	// 이동 위치
 
-			pObj = CAbstractFactory<CSector>::Create();
+			pObj = CObjFactory<CSector>::Create();
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::SECTOR);
 			pObj->Set_Pos(330, 400);				// 리스폰 위치
 			pObj->Set_Size(5, 30);			// 크기
 			static_cast<CSector*>(pObj)->Set_DestPos(0.f, -150.f);	// 이동 위치
 
-			pObj = CAbstractFactory<CRemoveSector>::Create();
+			pObj = CObjFactory<CRemoveSector>::Create();
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::REMOVE_SECTOR);
 			pObj->Set_Pos(330, 250);				// 리스폰 위치
 			pObj->Set_Size(30, 30);			// 크기
@@ -133,7 +133,7 @@ int CStage1_BossTextBox::Update()
 		{
 			m_eCurState = CStage1_BossTextBox::MOVE_SHARK;
 
-			CObj* pObj = CAbstractFactory<CSector>::Create();
+			CObj* pObj = CObjFactory<CSector>::Create();
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::SECTOR);
 			pObj->Set_Pos(375, 400);				// 리스폰 위치
 			pObj->Set_Size(30, 30);			// 크기
@@ -147,7 +147,7 @@ int CStage1_BossTextBox::Update()
 		{
 			m_eCurState = CStage1_BossTextBox::BOSS_GO;
 
-			CObj* pObj = CAbstractFactory<CSector>::Create();
+			CObj* pObj = CObjFactory<CSector>::Create();
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::SECTOR);
 			pObj->Set_Pos(330, 430);				// 리스폰 위치
 			pObj->Set_Size(30, 30);			// 크기

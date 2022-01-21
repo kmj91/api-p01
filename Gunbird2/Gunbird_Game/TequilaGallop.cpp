@@ -110,27 +110,27 @@ int CTequilaGallop::Update()
 			m_bDestroy = true;
 
 			// ÆÄ±« ÀÌÆåÆ® »ý¼º
-			CObj* pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);
+			CObj* pObj = CObjFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 			int irand = rand() % 3 + 1;
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
@@ -326,7 +326,7 @@ void CTequilaGallop::Check_Damage(int _iPlayerNum)
 		lCenterX = (m_vecHitRect[static_cast<UINT>(SPRITE::L_ARM)].right - m_vecHitRect[static_cast<UINT>(SPRITE::L_ARM)].left) >> 1;
 		lCenterY = (m_vecHitRect[static_cast<UINT>(SPRITE::L_ARM)].bottom - m_vecHitRect[static_cast<UINT>(SPRITE::L_ARM)].top) >> 1;
 
-		pObj = CAbstractFactory<CExplosion_02_1>::Create(
+		pObj = CObjFactory<CExplosion_02_1>::Create(
 			static_cast<float>(m_vecHitRect[static_cast<UINT>(SPRITE::L_ARM)].left + lCenterX),
 			static_cast<float>(m_vecHitRect[static_cast<UINT>(SPRITE::L_ARM)].top + lCenterY));
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
@@ -345,7 +345,7 @@ void CTequilaGallop::Check_Damage(int _iPlayerNum)
 		lCenterX = (m_vecHitRect[static_cast<UINT>(SPRITE::R_ARM)].right - m_vecHitRect[static_cast<UINT>(SPRITE::R_ARM)].left) >> 1;
 		lCenterY = (m_vecHitRect[static_cast<UINT>(SPRITE::R_ARM)].bottom - m_vecHitRect[static_cast<UINT>(SPRITE::R_ARM)].top) >> 1;
 
-		pObj = CAbstractFactory<CExplosion_02_1>::Create(
+		pObj = CObjFactory<CExplosion_02_1>::Create(
 			static_cast<float>(m_vecHitRect[static_cast<UINT>(SPRITE::R_ARM)].left + lCenterX),
 			static_cast<float>(m_vecHitRect[static_cast<UINT>(SPRITE::R_ARM)].top + lCenterY));
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
@@ -854,12 +854,12 @@ void CTequilaGallop::Action()
 
 			// ÃæÀü ÀÌÆåÆ® »ý¼º
 			// ¿ÞÂÊ
-			CObj* pObj = CAbstractFactory<CEffect_Charge>::Create(m_tInfo.fX - (14.f * 3.f), m_tInfo.fY + (27.f * 3.f));
+			CObj* pObj = CObjFactory<CEffect_Charge>::Create(m_tInfo.fX - (14.f * 3.f), m_tInfo.fY + (27.f * 3.f));
 			pObj->Set_Target(this);
 			static_cast<CEffect*>(pObj)->Set_RelativePos(-14.f * 3.f, 27.f * 3.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 			// ¿À¸¥ÂÊ
-			pObj = CAbstractFactory<CEffect_Charge>::Create(m_tInfo.fX + (14.f * 3.f), m_tInfo.fY + (27.f * 3.f));
+			pObj = CObjFactory<CEffect_Charge>::Create(m_tInfo.fX + (14.f * 3.f), m_tInfo.fY + (27.f * 3.f));
 			pObj->Set_Target(this);
 			pObj->Set_SceneID(1);
 			static_cast<CEffect*>(pObj)->Set_RelativePos(14.f * 3.f, 27.f * 3.f);
@@ -1060,27 +1060,27 @@ void CTequilaGallop::Action()
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 
-			CObj* pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);		// ÆÄ±« ÀÌÆåÆ® »ý¼º
+			CObj* pObj = CObjFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);		// ÆÄ±« ÀÌÆåÆ® »ý¼º
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 			int irand = rand() % 3 + 1;
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		}
@@ -1094,27 +1094,27 @@ void CTequilaGallop::Action()
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 
-			CObj* pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);		// ÆÄ±« ÀÌÆåÆ® »ý¼º
+			CObj* pObj = CObjFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);		// ÆÄ±« ÀÌÆåÆ® »ý¼º
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 			int irand = rand() % 3 + 1;
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		}
@@ -1128,27 +1128,27 @@ void CTequilaGallop::Action()
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 
-			CObj* pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);		// ÆÄ±« ÀÌÆåÆ® »ý¼º
+			CObj* pObj = CObjFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);		// ÆÄ±« ÀÌÆåÆ® »ý¼º
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 			int irand = rand() % 3 + 1;
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		}
@@ -1162,27 +1162,27 @@ void CTequilaGallop::Action()
 			m_dwShotTime = GetTickCount();
 			m_dwShotDelay = 100;
 
-			CObj* pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);		// ÆÄ±« ÀÌÆåÆ® »ý¼º
+			CObj* pObj = CObjFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);		// ÆÄ±« ÀÌÆåÆ® »ý¼º
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 			int irand = rand() % 3 + 1;
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX - 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX + 165.f, m_tInfo.fY + 36.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(100 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		}
@@ -1219,19 +1219,19 @@ void CTequilaGallop::Move()
 			m_dwWhellSmokeTime = GetTickCount();
 
 			// ¿ÞÂÊ À§ ¹ÙÄû
-			CObj* pObj = CAbstractFactory<CWheelSmoke>::Create(m_tInfo.fX - (26.f * 3.f), m_tInfo.fY - (24.f * 3.f));
+			CObj* pObj = CObjFactory<CWheelSmoke>::Create(m_tInfo.fX - (26.f * 3.f), m_tInfo.fY - (24.f * 3.f));
 			pObj->Set_Speed(7.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::BACK_EFFECT);
 			// ¿À¸¥ÂÊ À§ ¹ÙÄû
-			pObj = CAbstractFactory<CWheelSmoke>::Create(m_tInfo.fX + (26.f * 3.f), m_tInfo.fY - (24.f * 3.f));
+			pObj = CObjFactory<CWheelSmoke>::Create(m_tInfo.fX + (26.f * 3.f), m_tInfo.fY - (24.f * 3.f));
 			pObj->Set_Speed(7.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::BACK_EFFECT);
 			// ¿ÞÂÊ ¾Æ·¡ ¹ÙÄû
-			pObj = CAbstractFactory<CWheelSmoke>::Create(m_tInfo.fX - (26.f * 3.f), m_tInfo.fY + (76.f * 3.f));
+			pObj = CObjFactory<CWheelSmoke>::Create(m_tInfo.fX - (26.f * 3.f), m_tInfo.fY + (76.f * 3.f));
 			pObj->Set_Speed(7.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 			// ¿À¸¥ÂÊ ¾Æ·¡ ¹ÙÄû
-			pObj = CAbstractFactory<CWheelSmoke>::Create(m_tInfo.fX + (26.f * 3.f), m_tInfo.fY + (76.f * 3.f));
+			pObj = CObjFactory<CWheelSmoke>::Create(m_tInfo.fX + (26.f * 3.f), m_tInfo.fY + (76.f * 3.f));
 			pObj->Set_Speed(7.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		}
@@ -1264,16 +1264,16 @@ void CTequilaGallop::Move()
 			m_dwWhellSmokeTime = GetTickCount();
 
 			// ¿ÞÂÊ À§ ¹ÙÄû
-			CObj* pObj = CAbstractFactory<CWheelSmoke>::Create(m_tInfo.fX - (60.f * 3.f), m_tInfo.fY - (2.f * 3.f));
+			CObj* pObj = CObjFactory<CWheelSmoke>::Create(m_tInfo.fX - (60.f * 3.f), m_tInfo.fY - (2.f * 3.f));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::BACK_EFFECT);
 			// ¿À¸¥ÂÊ À§ ¹ÙÄû
-			pObj = CAbstractFactory<CWheelSmoke>::Create(m_tInfo.fX + (60.f * 3.f), m_tInfo.fY - (2.f * 3.f));
+			pObj = CObjFactory<CWheelSmoke>::Create(m_tInfo.fX + (60.f * 3.f), m_tInfo.fY - (2.f * 3.f));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::BACK_EFFECT);
 			// ¿ÞÂÊ ¾Æ·¡ ¹ÙÄû
-			pObj = CAbstractFactory<CWheelSmoke>::Create(m_tInfo.fX - (40.f * 3.f), m_tInfo.fY + (70.f * 3.f));
+			pObj = CObjFactory<CWheelSmoke>::Create(m_tInfo.fX - (40.f * 3.f), m_tInfo.fY + (70.f * 3.f));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 			// ¿À¸¥ÂÊ ¾Æ·¡ ¹ÙÄû
-			pObj = CAbstractFactory<CWheelSmoke>::Create(m_tInfo.fX + (40.f * 3.f), m_tInfo.fY + (70.f * 3.f));
+			pObj = CObjFactory<CWheelSmoke>::Create(m_tInfo.fX + (40.f * 3.f), m_tInfo.fY + (70.f * 3.f));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		}
 		break;
@@ -1372,7 +1372,7 @@ void CTequilaGallop::DamageEffect()
 			--m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].iEffectCnt;
 
 			// ÀÌÆåÆ® »ý¼º
-			pObj = CAbstractFactory<CExplosion_05>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_05>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::FRONT_EFFECT);
 
 			m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].dwTime = GetTickCount();
@@ -1386,7 +1386,7 @@ void CTequilaGallop::DamageEffect()
 			--m_bDamageFlagArr[static_cast<UINT>(SPRITE::R_ARM)].iEffectCnt;
 
 			// ÀÌÆåÆ® »ý¼º
-			pObj = CAbstractFactory<CExplosion_05>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_05>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::FRONT_EFFECT);
 
 			m_bDamageFlagArr[static_cast<UINT>(SPRITE::R_ARM)].dwTime = GetTickCount();
@@ -1420,12 +1420,12 @@ void CTequilaGallop::Shake_Body()
 void CTequilaGallop::Pipe_Smoke()
 {
 	// ¿ÞÂÊ
-	CObj* pObj = CAbstractFactory<CPipeSmoke>::Create(m_tInfo.fX - (16.f * 3.f), m_tInfo.fY - (66.f * 3.f));
+	CObj* pObj = CObjFactory<CPipeSmoke>::Create(m_tInfo.fX - (16.f * 3.f), m_tInfo.fY - (66.f * 3.f));
 	pObj->Set_Target(this);
 	static_cast<CEffect*>(pObj)->Set_RelativePos(-16.f * 3.f, -66.f * 3.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 	// ¿À¸¥ÂÊ
-	pObj = CAbstractFactory<CPipeSmoke>::Create(m_tInfo.fX + (16.f * 3.f), m_tInfo.fY - (66.f * 3.f));
+	pObj = CObjFactory<CPipeSmoke>::Create(m_tInfo.fX + (16.f * 3.f), m_tInfo.fY - (66.f * 3.f));
 	pObj->Set_Target(this);
 	pObj->Set_SceneID(1);
 	static_cast<CEffect*>(pObj)->Set_RelativePos(16.f * 3.f, -66.f * 3.f);
@@ -1435,19 +1435,19 @@ void CTequilaGallop::Pipe_Smoke()
 // ¿ÞÆÈ °ø°Ý
 void CTequilaGallop::L_Arm_Shot()
 {
-	CObj* pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX - (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
+	CObj* pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX - (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
 	pObj->Set_Angle(-30.f - m_fShotAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX - (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
+	pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX - (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
 	pObj->Set_Angle(-150.f - m_fShotAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX - (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
+	pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX - (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
 	pObj->Set_Angle(50.f - m_fShotAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX - (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
+	pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX - (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
 	pObj->Set_Angle(130.f - m_fShotAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }
@@ -1455,19 +1455,19 @@ void CTequilaGallop::L_Arm_Shot()
 // ¿À¸¥ÆÈ °ø°Ý
 void CTequilaGallop::R_Arm_Shot()
 {
-	CObj* pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX + (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
+	CObj* pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX + (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
 	pObj->Set_Angle(-30.f - m_fShotAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX + (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
+	pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX + (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
 	pObj->Set_Angle(-150.f - m_fShotAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX + (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
+	pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX + (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
 	pObj->Set_Angle(50.f - m_fShotAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX + (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
+	pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX + (29.f * 3.f), m_tInfo.fY + (15.f * 3.f));
 	pObj->Set_Angle(130.f - m_fShotAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }
@@ -1485,15 +1485,15 @@ void CTequilaGallop::Front_Shot(float _fX, float _fY)
 	if (m_tInfo.fY < m_pTarget->Get_Info().fY)
 		fAngle *= -1.f;
 
-	CObj* pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	CObj* pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(fAngle - 20.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(fAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(fAngle + 20.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
@@ -1502,66 +1502,66 @@ void CTequilaGallop::Front_Shot(float _fX, float _fY)
 // µî °ø°Ý
 void CTequilaGallop::Back_Shot(float _fX, float _fY)
 {
-	CObj* pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	CObj* pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(-50.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(-80.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(-110.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(-140.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(180.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(160.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(140.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(120.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(60.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(40.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(20.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
+	pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + _fX, m_tInfo.fY + _fY);
 	pObj->Set_Angle(0.f);
 	static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
@@ -1576,105 +1576,105 @@ void CTequilaGallop::Shoulder_Shot()
 	if (!m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].bDamage)
 	{
 		// ¿ÞÂÊ 1
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY + (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY + (12.f * 3.f));
 		pObj->Set_Angle(-160.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-169.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-178.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-187.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-196.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(250);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 		// ¿ÞÂÊ 2
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-70.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-79.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-88.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-97.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-106.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(250);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 		// ¿ÞÂÊ 3
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(20.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(11.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(2.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-7.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-16.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(250);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 		// ¿ÞÂÊ 4
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(110.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(101.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(92.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(83.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(74.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(250);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
@@ -1686,105 +1686,105 @@ void CTequilaGallop::Shoulder_Shot()
 	if (!m_bDamageFlagArr[static_cast<UINT>(SPRITE::R_ARM)].bDamage)
 	{
 		// ¿À¸¥ÂÊ 1
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY + (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY + (12.f * 3.f));
 		pObj->Set_Angle(-20.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-11.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-2.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(7.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(16.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(250);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 		// ¿À¸¥ÂÊ 2
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-110.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-101.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-92.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-83.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(-74.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(250);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 		// ¿À¸¥ÂÊ 3
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(160.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(169.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(178.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(187.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(196.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(250);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 		// ¿À¸¥ÂÊ 4
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(70.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(79.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(88.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(150);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(97.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(200);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-		pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
+		pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + (30.f * 3.f), m_tInfo.fY - (12.f * 3.f));
 		pObj->Set_Angle(106.f);
 		static_cast<CBullet*>(pObj)->Set_BulletDelay(250);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
@@ -1798,7 +1798,7 @@ void CTequilaGallop::Destroy_Shot(float _fAngle)
 
 	while (fCnt < 180.f)
 	{
-		CObj* pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY);
 		pObj->Set_Angle(fCnt);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
@@ -1808,7 +1808,7 @@ void CTequilaGallop::Destroy_Shot(float _fAngle)
 	fCnt = -180.f + _fAngle;
 	while (fCnt < 0.f)
 	{
-		CObj* pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY);
 		pObj->Set_Angle(fCnt);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 

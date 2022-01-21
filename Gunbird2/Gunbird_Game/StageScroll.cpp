@@ -323,7 +323,7 @@ void CStage::Stage_1()
 
 
 	// 배경 생성
-	m_pBackground = CAbstractFactory<CBG_Stage_1>::Create();
+	m_pBackground = CObjFactory<CBG_Stage_1>::Create();
 	CObjMgr::Get_Instance()->Add_Object(m_pBackground, OBJID::BACKGROUND);
 
 	// 플레이어 생성
@@ -332,7 +332,7 @@ void CStage::Stage_1()
 	case PLAYER::ALUCARD:
 		break;
 	case PLAYER::MARION:
-		g_pPlayer_1 = CAbstractFactory<CMarion>::Create();
+		g_pPlayer_1 = CObjFactory<CMarion>::Create();
 		g_pPlayer_1->Set_PlayerNum(1);
 		CObjMgr::Get_Instance()->Add_Object(g_pPlayer_1, OBJID::PLAYER);
 		CGameUIMgr::Get_Instance()->On_Player1();	// 플레이어 1 UI 준비
@@ -1648,129 +1648,129 @@ void CStage::Create_Object_Stage_1()
 		switch (pObjectInfo->enType)
 		{
 		case OBJTYPE::ROCKET:
-			// 추상 팩토리 패턴으로 생성
-			pObj = CAbstractFactory<CRocket>::Create(pObjectInfo->fPosX, pObjectInfo->fPosY);
+			// 정적 팩토리 메소드로 생성
+			pObj = CObjFactory<CRocket>::Create(pObjectInfo->fPosX, pObjectInfo->fPosY);
 			// 오브젝트 매니저 리스트에 오브젝트 추가 두번째 값은 오브젝트 배열을 분류할 타입
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
 			// 생성 플래그 true
 			pObjectInfo->bFlag = true;
 			break;
 		case OBJTYPE::BLUE:
-			pObj = CAbstractFactory<CBlue>::Create_Air(pObjectInfo);
+			pObj = CObjFactory<CBlue>::Create_Air(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::RED:
-			pObj = CAbstractFactory<CRed>::Create_Air(pObjectInfo);
+			pObj = CObjFactory<CRed>::Create_Air(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::CANNON:
-			pObj = CAbstractFactory<CCannon>::Create_DestY(pObjectInfo);
+			pObj = CObjFactory<CCannon>::Create_DestY(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UPPER_MONSTER);	// 지붕위에 있어야되서 지상몹보다 높은 위치
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::CACTUS_CANNON:
-			pObj = CAbstractFactory<CCactusCannon>::Create_DestY(pObjectInfo);
+			pObj = CObjFactory<CCactusCannon>::Create_DestY(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_MONSTER);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::MOVER_CANNON:
-			pObj = CAbstractFactory<CMoverCannon>::Create_Dest(pObjectInfo);
+			pObj = CObjFactory<CMoverCannon>::Create_Dest(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_MONSTER);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::ROBOT_BLUE:
-			pObj = CAbstractFactory<CRobotBlue>::Create_Target(pObjectInfo);
+			pObj = CObjFactory<CRobotBlue>::Create_Target(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_MONSTER);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::RED_BEANIE:
-			pObj = CAbstractFactory<CRedBeanie>::Create_DestY(pObjectInfo);
+			pObj = CObjFactory<CRedBeanie>::Create_DestY(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::FACTORY:
-			pObj = CAbstractFactory<CFactory>::Create_Target(pObjectInfo);
+			pObj = CObjFactory<CFactory>::Create_Target(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_MONSTER);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::ROBOT_SHARK:
-			pObj = CAbstractFactory<CRobotShark>::Create_DestOut(pObjectInfo);
+			pObj = CObjFactory<CRobotShark>::Create_DestOut(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::AIR_MONSTER);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_SIGN:
-			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Sign",
+			pObj = CObjFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Sign",
 												STAGE_1_SIGN_WIDTH, STAGE_1_SIGN_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_ROOF:
-			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Roof",
+			pObj = CObjFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Roof",
 												STAGE_1_ROOF_WIDTH, STAGE_1_ROOF_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_SHOP:
-			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Shop",
+			pObj = CObjFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Shop",
 												STAGE_1_SHOP_WIDTH, STAGE_1_SHOP_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_SHOP_ROOF:
-			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Shop_Roof",
+			pObj = CObjFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Shop_Roof",
 												STAGE_1_SHOP_ROOF_WIDTH, STAGE_1_SHOP_ROOF_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_BROKEN_SIGN:
-			pObj = CAbstractFactory<CBrokenStatic>::Create_BrokenStatic(pObjectInfo, L"Stage1_BrokenSign",
+			pObj = CObjFactory<CBrokenStatic>::Create_BrokenStatic(pObjectInfo, L"Stage1_BrokenSign",
 													STAGE_1_BROKEN_SIGN_WIDTH, STAGE_1_BROKEN_SIGN_HEIGHT,
 													RECT{ 15 * 3, 69 * 3, 122 * 3, 147 * 3 }, 600.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_RIGHT_ROCK:
-			pObj = CAbstractFactory<CMoveStatic>::Create_MoveStatic(pObjectInfo, L"Stage1_RightRock",
+			pObj = CObjFactory<CMoveStatic>::Create_MoveStatic(pObjectInfo, L"Stage1_RightRock",
 												STAGE_1_RIGHT_ROCK_WIDTH, STAGE_1_RIGHT_ROCK_HEIGHT, 1.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_LEFT_ROCK:
-			pObj = CAbstractFactory<CMoveStatic>::Create_MoveStatic(pObjectInfo, L"Stage1_LeftRock",
+			pObj = CObjFactory<CMoveStatic>::Create_MoveStatic(pObjectInfo, L"Stage1_LeftRock",
 												STAGE_1_LEFT_ROCK_WIDTH, STAGE_1_LEFT_ROCK_HEIGHT, 1.f);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::STAGE_1_BRIDGE:
-			pObj = CAbstractFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Bridge",
+			pObj = CObjFactory<CStaticObj>::Create_StaticObj(pObjectInfo, L"Stage1_Bridge",
 												STAGE_1_BRIDGE_WIDTH, STAGE_1_BRIDGE_HEIGHT);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MAP_OBJECT);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::SHARK:
-			pObj = CAbstractFactory<CShark>::Create_Dest(pObjectInfo);
+			pObj = CObjFactory<CShark>::Create_Dest(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::NPC);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::GIMMICK:
-			pObj = CAbstractFactory<CGimmick>::Create_Dest(pObjectInfo);
+			pObj = CObjFactory<CGimmick>::Create_Dest(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::NPC);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::BLADE:
-			pObj = CAbstractFactory<CBlade>::Create_Dest(pObjectInfo);
+			pObj = CObjFactory<CBlade>::Create_Dest(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::NPC);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::SECTOR:
-			pObj = CAbstractFactory<CSector>::Create_Sector(pObjectInfo);
+			pObj = CObjFactory<CSector>::Create_Sector(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::SECTOR);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;
 		case OBJTYPE::TEQUILA_GROUND:
-			pObj = CAbstractFactory<CTequilaGround>::Create_Target(pObjectInfo);
+			pObj = CObjFactory<CTequilaGround>::Create_Target(pObjectInfo);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::GROUND_BOSS);
 			pObjectInfo->bFlag = true;	// 생성함
 			break;

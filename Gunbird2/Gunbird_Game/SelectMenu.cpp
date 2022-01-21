@@ -84,7 +84,7 @@ void CSelectMenu::Initialize()
 
 	// 플레이어 선택 오브젝트
 	// 현재 선택된 플레이어를 보여주는 오브젝트
-	m_pSelectFocus = CAbstractFactory<CSelectFocus>::Create();
+	m_pSelectFocus = CObjFactory<CSelectFocus>::Create();
 	CObjMgr::Get_Instance()->Add_Object(m_pSelectFocus, OBJID::PLAYER);
 
 	// 게임 UI 생성

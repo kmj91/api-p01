@@ -87,7 +87,7 @@ int CMarion::Update()
 			m_eCurState = PLAYER::DEAD;
 			m_bHpLock = true;
 			m_iShotCnt = 0;
-			CObj* pObj = CAbstractFactory<CPlayerDead>::Create(m_tInfo.fX, m_tInfo.fY);
+			CObj* pObj = CObjFactory<CPlayerDead>::Create(m_tInfo.fX, m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		}
 	}
@@ -175,7 +175,7 @@ int CMarion::Update()
 			CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_CHARGE_BULLET);
 			CSoundMgr::Get_Instance()->PlaySound(L"Marion_ChargeBullet.wav", CSoundMgr::PLAYER_CHARGE_BULLET);
 			// 충전 공격
-			CObj* pObj = CAbstractFactory<CMarionChargeBullet>::Create(m_tInfo.fX, m_tInfo.fY - 30.f, 90.f);
+			CObj* pObj = CObjFactory<CMarionChargeBullet>::Create(m_tInfo.fX, m_tInfo.fY - 30.f, 90.f);
 			// 총알에게 몇 플레이어의 공격인지 저장
 			static_cast<CBullet*>(pObj)->Set_PlayerNum(m_iPlayerNum);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::PLAYER_BULLET);
@@ -267,7 +267,7 @@ int CMarion::Update()
 			if (!m_bMeleeHit && bHit) {
 				m_bMeleeHit = true;
 
-				CObj* pObj = CAbstractFactory<CEffect_MarionMeleeHit>::Create(m_tInfo.fX - (9.f * 3.f), m_tInfo.fY - (26.f * 3.f));
+				CObj* pObj = CObjFactory<CEffect_MarionMeleeHit>::Create(m_tInfo.fX - (9.f * 3.f), m_tInfo.fY - (26.f * 3.f));
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 			}
 		}
@@ -584,7 +584,7 @@ void CMarion::PowerDown()
 		}
 
 		// 파워 다운 텍스트 출력
-		CObj* pObj = CAbstractFactory<CUI_PowerUpDownText>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CUI_PowerUpDownText>::Create(m_tInfo.fX, m_tInfo.fY);
 		pObj->Set_SceneID(1);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UI);
 
@@ -1149,26 +1149,26 @@ void CMarion::Scene_Change()
 			// 파워업 2, 폭탄 1개 드랍
 			if (CGameUIMgr::Get_Instance()->Get_Life(m_iPlayerNum) == 0) {
 				// 파워업 아이템 드랍
-				CObj* pObj = CAbstractFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
+				CObj* pObj = CObjFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
-				pObj = CAbstractFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 				// 폭탄 아이템 드랍
-				pObj = CAbstractFactory<CBomb>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CBomb>::Create(m_tInfo.fX, m_tInfo.fY);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 			}
 			// 파워 3레벨
 			// 파워업 2개 드랍
 			else if (m_iShotPower == 3) {
 				// 파워업 아이템 드랍
-				CObj* pObj = CAbstractFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
+				CObj* pObj = CObjFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
-				pObj = CAbstractFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 			}
 			else {
 				// 파워업 아이템 드랍
-				CObj* pObj = CAbstractFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
+				CObj* pObj = CObjFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 			}
 			// 충돌 렉트 위치값 변경
@@ -1375,13 +1375,13 @@ void CMarion::Create_Effect()
 		case PLAYER::LEFT_2:
 		case PLAYER::RIGHT_1:
 		case PLAYER::RIGHT_2:
-			pObj = CAbstractFactory<CMarionEffect>::Create(m_tInfo.fX, m_tRect.bottom);
+			pObj = CObjFactory<CMarionEffect>::Create(m_tInfo.fX, m_tRect.bottom);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 			break;
 		case PLAYER::CHARGE_START:
 		case PLAYER::CHARGE_REPEAT:
 		case PLAYER::CHARGE_END:
-			pObj = CAbstractFactory<CMarionEffect>::Create(m_tInfo.fX, m_tRect.bottom - (9.f * 3.f));
+			pObj = CObjFactory<CMarionEffect>::Create(m_tInfo.fX, m_tRect.bottom - (9.f * 3.f));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 			break;
 		case PLAYER::BOMB:
@@ -1389,17 +1389,17 @@ void CMarion::Create_Effect()
 			if (m_bBombEffect) {
 				m_bBombEffect = !m_bBombEffect;
 
-				pObj = CAbstractFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
 				pObj->Set_Angle(-90.f);
 				static_cast<CMarionBombEffect*>(pObj)->Set_DestPos(m_tInfo.fX + 500, m_tInfo.fY - 200);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				pObj = CAbstractFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
 				pObj->Set_Angle(-90.f);
 				static_cast<CMarionBombEffect*>(pObj)->Set_DestPos(m_tInfo.fX - 500, m_tInfo.fY - 200);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				pObj = CAbstractFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
 				pObj->Set_Angle(-90.f);
 				static_cast<CMarionBombEffect*>(pObj)->Set_DestPos(m_tInfo.fX, m_tInfo.fY + 500);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
@@ -1407,24 +1407,24 @@ void CMarion::Create_Effect()
 			else {
 				m_bBombEffect = !m_bBombEffect;
 
-				pObj = CAbstractFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
 				pObj->Set_Angle(-90.f);
 				static_cast<CMarionBombEffect*>(pObj)->Set_DestPos(m_tInfo.fX + 500, m_tInfo.fY + 200);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				pObj = CAbstractFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
 				pObj->Set_Angle(-90.f);
 				static_cast<CMarionBombEffect*>(pObj)->Set_DestPos(m_tInfo.fX - 500, m_tInfo.fY + 200);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
-				pObj = CAbstractFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
+				pObj = CObjFactory<CMarionBombEffect>::Create(m_tInfo.fX, m_tInfo.fY);
 				pObj->Set_Angle(-90.f);
 				static_cast<CMarionBombEffect*>(pObj)->Set_DestPos(m_tInfo.fX, m_tInfo.fY - 500);
 				CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 			}
 			break;
 		case PLAYER::MELEE:
-			pObj = CAbstractFactory<CMarionEffect>::Create(m_tRect.left + (11.f * 3.f), m_tRect.bottom - (9.f * 3.f));
+			pObj = CObjFactory<CMarionEffect>::Create(m_tRect.left + (11.f * 3.f), m_tRect.bottom - (9.f * 3.f));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 			break;
 		case PLAYER::DEAD:

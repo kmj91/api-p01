@@ -47,6 +47,6 @@ void CBullet::Change_Candy()
 	// 삭제
 	m_bRemove = true;
 	// 사탕 생성
-	CObj* pObj = CAbstractFactory<CCandy>::Create(m_tInfo.fX, m_tInfo.fY);
+	CObj* pObj = CObjFactory<CCandy>::Create(m_tInfo.fX, m_tInfo.fY);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 }

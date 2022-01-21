@@ -51,7 +51,7 @@ int CMarionChargeBullet::Update()
 		CSoundMgr::Get_Instance()->StopSound(CSoundMgr::PLAYER_CHARGE_BULLET_HIT);
 		CSoundMgr::Get_Instance()->PlaySound(L"Marion_ChargeBulletHit.wav", CSoundMgr::PLAYER_CHARGE_BULLET_HIT);
 
-		CObj* pObj = CAbstractFactory<CMarionChargeHitEffect>::Create(m_tInfo.fX, m_tInfo.fY - 100.f);
+		CObj* pObj = CObjFactory<CMarionChargeHitEffect>::Create(m_tInfo.fX, m_tInfo.fY - 100.f);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 		return OBJ_DEAD;

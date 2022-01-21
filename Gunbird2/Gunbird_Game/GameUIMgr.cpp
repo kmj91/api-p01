@@ -40,11 +40,11 @@ CGameUIMgr::~CGameUIMgr()
 void CGameUIMgr::Init_Logo()
 {
 	// 타이틀 로고
-	m_pTitleLogo = CAbstractFactory<CUI_TitleLogo>::Create();
+	m_pTitleLogo = CObjFactory<CUI_TitleLogo>::Create();
 	CObjMgr::Get_Instance()->Add_Object(m_pTitleLogo, OBJID::UI);
 
 	// 크레딧
-	m_pCredit = CAbstractFactory<CUI_Credit>::Create(float(WINCX >> 1), WINCY - (19.f * 3.f));
+	m_pCredit = CObjFactory<CUI_Credit>::Create(float(WINCX >> 1), WINCY - (19.f * 3.f));
 	CObjMgr::Get_Instance()->Add_Object(m_pCredit, OBJID::UI);
 }
 
@@ -52,7 +52,7 @@ void CGameUIMgr::Init_Logo()
 void CGameUIMgr::Init_SeleteMenu()
 {
 	// 크레딧
-	m_pCredit = CAbstractFactory<CUI_Credit>::Create((WINCX >> 1) + (70.f * 3.f), WINCY - (19.f * 3.f));
+	m_pCredit = CObjFactory<CUI_Credit>::Create((WINCX >> 1) + (70.f * 3.f), WINCY - (19.f * 3.f));
 	CObjMgr::Get_Instance()->Add_Object(m_pCredit, OBJID::UI);
 }
 
@@ -61,54 +61,54 @@ void CGameUIMgr::Init_Stage()
 {
 	if (m_bPlayer_1) {
 		// 플레이어 라이프
-		m_pPlayerLife_1 = CAbstractFactory<CUI_PlayerLife>::Create(3.f * 3.f, 19.f * 3.f);
+		m_pPlayerLife_1 = CObjFactory<CUI_PlayerLife>::Create(3.f * 3.f, 19.f * 3.f);
 		m_pPlayerLife_1->Set_DrawID(g_ePlayer_1_Name);
 		m_pPlayerLife_1->Add_Life(2);
 		CObjMgr::Get_Instance()->Add_Object(m_pPlayerLife_1, OBJID::UI);
 
 		// 플레이어 번호
-		m_pPlayerNum_1 = CAbstractFactory<CUI_Static>::Create(10.f * 3.f, 7.f * 3.f);
+		m_pPlayerNum_1 = CObjFactory<CUI_Static>::Create(10.f * 3.f, 7.f * 3.f);
 		m_pPlayerNum_1->Set_FrameKey(L"UI_PlayerNum");
 		m_pPlayerNum_1->Set_ImageSize(UI_PLAYER_NUM_WIDTH, UI_PLAYER_NUM_HEIGHT);
 		CObjMgr::Get_Instance()->Add_Object(m_pPlayerNum_1, OBJID::UI);
 
 		// 스코어
-		m_pScore_1 = CAbstractFactory<CUI_Score>::Create(85.f * 3.f, 6.f * 3.f);
+		m_pScore_1 = CObjFactory<CUI_Score>::Create(85.f * 3.f, 6.f * 3.f);
 		CObjMgr::Get_Instance()->Add_Object(m_pScore_1, OBJID::UI);
 
 		// 차지 바
-		m_pChargeBar_1 = CAbstractFactory<CUI_ChargeBar>::Create(13.f * 3.f, WINCY - (22.f * 3.f));
+		m_pChargeBar_1 = CObjFactory<CUI_ChargeBar>::Create(13.f * 3.f, WINCY - (22.f * 3.f));
 		m_pChargeBar_1->Set_Charge(40);
 		m_pChargeBar_1->Set_ChargeLevel(1);
 		CObjMgr::Get_Instance()->Add_Object(m_pChargeBar_1, OBJID::UI);
 
 		// 폭탄 개수
-		m_pBomb_1 = CAbstractFactory<CUI_Bomb>::Create(87.f * 3.f, WINCY - (19.f * 3.f));
+		m_pBomb_1 = CObjFactory<CUI_Bomb>::Create(87.f * 3.f, WINCY - (19.f * 3.f));
 		m_pBomb_1->Add_Bomb(2);
 		CObjMgr::Get_Instance()->Add_Object(m_pBomb_1, OBJID::UI);
 	}
 
 	if (m_bPlayer_2) {
 		// 플레이어 라이프
-		m_pPlayerLife_2 = CAbstractFactory<CUI_PlayerLife>::Create(115.f * 3.f, 19.f * 3.f);
+		m_pPlayerLife_2 = CObjFactory<CUI_PlayerLife>::Create(115.f * 3.f, 19.f * 3.f);
 		m_pPlayerLife_2->Set_DrawID(g_ePlayer_2_Name);
 		m_pPlayerLife_2->Add_Life(2);
 		CObjMgr::Get_Instance()->Add_Object(m_pPlayerLife_2, OBJID::UI);
 	}
 
 	// 컨티뉴
-	m_pMainContinue = CAbstractFactory<CUI_MainContinue>::Create(441.f, 414.f);
+	m_pMainContinue = CObjFactory<CUI_MainContinue>::Create(441.f, 414.f);
 	CObjMgr::Get_Instance()->Add_Object(m_pMainContinue, OBJID::UI);
 
 	// 스테이지 번호
-	m_pStageNum = CAbstractFactory<CUI_Static>::Create();
+	m_pStageNum = CObjFactory<CUI_Static>::Create();
 	m_pStageNum->Set_Pos((WINCX >> 1) - 6.f * 3.f, 6.f * 3.f);
 	m_pStageNum->Set_FrameKey(L"UI_StageNum");
 	m_pStageNum->Set_ImageSize(UI_STAGE_NUM_WIDTH, UI_STAGE_NUM_HEIGHT);
 	CObjMgr::Get_Instance()->Add_Object(m_pStageNum, OBJID::UI);
 
 	// 크레딧
-	m_pCredit = CAbstractFactory<CUI_Credit>::Create((WINCX >> 1) + (70.f * 3.f), WINCY - (19.f * 3.f));
+	m_pCredit = CObjFactory<CUI_Credit>::Create((WINCX >> 1) + (70.f * 3.f), WINCY - (19.f * 3.f));
 	CObjMgr::Get_Instance()->Add_Object(m_pCredit, OBJID::UI);
 }
 

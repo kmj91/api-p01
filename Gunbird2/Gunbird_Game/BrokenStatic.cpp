@@ -41,20 +41,20 @@ int CBrokenStatic::Update()
 		float fX = m_tInfo.fX + (m_tInfo.iCX / 2);
 		float fY = m_tInfo.fY + (m_tInfo.iCY / 2);
 
-		CObj* pObj = CAbstractFactory<CExplosion_04>::Create(fX, fY);
+		CObj* pObj = CObjFactory<CExplosion_04>::Create(fX, fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 		int irand = rand() % 3 + 1;
-		pObj = CAbstractFactory<CExplosion_02_1>::Create(fX - 80.f, fY);
+		pObj = CObjFactory<CExplosion_02_1>::Create(fX - 80.f, fY);
 		static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-		pObj = CAbstractFactory<CExplosion_02_1>::Create(fX + 80.f, fY);
+		pObj = CObjFactory<CExplosion_02_1>::Create(fX + 80.f, fY);
 		static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-		pObj = CAbstractFactory<CExplosion_01>::Create(fX + irand * 30, fY + 20.f);
+		pObj = CObjFactory<CExplosion_01>::Create(fX + irand * 30, fY + 20.f);
 		static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-		pObj = CAbstractFactory<CExplosion_01>::Create(fX - irand * 30, fY + 50.f);
+		pObj = CObjFactory<CExplosion_01>::Create(fX - irand * 30, fY + 50.f);
 		static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 

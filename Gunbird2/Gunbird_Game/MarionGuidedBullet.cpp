@@ -59,7 +59,7 @@ int CMarionGuidedBullet::Update()
 			m_stpSubBulletCnt->flag = false;
 		}
 
-		CObj* pObj = CAbstractFactory<CBulletHit>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CBulletHit>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 		return OBJ_DEAD;
@@ -73,7 +73,7 @@ int CMarionGuidedBullet::Update()
 	if (m_dwEffectCreateTime + m_dwEffectCreateDelay < GetTickCount())
 	{
 		m_dwEffectCreateTime = GetTickCount();
-		CObj* pObj = CAbstractFactory<CMarionEffect>::Create(m_tInfo.fX, m_tRect.bottom);
+		CObj* pObj = CObjFactory<CMarionEffect>::Create(m_tInfo.fX, m_tRect.bottom);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 	}
 

@@ -61,7 +61,7 @@ int CCG_Kusuri::Update()
 	if (!m_bFlag && m_tFrame.iFrameCnt == 15) {
 		m_bFlag = true;
 		// 텍스트 윈도우 생성
-		CObj* pObj = CAbstractFactory<CCG_TextWindow>::Create();
+		CObj* pObj = CObjFactory<CCG_TextWindow>::Create();
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UI);
 	}
 

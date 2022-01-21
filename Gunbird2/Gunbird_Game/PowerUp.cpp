@@ -110,6 +110,6 @@ void CPowerUp::Render(HDC _DC)
 void CPowerUp::Release()
 {
 	// 파워 업 텍스트 출력
-	CObj* pObj = CAbstractFactory<CUI_PowerUpDownText>::Create(m_tInfo.fX, m_tInfo.fY);
+	CObj* pObj = CObjFactory<CUI_PowerUpDownText>::Create(m_tInfo.fX, m_tInfo.fY);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UI);
 }

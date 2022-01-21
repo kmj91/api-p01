@@ -56,7 +56,7 @@ int CBullet_1::Update()
 	// ÃÑ¾ËÀÌ ºÎµúÈ÷°Å³ª ÆøÅºÀ¸·Î Á¦°ÅµÊ
 	if (m_bDead) {
 		// ÃÑ¾Ë ÆÄ±« ÀÌÆåÆ® »ý¼º
-		CObj* pObj = CAbstractFactory<CBulletDestroy>::Create(m_tInfo.fX, m_tInfo.fY, BULLETTYPE::BULLET_1);
+		CObj* pObj = CObjFactory<CBulletDestroy>::Create(m_tInfo.fX, m_tInfo.fY, BULLETTYPE::BULLET_1);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 		return OBJ_DEAD;

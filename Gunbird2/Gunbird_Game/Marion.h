@@ -59,7 +59,7 @@ private:
 	template <typename T>
 	CObj* Create_Bullet(float _fX, float _fY, float _fAngle)
 	{
-		return CAbstractFactory<T>::Create(_fX, _fY, _fAngle);
+		return CObjFactory<T>::Create(_fX, _fY, _fAngle);
 	}
 
 private:

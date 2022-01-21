@@ -60,7 +60,7 @@ int CRedBeanie::Update()
 	if (m_bDead)
 	{
 		// 파괴 이펙트 생성
-		CObj* pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		return OBJ_DEAD;
 	}
@@ -222,7 +222,7 @@ void CRedBeanie::Shot()
 		m_fAngle *= -1.f;
 
 	// 총알 오브젝트 생성
-	CObj* pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX, m_tInfo.fY);
+	CObj* pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX, m_tInfo.fY);
 	pObj->Set_Angle(m_fAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }

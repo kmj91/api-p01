@@ -52,7 +52,7 @@ int CRocket::Update()
 
 	if (m_bDead)
 	{
-		CObj* pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 		return OBJ_DEAD;

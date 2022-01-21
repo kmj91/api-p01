@@ -71,23 +71,23 @@ int CRobotBlue::Update()
 			m_bHpLock = true;
 
 			// 파워업 아이템 드랍
-			CObj* pObj = CAbstractFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
+			CObj* pObj = CObjFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 
-			pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX, m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 			int irand = rand() % 3 + 1;
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX - 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(30 + irand * 50));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
+			pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX + 80.f, m_tInfo.fY);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)50);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-			pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
+			pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
 			static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
@@ -418,7 +418,7 @@ void CRobotBlue::Shot_1(float _fAngle)
 
 	while (fCnt < 180.f)
 	{
-		CObj* pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY - 69.f);
+		CObj* pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY - 69.f);
 		pObj->Set_Angle(fCnt);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
@@ -428,7 +428,7 @@ void CRobotBlue::Shot_1(float _fAngle)
 	fCnt = -180.f + _fAngle;
 	while (fCnt < 0.f)
 	{
-		CObj* pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY - 69.f);
+		CObj* pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY - 69.f);
 		pObj->Set_Angle(fCnt);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
@@ -444,7 +444,7 @@ void CRobotBlue::Shot_2()
 	if (m_tInfo.fY < m_pTarget->Get_Info().fY)
 		fAngle *= -1.f;
 
-	CObj* pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY - 69.f);
+	CObj* pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX, m_tInfo.fY - 69.f);
 	pObj->Set_Angle(fAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }

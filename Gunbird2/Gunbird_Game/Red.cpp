@@ -60,11 +60,11 @@ int CRed::Update()
 	// 죽음
 	if (m_bDead)
 	{
-		CObj* pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 		
 		// 파워업 아이템 드랍
-		pObj = CAbstractFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
+		pObj = CObjFactory<CPowerUp>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 		
 		return OBJ_DEAD;
@@ -295,7 +295,7 @@ void CRed::Shot()
 	// 너무 완벽하게 플레이어 위치를 추적하지 못하게 자릿수 버림
 	fAngle = (float)((int)fAngle / 10 * 10);
 	// 총알 오브젝트 생성
-	CObj* pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX, m_tInfo.fY - 30.f);
+	CObj* pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX, m_tInfo.fY - 30.f);
 	pObj->Set_Angle(fAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }

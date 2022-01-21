@@ -57,11 +57,11 @@ int CCannon::Update()
 		if (m_ePreState != CCannon::DESTROY) {
 			m_eCurState = CCannon::DESTROY;
 			m_bHpLock = true;		// 파괴되서 HP 다시 락
-			CObj* pObj = CAbstractFactory<CExplosion_02_1>::Create(m_tInfo.fX, m_tInfo.fY);		// 파괴 이펙트 생성
+			CObj* pObj = CObjFactory<CExplosion_02_1>::Create(m_tInfo.fX, m_tInfo.fY);		// 파괴 이펙트 생성
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 			// 아이템 코인 생성
-			pObj = CAbstractFactory<CCoin>::Create(m_tInfo.fX, m_tInfo.fY);
+			pObj = CObjFactory<CCoin>::Create(m_tInfo.fX, m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 
 			// 충돌 렉트
@@ -300,7 +300,7 @@ void CCannon::Aim()
 void CCannon::Shot()
 {
 	// 총알 오브젝트 생성
-	CObj* pObj = CAbstractFactory<CBullet_2>::Create(m_tInfo.fX, m_tInfo.fY);
+	CObj* pObj = CObjFactory<CBullet_2>::Create(m_tInfo.fX, m_tInfo.fY);
 	pObj->Set_Angle(m_fAngle);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }

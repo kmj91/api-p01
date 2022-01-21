@@ -40,7 +40,7 @@ void CCG_Stage_1::Initialize()
 
 	// 오브젝트 생성
 	// 해당 오브젝트 내에서 텍스트 윈도우 생성...
-	CObj* pObj = CAbstractFactory<CCG_Kusuri>::Create();
+	CObj* pObj = CObjFactory<CCG_Kusuri>::Create();
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::UI);
 
 	g_bStageClear = false;

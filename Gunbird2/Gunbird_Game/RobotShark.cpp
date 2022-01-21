@@ -83,19 +83,19 @@ int CRobotShark::Update()
 		return OBJ_DEAD;
 	// Á×À½
 	if (m_bDead) {
-		CObj* pObj = CAbstractFactory<CExplosion_03>::Create(m_tInfo.fX, m_tInfo.fY);
+		CObj* pObj = CObjFactory<CExplosion_03>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 		int irand = rand() % 3 + 1;
-		pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
+		pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX + irand * 30, m_tInfo.fY + 20.f);
 		static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)(irand * 10));
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
-		pObj = CAbstractFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
+		pObj = CObjFactory<CExplosion_01>::Create(m_tInfo.fX - irand * 30, m_tInfo.fY + 50.f);
 		static_cast<CEffect*>(pObj)->Set_EffectDelay((DWORD)100);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 		// ÆøÅº ¾ÆÀÌÅÛ µå¶ø
-		pObj = CAbstractFactory<CBomb>::Create(m_tInfo.fX, m_tInfo.fY);
+		pObj = CObjFactory<CBomb>::Create(m_tInfo.fX, m_tInfo.fY);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 
 		return OBJ_DEAD;
@@ -337,7 +337,7 @@ void CRobotShark::Shot_1()
 
 	while (fCnt < 180.f)
 	{
-		CObj* pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX - 30.f, m_tInfo.fY - 114.f);
+		CObj* pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX - 30.f, m_tInfo.fY - 114.f);
 		pObj->Set_Angle(fCnt);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
@@ -347,7 +347,7 @@ void CRobotShark::Shot_1()
 	fCnt = -180.f;
 	while (fCnt < 0.f)
 	{
-		CObj* pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX - 30.f, m_tInfo.fY - 114.f);
+		CObj* pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX - 30.f, m_tInfo.fY - 114.f);
 		pObj->Set_Angle(fCnt);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
@@ -356,7 +356,7 @@ void CRobotShark::Shot_1()
 
 	while (fCnt < 180.f)
 	{
-		CObj* pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + 33.f, m_tInfo.fY - 114.f);
+		CObj* pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + 33.f, m_tInfo.fY - 114.f);
 		pObj->Set_Angle(fCnt);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
@@ -366,7 +366,7 @@ void CRobotShark::Shot_1()
 	fCnt = -180.f;
 	while (fCnt < 0.f)
 	{
-		CObj* pObj = CAbstractFactory<CBullet_3>::Create(m_tInfo.fX + 33.f, m_tInfo.fY - 114.f);
+		CObj* pObj = CObjFactory<CBullet_3>::Create(m_tInfo.fX + 33.f, m_tInfo.fY - 114.f);
 		pObj->Set_Angle(fCnt);
 		CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
@@ -379,20 +379,20 @@ void CRobotShark::Shot_1()
 void CRobotShark::Shot_2()
 {
 	// ¿ÞÆÈ
-	CObj* pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - 87.f, m_tInfo.fY + 60.f);
+	CObj* pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - 87.f, m_tInfo.fY + 60.f);
 	pObj->Set_Angle(-90.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX - 99.f, m_tInfo.fY + 48.f);
+	pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX - 99.f, m_tInfo.fY + 48.f);
 	pObj->Set_Angle(-90.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 	// ¿À¸¥ÆÈ
-	pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + 87.f, m_tInfo.fY + 60.f);
+	pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + 87.f, m_tInfo.fY + 60.f);
 	pObj->Set_Angle(-90.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_4>::Create(m_tInfo.fX + 99.f, m_tInfo.fY + 48.f);
+	pObj = CObjFactory<CBullet_4>::Create(m_tInfo.fX + 99.f, m_tInfo.fY + 48.f);
 	pObj->Set_Angle(-90.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }
@@ -402,32 +402,32 @@ void CRobotShark::Shot_2()
 void CRobotShark::Shot_3()
 {
 	// ¿ÞÆÈ
-	CObj* pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX - 99.f, m_tInfo.fY + 30.f);
+	CObj* pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX - 99.f, m_tInfo.fY + 30.f);
 	pObj->Set_Angle(-130.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX - 99.f, m_tInfo.fY + 30.f);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX - 99.f, m_tInfo.fY + 30.f);
 	pObj->Set_Angle(-120.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX - 69.f, m_tInfo.fY + 30.f);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX - 69.f, m_tInfo.fY + 30.f);
 	pObj->Set_Angle(-50.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX - 69.f, m_tInfo.fY + 30.f);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX - 69.f, m_tInfo.fY + 30.f);
 	pObj->Set_Angle(-60.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
 	// ¿À¸¥ÆÈ
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX + 99.f, m_tInfo.fY + 30.f);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX + 99.f, m_tInfo.fY + 30.f);
 	pObj->Set_Angle(-130.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX + 99.f, m_tInfo.fY + 30.f);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX + 99.f, m_tInfo.fY + 30.f);
 	pObj->Set_Angle(-120.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX + 69.f, m_tInfo.fY + 30.f);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX + 69.f, m_tInfo.fY + 30.f);
 	pObj->Set_Angle(-50.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
-	pObj = CAbstractFactory<CBullet_1>::Create(m_tInfo.fX + 69.f, m_tInfo.fY + 30.f);
+	pObj = CObjFactory<CBullet_1>::Create(m_tInfo.fX + 69.f, m_tInfo.fY + 30.f);
 	pObj->Set_Angle(-60.f);
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::MONSTER_BULLET);
 }

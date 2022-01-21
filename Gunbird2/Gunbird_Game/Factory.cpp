@@ -59,11 +59,11 @@ int CFactory::Update()
 			// 파괴되서 HP 다시 락
 			m_bHpLock = true;
 			// 파괴 이펙트 생성
-			CObj* pObj = CAbstractFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);
+			CObj* pObj = CObjFactory<CExplosion_04>::Create(m_tInfo.fX, m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::EFFECT);
 
 			// 폭탄 아이템 드랍
-			pObj = CAbstractFactory<CBomb>::Create(m_tInfo.fX, m_tInfo.fY);
+			pObj = CObjFactory<CBomb>::Create(m_tInfo.fX, m_tInfo.fY);
 			CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::ITEM);
 
 			// 충돌 렉트
