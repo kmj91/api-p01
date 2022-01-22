@@ -215,7 +215,7 @@ void CRedBeanie::Shot()
 	float fDia = sqrtf(fX * fX + fY * fY);				// 현재 위치에서 목적지까지 거리
 	// arccos(cos) = 라디안 값을 구함
 	float fRad = acosf(fX / fDia);
-	// 라디안 값으로 호도각을 구함
+	// 라디안 값으로 각도를 구함
 	m_fAngle = fRad * 180.f / PI;
 	// 타겟의 Y 좌표가 나의 Y 좌표 보다 크면 부호 반전
 	if (m_tInfo.fY < m_pTarget->Get_Info().fY)

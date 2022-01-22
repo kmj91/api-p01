@@ -411,7 +411,7 @@ void CRobotBlue::Frame_MoveEX()
 }
 
 // 전방위 공격
-// _fAngle : 호도각 카운트
+// _fAngle : 각도 카운트
 void CRobotBlue::Shot_1(float _fAngle)
 {
 	float fCnt = _fAngle;

@@ -215,7 +215,7 @@ void CShark::Move()
 	m_tInfo.fY += fY / fDia * fSpeed;
 	// arccos(cos) = 라디안 값을 구함
 	float fRad = acosf(fX / fDia);
-	// 라디안 값으로 호도각을 구함
+	// 라디안 값으로 각도를 구함
 	float fAngle = fRad * 180.f / PI;
 	// 목적지의 Y 좌표가 나의 Y 좌표 보다 크면 부호 반전
 	if (m_tInfo.fY < m_fDestPosY)

@@ -223,13 +223,13 @@ void CCannon::Aim()
 	float fDia = sqrtf(fX * fX + fY * fY);				// 현재 위치에서 목적지까지 거리
 	// arccos(cos) = 라디안 값을 구함
 	float fRad = acosf(fX / fDia);
-	// 라디안 값으로 호도각을 구함
+	// 라디안 값으로 각도를 구함
 	m_fAngle = fRad * 180.f / PI;
 	// 타겟의 Y 좌표가 나의 Y 좌표 보다 크면 부호 반전
 	if (m_tInfo.fY < m_pTarget->Get_Info().fY)
 		m_fAngle *= -1.f;
 
-	// 위에서 구한 호도각으로 스프라이트 인덱스 번호 변경
+	// 위에서 구한 각도로 스프라이트 인덱스 번호 변경
 	if (-5.f <= m_fAngle && m_fAngle < 5.f)
 		m_iDrawID = CCannon::A0;
 	else if (-10.f <= m_fAngle && m_fAngle < -5.f)
