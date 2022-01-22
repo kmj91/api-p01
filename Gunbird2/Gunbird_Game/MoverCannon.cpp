@@ -76,6 +76,8 @@ int CMoverCannon::Update()
 
 	// 배경에 맞춰서 Y축 이동
 	m_tInfo.fY += g_fBackgroundSpeed * 3.f;
+	// 목적지도 배경 속도에 맞춰서 Y축 이동해야됨
+	m_fDestPosY += g_fBackgroundSpeed * 3.f;
 
 	// 파괴되지 않았음
 	if (m_ePreState != CMoverCannon::DESTROY) {
@@ -92,8 +94,6 @@ int CMoverCannon::Update()
 	// 기본 상태
 	if (m_ePreState == CMoverCannon::IDEL)
 	{
-		// 목적지도 배경 속도에 맞춰서 Y축 이동해야됨
-		m_fDestPosY += g_fBackgroundSpeed * 3.f;
 		// 이동
 		if (Move()) {
 			// 이동 완료
