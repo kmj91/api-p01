@@ -213,7 +213,7 @@ void CShark::Move()
 	// 좌표 이동
 	m_tInfo.fX += fX / fDia * fSpeed;
 	m_tInfo.fY += fY / fDia * fSpeed;
-	// arccos(cos) = 라디안 값을 구함
+	// arccos(x) = 라디안 값을 구함
 	float fRad = acosf(fX / fDia);
 	// 라디안 값으로 각도를 구함
 	float fAngle = fRad * 180.f / PI;

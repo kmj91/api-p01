@@ -284,7 +284,7 @@ void CRed::Shot()
 	float	fX = m_pTarget->Get_Info().fX - m_tInfo.fX;	// 방향 좌표 X
 	float	fY = m_pTarget->Get_Info().fY - m_tInfo.fY;	// 방향 좌표 Y
 	float	fDia = sqrtf(fX * fX + fY * fY);			// 거리
-	// arccos(cos) = 라디안 값을 구함
+	// arccos(x) = 라디안 값을 구함
 	float	fRad = acosf(fX / fDia);
 	// 라디안 값으로 각도를 구함
 	float fAngle = fRad * 180.f / PI;
