@@ -674,32 +674,31 @@ void CTequilaGallop::Action()
 		break;
 		// 이동
 	case STATE::NEXT_PATTERN:
-		// 일정시간이 경과한 후 다음 패턴 준비
-		if (m_dwShotTime + m_dwShotDelay < GetTickCount())
-		{
-			while (true)
-			{
-				// 이번 공격 패턴 저장
-				m_eCurState = m_vecPattern[m_dwPatternIndex];
-				// 다음 공격 패턴 인덱스로 
-				m_dwPatternIndex = (m_dwPatternIndex + 1) % m_vecPattern.size();
-				// 왼팔 공격 패턴인데 파괴된 상태면 다음 패턴
-				if (m_eCurState == STATE::L_ARM_ATTACK &&
-					m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].bDamage)
-				{
-					continue;
-				}
-				// 오른팔 공격 패턴인데 파괴된 상태면 다음 패턴
-				else if (m_eCurState == STATE::R_ARM_ATTACK &&
-					m_bDamageFlagArr[static_cast<UINT>(SPRITE::R_ARM)].bDamage)
-				{
-					continue;
-				}
+		// 다음 패턴 대기 시간이 아직 지나지 않았으면
+		if (m_dwShotTime + m_dwShotDelay > GetTickCount())
+			break;
 
-				// 반복문 나감
-				break;
+		while (true)
+		{
+			// 이번 공격 패턴 저장
+			m_eCurState = m_vecPattern[m_dwPatternIndex];
+			// 다음 공격 패턴 인덱스로 
+			m_dwPatternIndex = (m_dwPatternIndex + 1) % m_vecPattern.size();
+			// 왼팔 공격 패턴인데 파괴된 상태면 다음 패턴
+			if (m_eCurState == STATE::L_ARM_ATTACK &&
+				m_bDamageFlagArr[static_cast<UINT>(SPRITE::L_ARM)].bDamage)
+			{
+				continue;
+			}
+			// 오른팔 공격 패턴인데 파괴된 상태면 다음 패턴
+			else if (m_eCurState == STATE::R_ARM_ATTACK &&
+				m_bDamageFlagArr[static_cast<UINT>(SPRITE::R_ARM)].bDamage)
+			{
+				continue;
 			}
 
+			// 반복문 나감
+			break;
 		}
 		break;
 		// 왼팔 공격
