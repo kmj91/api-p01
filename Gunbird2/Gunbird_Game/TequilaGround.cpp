@@ -629,10 +629,11 @@ void CTequilaGround::Action()
 		break;
 		// 공격
 	case STATE::ATTACK:
-		// 반복문을 돌면서 보스 패턴들을 하나씩 사용함
+		// 반복문을 돌면서 보스 패턴들을 하나씩 검사함
 		for (int iCnt = static_cast<int>(PATTERN::L_SUB); iCnt < static_cast<int>(PATTERN::END); ++iCnt) {
 			// 각 패턴들은 공격 대기 시간이 지나면 공격을 함
 			if (m_tPatternDelay[iCnt].dwOnTime + m_tPatternDelay[iCnt].dwOnDelay < GetTickCount()) {
+				// 패턴 수행
 				switch (static_cast<PATTERN>(iCnt))
 				{
 					// 정면 왼쪽 서브
