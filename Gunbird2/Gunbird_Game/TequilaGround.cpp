@@ -971,7 +971,7 @@ void CTequilaGround::Action()
 					// 1. 충전 이펙트 생성
 					if (!m_tPatternDelay[iCnt].bAttack) {
 						// 공격 플래그 true
-						m_tPatternDelay[iCnt].bOnFlag = true;
+						m_tPatternDelay[iCnt].bAttack = true;
 						// 현재 시간 저장
 						m_tPatternDelay[iCnt].dwOffTime = GetTickCount();
 
