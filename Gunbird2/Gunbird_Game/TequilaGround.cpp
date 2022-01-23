@@ -605,7 +605,8 @@ void CTequilaGround::Action()
 		{
 			if (m_tInfo.fY >= 0)
 			{
-				m_bHpLock = false;		// 이제부터 처맞을 수 있음
+				// 무적 해제
+				m_bHpLock = false;
 			}
 		}
 
