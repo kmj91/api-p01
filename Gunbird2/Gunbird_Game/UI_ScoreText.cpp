@@ -1,3 +1,9 @@
+// 기명준
+// 획득 점수 텍스트
+// 점수 아이템 상호작용 때 뜨는 텍스트
+// 고정 이미지 사용
+// 생성하는 쪽에서 씬 인덱스를 초기화 받음
+
 #include "stdafx.h"
 #include "UI_ScoreText.h"
 
@@ -32,6 +38,7 @@ void CUI_ScoreText::Initialize()
 	m_fSpeed = 3.0f;
 }
 
+// 업데이트
 int CUI_ScoreText::Update()
 {
 	if (m_bDead)
@@ -42,16 +49,19 @@ int CUI_ScoreText::Update()
 	Update_Rect();
 	Frame_Move();
 
-	if (m_dwTime + m_dwDelay < GetTickCount())		// 시간이 지나면 사라짐
+	// 일정 시간이 지나면 삭제
+	if (m_dwTime + m_dwDelay < GetTickCount())
 		m_bDead = true;
 
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CUI_ScoreText::Late_Update()
 {
 }
 
+// 렌더
 void CUI_ScoreText::Render(HDC _DC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"UI_ScoreText");
