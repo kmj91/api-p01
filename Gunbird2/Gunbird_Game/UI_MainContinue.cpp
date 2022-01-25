@@ -27,6 +27,7 @@ void CUI_MainContinue::Initialize()
 	m_iImageHeight = UI_BIG_NUMBER_HEIGHT;
 }
 
+// 업데이트
 int CUI_MainContinue::Update()
 {
 	if (m_bRemove)
@@ -41,10 +42,12 @@ int CUI_MainContinue::Update()
 	return OBJ_NOEVENT;
 }
 
+// 레이트 업데이트
 void CUI_MainContinue::Late_Update()
 {
 }
 
+// 렌더
 void CUI_MainContinue::Render(HDC _DC)
 {
 	// UI 출력 상태가 아니면
