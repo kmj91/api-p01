@@ -42,9 +42,10 @@ int CExplosion_02_1::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 	// 이펙트 딜레이 시간이 지나면 플래그 true
-	if (!m_bOnEffect && m_dwEffectTime + m_dwEffectDelay > GetTickCount())
+	if (m_dwEffectTime + m_dwEffectDelay > GetTickCount())
 		return OBJ_NOEVENT;
-	else {
+	// 이펙트 재생 시작
+	if (!m_bOnEffect) {
 		// 플래그 true
 		m_bOnEffect = true;
 		// 사운드 재생
